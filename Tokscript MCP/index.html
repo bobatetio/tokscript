@@ -1397,7 +1397,7 @@
     <h1>Tokscript now works inside<br>Claude and ChatGPT</h1>
     <p class="hero-sub">Ask your AI to pull transcripts, generate hooks, analyze virality, and research creators from any TikTok, Instagram Reel, or YouTube Short. Directly in conversation.</p>
     <div class="url-bar">
-      <span class="url-bar-text">api.talkscript.com/mcp</span>
+      <span class="url-bar-text">api.tokscript.com/mcp</span>
       <button class="url-bar-copy" id="urlCopy" onclick="copyUrl()">
         <span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;">
           <img src="https://www.figma.com/api/mcp/asset/07184b29-b259-4524-a9ff-5945239d4623" alt="" style="width:15px;height:15px;object-fit:contain;display:block;" />
@@ -1478,7 +1478,7 @@
           <p class="hiw-step-label">Step 01</p>
           <h3 class="hiw-card-title">Copy the URL above</h3>
           <div class="hiw-card-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/cb5e0f8f-636f-43a8-8a2a-ed5b2cb65078" alt="" />
+            <img src="https://www.figma.com/api/mcp/asset/d565668a-d5ae-4424-9ba6-5ae0076864f3" alt="" />
           </div>
           <p class="hiw-card-desc">Hit the copy button, one URL is all it takes to link TokScript to your AI.</p>
         </div>
@@ -1489,7 +1489,7 @@
           <p class="hiw-step-label">Step 02</p>
           <h3 class="hiw-card-title">Open Claude or ChatGPT</h3>
           <div class="hiw-card-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/22926f6a-6531-4ddd-980c-7f657a1bb6c1" alt="" />
+            <img src="https://www.figma.com/api/mcp/asset/c962ec3c-ab63-4af1-902f-2b0565aed8e5" alt="" />
           </div>
           <p class="hiw-card-desc">Go to Settings → Connectors → Add Custom Connector, then paste the URL.</p>
         </div>
@@ -2365,7 +2365,7 @@ function copyCtaUrl(btn) {
   /* ── Copy URL ── */
   function copyUrl() {
     const btn = document.getElementById('urlCopy');
-    navigator.clipboard.writeText('https://api.talkscript.com/mcp').catch(() => {});
+    navigator.clipboard.writeText('https://api.tokscript.com/mcp').catch(() => {});
     btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2.5 8L5.5 11L12.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Copied!';
     btn.classList.add('ok');
     setTimeout(() => {
