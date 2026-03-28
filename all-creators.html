@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Creators - Figma Layout</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-[#f7f9ff] min-h-screen font-['Plus Jakarta Sans',sans-serif]">
+  <!-- Top Navigation Bar -->
+  <nav class="bg-white w-full h-16 flex items-center px-4 md:px-10 shadow-sm fixed top-0 left-0 z-10">
+    <div class="flex items-center gap-4 md:gap-8 w-full">
+      <img src="https://dummyimage.com/120x40/eee/222&text=Logo" alt="Logo" class="h-10 flex-shrink-0">
+      <div class="hidden md:flex gap-10 text-[#596780] text-base font-medium">
+        <a href="#" class="hover:text-[#578bfc]">Dashboard</a>
+        <a href="#" class="hover:text-[#578bfc]">My Creators</a>
+        <a href="#" class="text-[#1a202c] font-semibold border-b-2 border-[#578bfc] pb-2">Find Creators</a>
+        <a href="#" class="hover:text-[#578bfc]">Post a Job</a>
+      </div>
+      <div class="ml-auto flex items-center gap-2 md:gap-4">
+        <div class="hidden sm:flex gap-2">
+          <div class="relative">
+            <span class="inline-block bg-white border border-[#c3d4e9] rounded-xl w-11 h-11"></span>
+            <span class="absolute top-1 left-8 bg-[#ff4423] w-3 h-3 rounded-full border-2 border-white"></span>
+          </div>
+          <div class="relative">
+            <span class="inline-block bg-white border border-[#c3d4e9] rounded-xl w-11 h-11"></span>
+            <span class="absolute top-1 left-8 bg-[#ff4423] w-3 h-3 rounded-full border-2 border-white"></span>
+          </div>
+        </div>
+        <img src="https://dummyimage.com/40x40/eee/222&text=U" alt="User" class="rounded-full w-10 h-10 flex-shrink-0">
+        <span class="hidden sm:inline text-[#1a202c] font-medium">Cocacola</span>
+        <svg class="w-5 h-5 text-[#596780] hidden sm:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+      </div>
+    </div>
+  </nav>
+
+  <div class="flex flex-col md:flex-row pt-20 px-4 md:px-8 gap-6 md:gap-8">
+    <!-- Sidebar -->
+    <aside class="w-full md:w-72 bg-white rounded-xl shadow p-6 md:flex-shrink-0">
+      <div class="flex justify-between items-center mb-6">
+        <span class="text-lg font-semibold text-[#1a202c]">Filter</span>
+        <button class="text-[#4a83fc] text-sm font-semibold">Clear All</button>
+      </div>
+      <div class="mb-4">
+        <div class="font-semibold text-[#1a202c] mb-2">Creator Preference</div>
+        <div class="flex flex-col gap-2 ml-2">
+          <label class="flex items-center gap-2"><input type="checkbox" checked class="accent-[#578bfc]"> Videos</label>
+          <label class="flex items-center gap-2"><input type="checkbox" checked class="accent-[#578bfc]"> Lives</label>
+        </div>
+      </div>
+      <div class="mb-4">
+        <div class="font-semibold text-[#1a202c] mb-2">GMV Range</div>
+        <div class="flex justify-between text-sm text-[#1a202c] mb-1">
+          <span>$20</span><span>$800</span>
+        </div>
+        <input type="range" min="20" max="800" value="200" class="w-full accent-[#578bfc]">
+      </div>
+      <div class="mb-4">
+        <div class="font-semibold text-[#1a202c] mb-2">Estimated ROI Range</div>
+        <div class="flex justify-between text-sm text-[#1a202c] mb-1">
+          <span>2X</span><span>5X</span>
+        </div>
+        <input type="range" min="2" max="5" value="3" class="w-full accent-[#578bfc]">
+      </div>
+      <div class="mb-4">
+        <div class="font-semibold text-[#1a202c] mb-2">Creator Level</div>
+        <div class="flex flex-col gap-2 ml-2">
+          <label class="flex items-center gap-2"><input type="checkbox" checked class="accent-[#578bfc]"> All Creators</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Legend Creators</label>
+        </div>
+      </div>
+      <div class="mb-4">
+        <div class="font-semibold text-[#1a202c] mb-2">Preferred Gender</div>
+        <div class="flex flex-col gap-2 ml-2">
+          <label class="flex items-center gap-2"><input type="checkbox" checked class="accent-[#578bfc]"> All</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Male</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Female</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Others</label>
+        </div>
+      </div>
+      <div class="mb-4">
+        <div class="font-semibold text-[#1a202c] mb-2">Age</div>
+        <div class="flex flex-col gap-2 ml-2">
+          <label class="flex items-center gap-2"><input type="checkbox" checked class="accent-[#578bfc]"> All</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> 18-24</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> 24-35</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> 35-55</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> 55+</label>
+        </div>
+      </div>
+      <div>
+        <div class="font-semibold text-[#1a202c] mb-2">Categories</div>
+        <div class="flex flex-col gap-2 ml-2 text-[#596780] text-sm">
+          <label class="flex items-center gap-2"><input type="checkbox" checked class="accent-[#578bfc]"> All</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Electronics</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Fashion</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Beauty & Health</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Home & Living</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Sports & Outdoors</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Toys & Games</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Automotive</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Books & Media</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Groceries & Food</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Baby & Kids</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Pet Supplies</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Office Supplies</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Tools & Hardware</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Jewellery & Watches</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="accent-[#578bfc]"> Art & Collectibles</label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1">
+      <div class="flex flex-col gap-6">
+        <div class="flex justify-between items-center">
+          <h1 class="text-2xl md:text-3xl font-bold text-[#1a202c]">All Creators</h1>
+          <button class="bg-[#578bfc] text-white px-6 py-3 rounded-lg font-semibold opacity-0">Post a Job</button>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+          <div class="bg-[#eff3f7] rounded-lg flex gap-1 p-1 overflow-x-auto">
+            <button class="px-3 py-2 rounded-md bg-white font-semibold text-[#578bfc] whitespace-nowrap text-sm">Offered (4)</button>
+            <button class="px-3 py-2 rounded-md text-[#596780] whitespace-nowrap text-sm">All Creators</button>
+            <button class="px-3 py-2 rounded-md text-[#596780] whitespace-nowrap text-sm">Applicants (34)</button>
+            <button class="px-3 py-2 rounded-md text-[#596780] whitespace-nowrap text-sm">Favorites (12)</button>
+          </div>
+          <div class="flex gap-2 flex-shrink-0">
+            <div class="bg-white rounded-lg flex items-center px-3 h-10 border border-[#cddbed] flex-1 sm:flex-none">
+              <svg class="w-5 h-5 text-[#596780] mr-2 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+              <input type="text" placeholder="Search Creator" class="outline-none bg-transparent text-[#596780] text-sm w-full sm:w-32">
+            </div>
+            <div class="bg-white rounded-lg flex items-center px-4 h-10 border border-[#cddbed] flex-shrink-0">
+              <span class="text-[#596780] text-sm">Sort: GMV</span>
+              <svg class="w-4 h-4 ml-1 text-[#596780]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" /></svg>
+            </div>
+          </div>
+        </div>
+        <!-- Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Card Example -->
+          <div class="bg-white rounded-xl shadow p-6 flex flex-col gap-4 relative">
+            <div class="flex items-center gap-4">
+              <img src="https://dummyimage.com/80x80/eee/222&text=A" alt="Alyssa" class="rounded-full w-20 h-20">
+              <div>
+                <div class="text-lg font-bold text-[#1a202c]">Alyssa Rodriquez</div>
+                <div class="text-sm text-[#596780]">@shopitordropitmama</div>
+              </div>
+              <span class="ml-auto bg-[#f9eefc] text-[#39276b] text-xs px-3 py-1 rounded-full">Legend</span>
+            </div>
+            <div class="text-[#596780] text-sm">As a fitness coach and wellness advocate, I inspire others to lead healthier lives through workouts, nutrition tips, and motivation ...</div>
+            <div class="flex gap-2 text-xs text-[#596780]">
+              <span class="bg-[#f3f5f6] px-2 py-1 rounded">EROI 3.4X</span>
+              <span class="bg-[#f3f5f6] px-2 py-1 rounded">GMV $230</span>
+              <span class="bg-[#f3f5f6] px-2 py-1 rounded">GMV/Video $950</span>
+            </div>
+            <div class="bg-[#f8f9fa] rounded-md p-3 mt-2">
+              <div class="flex justify-between text-xs text-[#596780] mb-1">
+                <span>5 Videos per month</span><span>$250</span>
+                <span>5 Live per month</span><span>$270</span>
+              </div>
+              <div class="flex justify-between text-xs text-[#596780]">
+                <span>Your last offer</span><span>$220</span>
+                <span></span><span>$250</span>
+              </div>
+              <div class="text-xs text-[#596780] mt-2">Note: Hey Witney. I have edited the prices to what I think works for me....</div>
+            </div>
+            <div class="flex gap-2 mt-2">
+              <button class="bg-[#fc5757]/20 text-[#fc5757] px-4 py-2 rounded">Reject</button>
+              <button class="bg-[#578bfc]/20 text-[#578bfc] px-4 py-2 rounded">Counter</button>
+              <button class="bg-[#30ac5f]/10 text-[#30ac5f] px-4 py-2 rounded">Accept</button>
+            </div>
+          </div>
+          <!-- Repeat similar card blocks for other creators -->
+          <div class="bg-white rounded-xl shadow p-6 flex flex-col gap-4 relative opacity-70">
+            <div class="flex items-center gap-4">
+              <img src="https://dummyimage.com/80x80/eee/222&text=R" alt="Rox" class="rounded-full w-20 h-20">
+              <div>
+                <div class="text-lg font-bold text-[#1a202c]">Rox Wilson</div>
+                <div class="text-sm text-[#596780]">@roxTalks</div>
+              </div>
+              <span class="ml-auto bg-[#f9eefc] text-[#39276b] text-xs px-3 py-1 rounded-full">Legend</span>
+            </div>
+            <div class="text-[#596780] text-sm">As a health guide and wellness promoter, I encourage others to lead healthier lives by sharing effective workout strategies, meal...</div>
+            <div class="flex gap-2 text-xs text-[#596780]">
+              <span class="bg-[#f3f5f6] px-2 py-1 rounded">EROI 3.4X</span>
+              <span class="bg-[#f3f5f6] px-2 py-1 rounded">GMV $230</span>
+              <span class="bg-[#f3f5f6] px-2 py-1 rounded">GMV/Video $950</span>
+            </div>
+            <div class="bg-[#f8f9fa] rounded-md p-3 mt-2">
+              <div class="flex justify-between text-xs text-[#596780] mb-1">
+                <span>5 Videos per month</span><span>$250</span>
+                <span>5 Live per month</span><span>$270</span>
+              </div>
+              <div class="flex justify-between text-xs text-[#596780]">
+                <span>Your last offer</span><span>$220</span>
+                <span></span><span>$250</span>
+              </div>
+              <div class="text-xs text-[#596780] mt-2">Note: Hey Witney. I have edited the prices to what I think works for me....</div>
+            </div>
+            <div class="flex gap-2 mt-2">
+              <span class="bg-[#dba32a]/10 text-[#dba32a] px-4 py-2 rounded">Waiting for Rox's response...</span>
+            </div>
+          </div>
+          <!-- Add more cards as needed -->
+        </div>
+        <!-- Pagination -->
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mt-8">
+          <div class="flex gap-2 overflow-x-auto pb-1">
+            <button class="bg-white border border-[#e9e9e9] rounded h-9 px-3 text-[#1a202c] opacity-30 flex-shrink-0">Back</button>
+            <button class="bg-[#578bfc] text-white rounded h-9 px-3 font-bold flex-shrink-0">1</button>
+            <button class="bg-white border border-[#e9e9e9] rounded h-9 px-3 text-[#578bfc] flex-shrink-0">2</button>
+            <button class="bg-white border border-[#e9e9e9] rounded h-9 px-3 text-[#578bfc] flex-shrink-0">3</button>
+            <button class="bg-white border border-[#e9e9e9] rounded h-9 px-3 text-[#578bfc] flex-shrink-0">4</button>
+            <button class="bg-white border border-[#e9e9e9] rounded h-9 px-3 text-[#578bfc] flex-shrink-0">5</button>
+            <button class="bg-white border border-[#e9e9e9] rounded h-9 px-3 text-[#578bfc] flex-shrink-0">...</button>
+            <button class="bg-white border border-[#e9e9e9] rounded h-9 px-3 text-[#578bfc] flex-shrink-0">25</button>
+            <button class="bg-white border border-[#e9e9e9] rounded h-9 px-3 text-[#596780] flex-shrink-0">Next</button>
+          </div>
+          <div class="flex items-center gap-2 flex-shrink-0">
+            <span class="text-[#1a202c] text-sm">Result per page</span>
+            <select class="bg-white border border-[#e9e9e9] rounded h-9 px-3 text-[#596780]">
+              <option>6</option>
+              <option>12</option>
+              <option>24</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Collapsible Comment Example (Figma-style) -->
+  <div id="comment-1" class="w-full max-w-2xl mx-auto mt-12">
+    <!-- Full Comment Section -->
+    <div id="full-comment-1" class="bg-white rounded-xl shadow p-6 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <span class="text-gray-500 font-bold">#1</span>
+        <img src="https://dummyimage.com/48x48/eee/222&text=U" class="w-12 h-12 rounded-full" alt="avatar" />
+        <span class="text-gray-900 font-semibold">username</span>
+        <span class="ml-4 text-gray-500">This is a full comment section. You can put any content here.</span>
+      </div>
+      <button onclick="collapseComment(1)">
+        <img src="https://www.svgrepo.com/show/506800/collapse.svg" class="w-6 h-6" alt="Collapse" />
+      </button>
+    </div>
+    <!-- Collapsed Bar (hidden by default) -->
+    <div id="collapsed-bar-1" class="hidden" style="background-color: #1c2e46; border-radius: 0.75rem;">
+      <div class="flex items-center justify-between px-4 py-2">
+        <div class="flex items-center gap-2">
+          <span class="text-white font-bold">#1</span>
+          <img src="https://dummyimage.com/36x36/eee/222&text=U" class="w-9 h-9 rounded-full" alt="avatar" />
+          <span class="text-white font-semibold">username</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <img src="https://www.svgrepo.com/show/506800/delete.svg" class="w-4 h-4 cursor-pointer" alt="Delete" />
+          <button onclick="expandComment(1)">
+            <img src="https://www.svgrepo.com/show/506800/expand.svg" class="w-4 h-4" alt="Expand" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  function collapseComment(id) {
+    document.getElementById('full-comment-' + id).classList.add('hidden');
+    document.getElementById('collapsed-bar-' + id).classList.remove('hidden');
+  }
+  function expandComment(id) {
+    document.getElementById('collapsed-bar-' + id).classList.add('hidden');
+    document.getElementById('full-comment-' + id).classList.remove('hidden');
+  }
+  </script>
+</body>
+</html> 
