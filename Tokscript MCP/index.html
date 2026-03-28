@@ -1184,11 +1184,14 @@
       .nav-hamburger { display: flex; }
 
       /* Hero */
+      #hero { height: auto; min-height: 100svh; overflow: visible; }
+      .hero-body { padding-top: 84px; }
       h1 { font-size: clamp(28px, 7vw, 48px); letter-spacing: -1px; line-height: 1.15; }
       .hero-sub { font-size: 15px; max-width: 90%; }
       .hero-claude-logo { display: none; }
       .hero-chatgpt-logo { display: none; }
-      .hero-flare { width: min(500px, 90vw); }
+      .hero-flare { display: none; }
+      .hero-sparkles { display: none; }
       .url-bar { width: min(507px, calc(100vw - 40px)); }
       .hero-video { width: calc(100% - 40px); top: 430px; }
       .hero-play-btn { top: 490px; font-size: 15px; padding: 9px 22px; }
@@ -1276,11 +1279,12 @@
       section { padding: 64px 16px; }
 
       /* Hero */
-      #hero { height: auto; min-height: 100vh; padding-bottom: 40px; }
-      .hero-body { padding-top: 8px; }
+      #hero { height: auto; min-height: 100svh; overflow: visible; padding-bottom: 40px; }
+      .hero-body { padding-top: 84px; }
       h1 { font-size: clamp(26px, 8vw, 36px); line-height: 1.15; }
       .hero-sub { font-size: 14px; }
-      .hero-flare { width: min(320px, 90vw); }
+      .hero-flare { display: none; }
+      .hero-sparkles { display: none; }
       .url-bar { width: calc(100vw - 32px); }
       .hero-video { width: calc(100vw - 32px); top: 380px; }
       .hero-play-btn { top: 440px; font-size: 14px; padding: 8px 18px; }
