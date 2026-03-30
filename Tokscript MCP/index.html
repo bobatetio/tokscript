@@ -309,15 +309,15 @@
     }
     /* Header */
     .fs-header-block {
-      position: relative; width: 883px; max-width: 100%; height: 320px;
+      position: relative; width: 883px; max-width: 100%; height: auto;
     }
     .fs-header-bg {
       position: absolute; left: 50%; top: 0; transform: translateX(-50%);
-      width: 883px; height: 320px; object-fit: cover; pointer-events: none;
+      width: 883px; height: 100%; object-fit: cover; pointer-events: none;
     }
     .fs-header-content {
-      position: absolute; top: 87px; left: 50%; transform: translateX(-50%);
-      width: 694px; z-index: 1;
+      position: relative; top: auto; left: auto; transform: none;
+      width: 694px; max-width: 100%; z-index: 1; padding: 60px 20px 56px;
       display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;
     }
     .fs-pill {
@@ -1233,8 +1233,8 @@
 
       /* Free skills */
       .fs-inner { gap: 24px; }
-      .fs-header-block { height: auto; min-height: 260px; }
-      .fs-header-content { position: relative; top: 0; left: 0; transform: none; width: 90%; padding-top: 60px; }
+      .fs-header-block { min-height: 0; }
+      .fs-header-content { width: 90%; }
       .fs-h2 { font-size: clamp(24px, 5vw, 40px); }
       .fs-card { width: 100%; }
       .fs-tabs { flex-wrap: wrap; justify-content: center; }
