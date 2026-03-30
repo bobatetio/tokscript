@@ -142,11 +142,12 @@
       z-index: 2;
     }
     .hero-video-bg {
-      position: absolute; inset: -17.25px -128px -151.25px -128px;
+      position: absolute; left: -2px; right: -2px; top: -3px;
+      aspect-ratio: 1280/720; overflow: hidden; pointer-events: none;
     }
     .hero-video-bg img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; pointer-events: none; max-width: none;
+      position: absolute; width: 104.06%; height: 107.22%;
+      left: -2.03%; top: -1.94%; max-width: none; pointer-events: none;
     }
     .hero-video-glow {
       position: absolute; inset: -14px -1px 12px -1px;
@@ -1353,6 +1354,31 @@
       .wf-images { display: none; }
       .wf-panel { border-radius: 16px; }
     }
+
+    /* ── Video modal ── */
+    .video-modal {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.88);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .25s ease;
+    }
+    .video-modal.open { opacity: 1; pointer-events: auto; }
+    .video-modal-inner {
+      position: relative;
+      width: min(90vw, 1080px);
+      aspect-ratio: 16/9;
+    }
+    .video-modal-inner iframe {
+      width: 100%; height: 100%; border: none; border-radius: 12px; display: block;
+    }
+    .video-modal-close {
+      position: absolute; top: -44px; right: 0;
+      background: none; border: none; color: #fff; font-size: 28px;
+      line-height: 1; cursor: pointer; opacity: .7;
+      transition: opacity .2s;
+    }
+    .video-modal-close:hover { opacity: 1; }
   </style>
 </head>
 <body>
@@ -1428,13 +1454,13 @@
   <div class="hero-video">
     <div class="hero-video-glow"></div>
     <div class="hero-video-bg">
-      <img src="https://www.figma.com/api/mcp/asset/23c9403d-71e9-4e8d-a00c-6d9860340055" alt="" />
+      <img src="https://www.figma.com/api/mcp/asset/71712336-c6fe-4d00-8d5d-297760d68f41" alt="" />
     </div>
     <div class="hero-video-fade"></div>
   </div>
 
   <!-- Play button — sits above the video card, independently positioned in #hero -->
-  <button class="hero-play-btn" aria-label="Play video"></button>
+  <button class="hero-play-btn" aria-label="Play video" onclick="openVideoModal()"></button>
 
   <!-- Fade into next section -->
   <!-- Sparkles rising from flare -->
@@ -2379,6 +2405,16 @@ function copyCtaUrl(btn) {
 }
 </script>
 
+<!-- Video modal -->
+<div class="video-modal" id="videoModal" onclick="handleModalClick(event)">
+  <div class="video-modal-inner">
+    <button class="video-modal-close" onclick="closeVideoModal()" aria-label="Close">&#x2715;</button>
+    <iframe id="videoFrame" src="" frameborder="0"
+      allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+</div>
+
 <script>
   /* ── Copy URL ── */
   function copyUrl() {
@@ -2459,6 +2495,28 @@ function copyCtaUrl(btn) {
     }
   }
 
+
+  /* ── Video modal ── */
+  // TODO: Replace with your YouTube video ID below
+  var VIDEO_ID = 'dQw4w9WgXcQ';
+
+  function openVideoModal() {
+    document.getElementById('videoFrame').src =
+      'https://www.youtube.com/embed/' + VIDEO_ID + '?autoplay=1&rel=0';
+    document.getElementById('videoModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeVideoModal() {
+    document.getElementById('videoModal').classList.remove('open');
+    document.getElementById('videoFrame').src = '';
+    document.body.style.overflow = '';
+  }
+  function handleModalClick(e) {
+    if (e.target === document.getElementById('videoModal')) closeVideoModal();
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeVideoModal();
+  });
 
   /* ── Mobile nav toggle ── */
   function toggleMobileNav() {
