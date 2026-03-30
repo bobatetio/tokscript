@@ -131,18 +131,15 @@
     .url-bar-copy:hover { opacity: .85; }
     .url-bar-copy.ok { color: #00b694; }
     /* Video preview card — top must equal flare bottom (112+360=472) */
-    .hero-video-wrap {
+    .hero-video {
       position: absolute; left: 50%; top: 472px;
       transform: translateX(-50%);
       width: calc(100% - 360px); max-width: 1080px;
       aspect-ratio: 1080/607.5;
-      z-index: 2;
-    }
-    .hero-video {
-      position: absolute; inset: 0;
       border: 2px solid #00d9b4; border-radius: 14px; overflow: hidden;
       background: #1a1a1a;
       box-shadow: 0 0 40px rgba(0,217,180,.06);
+      z-index: 2;
     }
     .hero-video-bg {
       position: absolute; inset: -17.25px -128px -151.25px -128px;
@@ -160,10 +157,15 @@
       background: linear-gradient(to bottom, transparent 0%, rgba(13,13,13,.98) 100%);
     }
     .hero-play-btn {
-      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      /* Vertically centered on the video card: video starts at top:472px, height = width × 0.5625 */
+      position: absolute;
+      left: 50%;
+      top: calc(472px + min(100% - 360px, 1080px) * 0.28125);
+      transform: translate(-50%, -50%);
       width: 72px; height: 72px;
       background: #fff; border: none; border-radius: 50%; padding: 0; cursor: pointer;
-      z-index: 5; display: flex; align-items: center; justify-content: center;
+      z-index: 6;
+      display: flex; align-items: center; justify-content: center;
       box-shadow: 0 4px 24px rgba(0,0,0,0.4);
     }
     .hero-play-btn::after {
@@ -1205,8 +1207,7 @@
       .hero-flare img { object-fit: contain; object-position: center bottom; }
       .hero-sparkles { display: none; }
       .hero-body { order: 1; }
-      .hero-video-wrap { position: relative; left: auto; top: auto; transform: none; width: calc(100% - 40px); margin: 0 auto; order: 3; z-index: 2; }
-      .hero-video { position: absolute; inset: 0; }
+      .hero-video { position: relative; left: auto; top: auto; transform: none; width: calc(100% - 40px); margin: 0 auto; order: 3; z-index: 2; }
       .hero-play-btn { display: none; }
       .url-bar { width: min(507px, calc(100vw - 40px)); }
 
@@ -1305,8 +1306,7 @@
       .hero-flare img { object-fit: contain; object-position: center bottom; }
       .hero-sparkles { display: none; }
       .hero-body { order: 1; }
-      .hero-video-wrap { position: relative; left: auto; top: auto; transform: none; width: calc(100vw - 32px); margin: 0 auto; order: 3; z-index: 2; }
-      .hero-video { position: absolute; inset: 0; }
+      .hero-video { position: relative; left: auto; top: auto; transform: none; width: calc(100vw - 32px); margin: 0 auto; order: 3; z-index: 2; }
       .hero-play-btn { display: none; }
       .url-bar { width: calc(100vw - 32px); }
 
@@ -1348,7 +1348,6 @@
     @media (max-width: 480px) {
       /* Tightest mobile */
       h1 { font-size: clamp(22px, 8vw, 30px); }
-      .hero-video-wrap { top: auto; }
       .hero-play-btn { display: none; }
       /* Workflows: hide image panel on very small screens */
       .wf-images { display: none; }
@@ -1426,16 +1425,16 @@
   </div>
 
   <!-- Video card — Figma 257:502 -->
-  <div class="hero-video-wrap">
-    <div class="hero-video">
-      <div class="hero-video-glow"></div>
-      <div class="hero-video-bg">
-        <img src="https://www.figma.com/api/mcp/asset/23c9403d-71e9-4e8d-a00c-6d9860340055" alt="" />
-      </div>
-      <div class="hero-video-fade"></div>
+  <div class="hero-video">
+    <div class="hero-video-glow"></div>
+    <div class="hero-video-bg">
+      <img src="https://www.figma.com/api/mcp/asset/23c9403d-71e9-4e8d-a00c-6d9860340055" alt="" />
     </div>
-    <button class="hero-play-btn" aria-label="Play video"></button>
+    <div class="hero-video-fade"></div>
   </div>
+
+  <!-- Play button — sits above the video card, independently positioned in #hero -->
+  <button class="hero-play-btn" aria-label="Play video"></button>
 
   <!-- Fade into next section -->
   <!-- Sparkles rising from flare -->
