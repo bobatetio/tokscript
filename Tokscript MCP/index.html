@@ -219,7 +219,7 @@
     }
     /* Header */
     .hiw-header-block {
-      position: relative; width: 884px; max-width: 100%; height: 220px;
+      position: relative; width: 884px; max-width: 100%; height: 148px;
       display: flex; align-items: center; justify-content: center;
     }
     .hiw-header-bg {
@@ -317,7 +317,7 @@
     }
     .fs-header-content {
       position: relative; top: auto; left: auto; transform: none;
-      width: 694px; max-width: 100%; z-index: 1; padding: 60px 20px 56px;
+      width: 694px; max-width: 100%; z-index: 1; padding: 60px 20px 8px;
       display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;
     }
     .fs-pill {
@@ -449,11 +449,11 @@
     }
     .ba-bg { position: absolute; left: 50%; transform: translateX(-50%); bottom: 0; width: 1344px; height: 585px; object-fit: cover; pointer-events: none; z-index: 0; }
     .ba-inner { display: flex; flex-direction: column; align-items: center; gap: 40px; width: 1100px; position: relative; z-index: 1; }
-    .ba-header-block { position: relative; width: 883px; height: 320px; }
-    .ba-header-bg { position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 883px; height: 320px; overflow: hidden; border-radius: 200px; }
+    .ba-header-block { position: relative; width: 883px; max-width: 100%; height: auto; overflow: hidden; }
+    .ba-header-bg { position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 883px; height: 100%; overflow: hidden; border-radius: 200px; }
     .ba-header-bg-l1 { position: absolute; left: 0; top: 0; width: 723px; height: 290px; object-fit: cover; z-index: 1; }
     .ba-header-bg-l2 { position: absolute; inset: 0 -80px -30px -80px; width: calc(100% + 160px); height: calc(100% + 30px); object-fit: cover; z-index: 0; }
-    .ba-header-content { position: absolute; top: 64px; left: 50%; transform: translateX(-50%); width: 730px; z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .ba-header-content { position: relative; top: auto; left: auto; transform: none; width: 730px; max-width: 100%; z-index: 1; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 64px 0 8px; }
     .ba-pill {
       display: inline-flex; align-items: center; padding: 5px 14px; border-radius: 20px;
       font-size: 12px; color: #fff;
@@ -687,7 +687,7 @@
     }
     /* Header */
     .who-header-block {
-      position: relative; width: 717px; height: 268px;
+      position: relative; width: 717px; height: 168px;
       display: flex; align-items: flex-start; justify-content: center; padding-top: 33px;
     }
     .who-header-bg {
@@ -1200,7 +1200,7 @@
 
       /* HIW */
       .hiw-inner { gap: 24px; }
-      .hiw-header-block { height: auto; min-height: 200px; padding: 24px 0; display: flex; align-items: center; justify-content: center; }
+      .hiw-header-block { height: auto; padding: 24px 0; display: flex; align-items: center; justify-content: center; }
       .hiw-header-bg { height: 100%; }
       .hiw-header-content { width: 90%; }
       .hiw-h2 { font-size: clamp(24px, 5vw, 40px); }
@@ -1212,7 +1212,7 @@
 
       /* Who header */
       .who-inner { gap: 24px; }
-      .who-header-block { height: auto; min-height: 220px; padding: 32px 0; display: flex; align-items: flex-start; justify-content: center; }
+      .who-header-block { height: auto; padding: 32px 0; display: flex; align-items: flex-start; justify-content: center; }
       .who-header-content { width: 90%; }
       .who-h2 { font-size: clamp(24px, 5vw, 40px); max-width: 90%; }
       .who-sub { max-width: 90%; }
@@ -1241,9 +1241,9 @@
 
       /* Before & After — header */
       .ba-inner { gap: 24px; }
-      .ba-header-block { height: auto; min-height: auto; padding: 40px 0 16px; display: flex; align-items: flex-start; justify-content: center; }
-      .ba-header-bg { width: 100%; height: 100%; }
-      .ba-header-content { position: relative; top: 0; left: 0; transform: none; width: 100%; }
+      .ba-header-block { overflow: hidden; }
+      .ba-header-bg { width: 100%; }
+      .ba-header-content { padding: 40px 0 16px; width: 100%; }
       .ba-title { font-size: clamp(22px, 5vw, 40px); }
       .ba-subtitle { font-size: 14px; }
       /* Before & After — carousel */
