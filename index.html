@@ -157,16 +157,12 @@
       background: linear-gradient(to bottom, transparent 0%, rgba(13,13,13,.98) 100%);
     }
     .hero-play-btn {
-      position: absolute; left: 50%; top: 560px; transform: translateX(-50%);
-      display: inline-flex; align-items: center; gap: 5px;
-      background: rgba(0,0,0,0.42);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.15); border-radius: 100px;
-      padding: 10px 30px;
-      color: #fff; font-size: 18px; font-weight: 500; cursor: pointer;
-      font-family: var(--font); white-space: nowrap;
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      width: 80px; height: 80px;
+      background: none; border: none; padding: 0; cursor: pointer;
       z-index: 5;
     }
+    .hero-play-btn img { width: 100%; height: 100%; display: block; }
     /* Sparkles */
     @keyframes sparkle-rise {
       0%   { transform: translate(0, 0) scale(1);   opacity: 0; }
@@ -1422,11 +1418,10 @@
       <img src="https://www.figma.com/api/mcp/asset/23c9403d-71e9-4e8d-a00c-6d9860340055" alt="" />
     </div>
     <div class="hero-video-fade"></div>
+    <button class="hero-play-btn">
+      <img src="https://www.figma.com/api/mcp/asset/48739ecc-5f9a-4d36-9a68-52d3d973e403" alt="Play video" />
+    </button>
   </div>
-  <button class="hero-play-btn">
-    <img src="https://www.figma.com/api/mcp/asset/4282e3b1-f9d7-4bc4-a466-eb69dc0a46d8" alt="" style="width:24px;height:24px;object-fit:contain;flex-shrink:0;" />
-    Play Video
-  </button>
 
   <!-- Fade into next section -->
   <!-- Sparkles rising from flare -->
