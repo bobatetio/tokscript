@@ -161,11 +161,20 @@
     }
     .hero-play-btn {
       position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-      width: 80px; height: 80px;
-      background: none; border: none; padding: 0; cursor: pointer;
-      z-index: 5; pointer-events: auto;
+      width: 72px; height: 72px;
+      background: #fff; border: none; border-radius: 50%; padding: 0; cursor: pointer;
+      z-index: 5; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
     }
-    .hero-play-btn img { width: 100%; height: 100%; display: block; pointer-events: none; }
+    .hero-play-btn::after {
+      content: '';
+      display: block;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 11px 0 11px 20px;
+      border-color: transparent transparent transparent #0d0d0d;
+      margin-left: 4px;
+    }
     /* Sparkles */
     @keyframes sparkle-rise {
       0%   { transform: translate(0, 0) scale(1);   opacity: 0; }
@@ -1425,9 +1434,7 @@
       </div>
       <div class="hero-video-fade"></div>
     </div>
-    <button class="hero-play-btn">
-      <img src="https://www.figma.com/api/mcp/asset/48739ecc-5f9a-4d36-9a68-52d3d973e403" alt="Play video" />
-    </button>
+    <button class="hero-play-btn" aria-label="Play video"></button>
   </div>
 
   <!-- Fade into next section -->
