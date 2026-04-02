@@ -1446,17 +1446,19 @@
     }
     @media (max-width: 640px) {
       .tools-table { table-layout: fixed; width: 100%; }
-      .tools-table .t-desc { display: none; }
+      .tools-table .t-desc,
       .tools-table thead th:nth-child(3) { display: none; }
-      .tools-table .t-name {
-        font-size: 12px; white-space: normal; word-break: break-all;
+      .tools-table thead th {
+        padding: 10px 6px;
+        font-size: 10px; letter-spacing: 0.05em;
       }
+      .tools-table thead th.t-check { font-size: 10px; }
+      .tools-table .t-name { font-size: 11px; white-space: normal; word-break: break-word; }
       .tools-table .t-icon { width: 36px; padding: 8px 6px 8px 0; }
       .tools-table .t-icon svg,
       .tools-table .t-icon img { width: 24px; height: 24px; }
       .tools-table .t-check { width: 48px; }
-      .tools-table tbody td { padding: 12px 8px; }
-      .tools-table thead th { padding: 10px 8px; }
+      .tools-table tbody td { padding: 12px 6px; }
     }
 
     /* ── Video modal ── */
