@@ -767,48 +767,33 @@
     .select-mode-group {
       display: none;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       flex-shrink: 0;
     }
-    .select-mode-count {
-      font-size: 13px;
-      font-weight: 500;
-      color: #9ca3af;
-      white-space: nowrap;
-    }
-    .select-mode-count strong { color: #e5e7eb; }
-    .btn-select-all {
-      height: 32px; padding: 0 13px;
-      border: 1px solid #1e3a52; border-radius: 7px;
-      background: transparent; color: #9ca3af;
-      font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 500;
-      cursor: pointer; transition: color 0.15s, border-color 0.15s;
-    }
-    .btn-select-all:hover { color: #e5e7eb; border-color: #2d4a66; }
-    .btn-select-all.all-selected { color: #00F2EA; border-color: #00F2EA; }
     .btn-download {
-      height: 32px; padding: 0 13px;
+      height: 32px; padding: 0 14px;
       border: none; border-radius: 7px;
       background: #00F2EA; color: #060b21;
-      font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 600;
-      cursor: pointer; display: flex; align-items: center; gap: 5px;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      cursor: pointer; white-space: nowrap;
       transition: background 0.15s;
     }
     .btn-download:hover { background: #00d8d0; }
+    .folder-btn-wrap { position: relative; display: inline-flex; }
     .btn-folder-inline {
-      height: 32px; padding: 0 13px;
+      height: 32px; padding: 0 12px;
       border: 1px solid #1e3a52; border-radius: 7px;
       background: transparent; color: #9ca3af;
-      font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 500;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
       cursor: pointer; display: flex; align-items: center; gap: 5px;
       transition: color 0.15s, border-color 0.15s;
     }
     .btn-folder-inline:hover { color: #e5e7eb; border-color: #2d4a66; }
     .btn-cancel-select {
-      height: 32px; padding: 0 8px;
+      height: 32px; padding: 0 10px;
       border: none; background: transparent; color: #6b7280;
-      font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1;
-      cursor: pointer; display: flex; align-items: center;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+      cursor: pointer; white-space: nowrap;
       transition: color 0.15s;
     }
     .btn-cancel-select:hover { color: #e5e7eb; }
@@ -1389,28 +1374,31 @@
             <button class="tab-btn" onclick="switchTab(this,'outliers')">Outliers</button>
             <button class="tab-btn" onclick="switchTab(this,'top')">Top videos</button>
           </div>
-          <div class="section-bar-spacer"></div>
-          <!-- Select Videos (normal state) -->
-          <button class="btn-select-videos" id="btnSelectVideos" onclick="toggleSelectMode()">
-            Select Videos
-          </button>
-          <!-- Select mode pill group (shown while selecting) -->
-          <div class="select-mode-group" id="selectModeGroup">
-            <button class="btn-select-all" id="btnSelectAll" onclick="toggleSelectAll()">Select All</button>
-            <span class="select-mode-count"><strong id="selectCount">0</strong>/<span id="selectTotal">0</span> selected</span>
-            <button class="btn-download" onclick="openDownloadModal()">
-              <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2v8M5 7l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M2 12h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-              </svg>
-              Download
-            </button>
-            <button class="btn-folder-inline" id="btnAddFolder" onclick="toggleFolderMenu(event)">
-              <svg width="13" height="13" fill="none" viewBox="0 0 16 16"><path d="M1 3.5A1.5 1.5 0 012.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0115 5.5v7a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 011 12.5v-9z" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
-              Add to Folder
-            </button>
-            <button class="btn-cancel-select" onclick="toggleSelectMode()" title="Cancel selection">✕</button>
+          <!-- Select Videos (normal state) — left side, next to tabs -->
+          <button class="btn-select-videos" id="btnSelectVideos" onclick="toggleSelectMode()">Select Videos</button>
+          <!-- Select mode — replaces Select Videos in same position -->
+          <div class="select-mode-group" id="selectModeGroup" style="display:none;">
+            <button class="btn-download" id="btnDownload" onclick="openDownloadModal()">Download</button>
+            <div class="folder-btn-wrap">
+              <button class="btn-folder-inline" id="btnAddFolder" onclick="toggleFolderMenu(event)">
+                Add to Folder
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style="margin-left:2px;flex-shrink:0;">
+                  <path d="M2.5 4.5l3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="folder-menu" id="folderMenu" style="display:none;" onclick="event.stopPropagation()">
+                <div class="folder-menu-label">Add to folder</div>
+                <div class="folder-list" id="folderList"></div>
+                <div class="folder-divider"></div>
+                <div class="folder-new-row">
+                  <input class="folder-new-input" id="folderNewInput" type="text" placeholder="New folder name…" onclick="event.stopPropagation()" />
+                  <button class="folder-new-btn" onclick="createFolder()">Create</button>
+                </div>
+              </div>
+            </div>
+            <button class="btn-cancel-select" onclick="toggleSelectMode()">Cancel</button>
           </div>
+          <div class="section-bar-spacer"></div>
           <!-- Sort videos by -->
           <div class="sort-videos-dropdown" onclick="toggleSortMenu(event)">
             <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;">
@@ -1530,20 +1518,7 @@
       </div>
 
 
-      <!-- Folder menu (detached, opened by Add to Folders in toolbar) -->
-      <div style="position:relative;height:0;overflow:visible;">
-        <div class="folder-dropdown" style="position:absolute;top:0;left:0;">
-          <div class="folder-menu" id="folderMenu" style="display:none;" onclick="event.stopPropagation()">
-            <div class="folder-menu-label">Add to folder</div>
-            <div class="folder-list" id="folderList"></div>
-            <div class="folder-divider"></div>
-            <div class="folder-new-row">
-              <input class="folder-new-input" id="folderNewInput" type="text" placeholder="New folder name…" onclick="event.stopPropagation()" />
-              <button class="folder-new-btn" onclick="createFolder()">Create</button>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <!-- Filter tags (shown when active filters applied) -->
       <div class="filter-tags-bar" id="filterTags"></div>
 <!-- ── GRID VIEW ── -->
@@ -1950,7 +1925,7 @@
   function toggleSelectMode() {
     selectMode = !selectMode;
     if (!selectMode) { selectedIds.clear(); }
-    document.getElementById('btnSelectVideos').style.display = selectMode ? 'none' : 'flex';
+    document.getElementById('btnSelectVideos').style.display = selectMode ? 'none' : '';
     document.getElementById('selectModeGroup').style.display = selectMode ? 'flex' : 'none';
     updateSelectCounts();
     renderGrid();
@@ -1959,26 +1934,8 @@
 
   function updateSelectCounts() {
     const n = selectedIds.size;
-    document.getElementById('selectCount').textContent = n;
-    document.getElementById('selectTotal').textContent = videos.length.toLocaleString();
-    const allSelected = filteredVideos.length > 0 && filteredVideos.every(v => selectedIds.has(v.id));
-    const btn = document.getElementById('btnSelectAll');
-    if (btn) {
-      btn.textContent = allSelected ? 'Deselect All' : 'Select All';
-      btn.classList.toggle('all-selected', allSelected);
-    }
-  }
-
-  function toggleSelectAll() {
-    const allSelected = filteredVideos.every(v => selectedIds.has(v.id));
-    if (allSelected) {
-      filteredVideos.forEach(v => selectedIds.delete(v.id));
-    } else {
-      filteredVideos.forEach(v => selectedIds.add(v.id));
-    }
-    updateSelectCounts();
-    renderGrid();
-    renderTable();
+    const btn = document.getElementById('btnDownload');
+    if (btn) btn.textContent = n > 0 ? `Download (${n})` : 'Download';
   }
 
   // ─── DOWNLOAD MODAL ──────────────────────────────────────────────────
