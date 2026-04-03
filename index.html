@@ -418,10 +418,11 @@
     .tab-btn.active::after {
       content: '';
       position: absolute;
-      bottom: 4px;
-      left: 20px;
-      right: 20px;
-      height: 2px;
+      bottom: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 2.5px;
       background: #00F2EA;
       border-radius: 2px;
     }
@@ -1024,7 +1025,9 @@
       font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
       cursor: pointer; min-width: 34px; display: flex; align-items: center; justify-content: center;
     }
-    .page-btn.active { background: #003d3b; border-color: #003d3b; color: #fff; }
+    .page-btn:hover:not(.active):not(.disabled) { border-color: #00F2EA; color: #00F2EA; }
+    .page-btn.active { background: #00F2EA; border-color: #00F2EA; color: #060b21; font-weight: 600; }
+    .page-btn.disabled { opacity: 0.35; cursor: not-allowed; }
     .page-dots { color: #4b5563; font-size: 13px; padding: 0 4px; display: flex; align-items: center; height: 36px; }
 
     /* ══════════════════════════════════════════
@@ -1303,7 +1306,6 @@
         <div class="section-header-top">
           <div class="section-title-wrap">
             <span class="section-title">Imported Search: Food Ideas</span>
-            <span class="section-subtitle">videos: 1,243</span>
           </div>
           <div class="header-right">
             <!-- Sort videos by -->
@@ -2075,30 +2077,31 @@
   }
 
   function renderPagination() {
-    const total   = totalPages();
-    const count   = filteredVideos.length;
-    const start   = (currentPage - 1) * PER_PAGE + 1;
-    const end     = Math.min(currentPage * PER_PAGE, count);
+    const total = totalPages();
+    const count = filteredVideos.length;
+    const start = (currentPage - 1) * PER_PAGE + 1;
+    const end   = Math.min(currentPage * PER_PAGE, count);
 
     const info = `Showing &nbsp;<span class="page-num">${start}</span>&nbsp; to &nbsp;<span class="page-num">${end}</span>&nbsp; of ${count.toLocaleString()} results`;
 
-    // Build page number buttons (show up to 5 around current)
     let pages = [];
-    pages.push('<button class="page-btn" onclick="goToPage(currentPage-1)">Previous</button>');
+    const prevDisabled = currentPage <= 1;
+    const nextDisabled = currentPage >= total;
+    pages.push(`<button class="page-btn${prevDisabled ? ' disabled' : ''}" ${prevDisabled ? 'disabled' : `onclick="goToPage(${currentPage - 1})"`}>Previous</button>`);
 
     const range = [];
     for (let i = 1; i <= total; i++) {
-      if (i === 1 || i === total || (i >= currentPage - 1 && i <= currentPage + 1)) {
+      if (i === 1 || i === total || (i >= currentPage - 2 && i <= currentPage + 2)) {
         range.push(i);
       }
     }
     let prev = null;
     for (const p of range) {
-      if (prev !== null && p - prev > 1) pages.push('<span class="page-dots">...</span>');
+      if (prev !== null && p - prev > 1) pages.push('<span class="page-dots">…</span>');
       pages.push(`<button class="page-btn${p === currentPage ? ' active' : ''}" onclick="goToPage(${p})">${p}</button>`);
       prev = p;
     }
-    pages.push('<button class="page-btn" onclick="goToPage(currentPage+1)">Next</button>');
+    pages.push(`<button class="page-btn${nextDisabled ? ' disabled' : ''}" ${nextDisabled ? 'disabled' : `onclick="goToPage(${currentPage + 1})"`}>Next</button>`);
 
     const html = `<div class="pagination-info">${info}</div><div class="pagination-controls">${pages.join('')}</div>`;
     document.getElementById('gridPagination').innerHTML  = html;
