@@ -408,6 +408,29 @@
       text-overflow: ellipsis;
     }
     .dropdown-select:hover { border-color: #1e3a52; background: #0d1f33; }
+    .sort-dropdown { position: relative; }
+    .sort-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      min-width: 100%;
+      background: #0a1829;
+      border: 1px solid #1e3a52;
+      border-radius: 8px;
+      overflow: hidden;
+      z-index: 50;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    }
+    .sort-option {
+      padding: 10px 16px;
+      color: #9ca3af;
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.1s;
+    }
+    .sort-option:hover { background: rgba(0,242,234,0.07); color: #e5e7eb; }
+    .sort-option.active { color: #00F2EA; }
 
     /* ── Toolbar ── */
     .toolbar {
@@ -1113,12 +1136,17 @@
               <path d="M3 5l4 4 4-4" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
-          <!-- Sort by Date -->
-          <div class="dropdown-select" style="min-width:148px;">
-            <span>Sort by Date</span>
+          <!-- Sort -->
+          <div class="dropdown-select sort-dropdown" style="min-width:148px;position:relative;" onclick="toggleSortMenu(event)">
+            <span id="sortLabel">Recent</span>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="margin-left:6px;flex-shrink:0;">
               <path d="M3 5l4 4 4-4" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
+            <div class="sort-menu" id="sortMenu" style="display:none;" onclick="event.stopPropagation()">
+              <div class="sort-option active" onclick="selectSort(this,'Recent')">Recent</div>
+              <div class="sort-option" onclick="selectSort(this,'Popular')">Popular</div>
+              <div class="sort-option" onclick="selectSort(this,'Oldest')">Oldest</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1153,10 +1181,6 @@
           <!-- Active filter tags -->
           <div class="filter-tags" id="filterTags"></div>
           <button class="btn-export">Export CSV</button>
-          <button class="btn-columns" onclick="toggleColumnsPanel()">
-            <svg width="13" height="13" fill="none" viewBox="0 0 16 16"><rect x="1" y="1" width="6" height="14" rx="1" stroke="currentColor" stroke-width="1.3" fill="none"/><rect x="9" y="1" width="6" height="14" rx="1" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
-            Columns
-          </button>
           <!-- View toggle -->
           <div class="view-toggle" style="margin-left:4px;">
             <button class="view-toggle-btn active" id="btnGrid" onclick="setView('grid')">
@@ -1180,15 +1204,7 @@
           </div>
         </div>
       </div>
-
-      <!-- Quick Filters (grid only) -->
-      <div class="quick-filters" id="quickFilters">
-        <button class="qf-btn active" onclick="setQuickFilter(this,'recent')">Recent</button>
-        <button class="qf-btn" onclick="setQuickFilter(this,'popular')">Popular</button>
-        <button class="qf-btn" onclick="setQuickFilter(this,'oldest')">Oldest</button>
-      </div>
-
-      <!-- ── GRID VIEW ── -->
+<!-- ── GRID VIEW ── -->
       <div id="gridView">
         <div class="video-grid" id="videoGrid">
           <!-- Cards injected by JS -->
@@ -1305,16 +1321,7 @@
       </div>
     </div>
   </div>
-
-  <!-- ══════════════════════════════════════
-       COLUMNS PANEL
-  ══════════════════════════════════════ -->
-  <div class="columns-panel" id="columnsPanel">
-    <div class="panel-header">
-      <span class="panel-title">Adjust columns</span>
-      <button class="panel-close" onclick="toggleColumnsPanel()">×</button>
-    </div>
-    <div id="colToggleList">
+<div id="colToggleList">
       <!-- Injected by JS -->
     </div>
   </div>
@@ -1398,7 +1405,6 @@
     currentView = v;
     document.getElementById('gridView').style.display  = v === 'grid'  ? '' : 'none';
     document.getElementById('tableView').style.display = v === 'table' ? '' : 'none';
-    document.getElementById('quickFilters').style.display = v === 'grid' ? '' : 'none';
     document.getElementById('btnGrid').classList.toggle('active',  v === 'grid');
     document.getElementById('btnTable').classList.toggle('active', v === 'table');
   }
@@ -1543,12 +1549,6 @@
     document.getElementById('folderCount').textContent = n;
   }
 
-  // ─── QUICK FILTER ────────────────────────────────────────────────────
-  function setQuickFilter(btn, type) {
-    document.querySelectorAll('.qf-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-  }
-
   // ─── FILTER MODAL ────────────────────────────────────────────────────
   function openFilterModal() {
     document.getElementById('filterOverlay').classList.add('visible');
@@ -1650,53 +1650,23 @@
     renderTable();
   }
 
-  // ─── COLUMNS PANEL ───────────────────────────────────────────────────
-  function toggleColumnsPanel() {
-    document.getElementById('columnsPanel').classList.toggle('open');
+  // ─── SORT DROPDOWN ──────────────────────────────────────────────────
+  function toggleSortMenu(e) {
+    const menu = document.getElementById('sortMenu');
+    menu.style.display = menu.style.display === 'none' ? '' : 'none';
+    e.stopPropagation();
   }
-
-  function renderColumnsPanel() {
-    const list = document.getElementById('colToggleList');
-    list.innerHTML = columns.map((c, i) => `
-      <div class="col-toggle-row">
-        <div class="col-toggle-left">
-          <div class="col-checkbox${c.on?'':' off'}" onclick="toggleColumn(${i})"></div>
-          <span class="col-toggle-label">${c.label}</span>
-        </div>
-        <span class="drag-handle">⠿</span>
-      </div>`
-    ).join('');
+  function selectSort(el, val) {
+    document.querySelectorAll('.sort-option').forEach(o => o.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('sortLabel').textContent = val;
+    document.getElementById('sortMenu').style.display = 'none';
   }
+  document.addEventListener('click', () => {
+    const menu = document.getElementById('sortMenu');
+    if (menu) menu.style.display = 'none';
+  });
 
-  function toggleColumn(i) {
-    columns[i].on = !columns[i].on;
-    renderColumnsPanel();
-  }
-
-  // ─── SORT TABLE ──────────────────────────────────────────────────────
-  let sortKey = 'date', sortDir = -1;
-  function sortTable(key) {
-    if (sortKey === key) sortDir *= -1;
-    else { sortKey = key; sortDir = -1; }
-    document.querySelectorAll('.video-table th.sorted').forEach(th => th.classList.remove('sorted'));
-    const thMap = { date:'thDatePosted', views:'thViews', likes:'thLikes', duration:'thDuration', dateAdded:'thDateAdded' };
-    if (thMap[key]) {
-      const th = document.getElementById(thMap[key]);
-      th.classList.add('sorted');
-      th.querySelector('.sort-arrow') ? th.querySelector('.sort-arrow').textContent = sortDir < 0 ? '↓' : '↑' :
-        th.innerHTML += '<span class="sort-arrow">' + (sortDir < 0 ? '↓' : '↑') + '</span>';
-    }
-    filteredVideos.sort((a, b) => {
-      let va, vb;
-      if (key === 'views') { va = a.views; vb = b.views; }
-      else if (key === 'likes') { va = a.likes; vb = b.likes; }
-      else { va = a.id; vb = b.id; }
-      return (va - vb) * sortDir;
-    });
-    renderTable();
-  }
-
-  init();
   </script>
 
 </body>
