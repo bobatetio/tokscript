@@ -1381,8 +1381,6 @@
             <button class="tab-btn" onclick="switchTab(this,'top')">Top videos</button>
           </div>
           <div class="section-bar-spacer"></div>
-          <!-- Video count -->
-          <span class="videos-label">Videos <span id="toolbarCount">(1,243)</span></span>
           <!-- Select Videos (normal state) -->
           <button class="btn-select-videos" id="btnSelectVideos" onclick="toggleSelectMode()">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -1956,7 +1954,7 @@
   function updateSelectCounts() {
     const n = selectedIds.size;
     document.getElementById('selectCount').textContent = n;
-    document.getElementById('selectTotal').textContent = filteredVideos.length.toLocaleString();
+    document.getElementById('selectTotal').textContent = videos.length.toLocaleString();
   }
 
   // ─── DOWNLOAD MODAL ──────────────────────────────────────────────────
@@ -2074,7 +2072,7 @@
       });
     });
     const total = filteredVideos.length;
-    document.getElementById('toolbarCount').textContent = `(${total.toLocaleString()} of ${videos.length.toLocaleString()})`;
+    // toolbarCount element removed; count shown in pagination
     currentPage = 1;
     renderGrid();
     renderTable();
