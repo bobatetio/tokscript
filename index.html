@@ -354,11 +354,22 @@
     /* ── Section Header ── */
     .section-header {
       display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-bottom: 1px solid #132030;
+      padding-bottom: 0;
+      margin-bottom: 14px;
+    }
+    .section-header-top {
+      display: flex;
       align-items: center;
       justify-content: space-between;
       padding-bottom: 14px;
-      border-bottom: 1px solid #132030;
-      margin-bottom: 14px;
+    }
+    .section-title-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
     }
     .section-title {
       color: #fff;
@@ -367,10 +378,126 @@
       line-height: 28px;
       white-space: nowrap;
     }
+    .section-subtitle {
+      color: #4b5563;
+      font-size: 13px;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+    /* ── Tabs ── */
+    .section-tabs {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      background: #08182d;
+      border: 1px solid #132030;
+      border-radius: 10px;
+      padding: 4px;
+      width: fit-content;
+      margin-bottom: 16px;
+      margin-top: 4px;
+    }
+    .tab-btn {
+      padding: 7px 20px;
+      border: none;
+      background: transparent;
+      color: #6b7280;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 7px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      white-space: nowrap;
+      transition: color 0.15s, background 0.15s;
+      position: relative;
+    }
+    .tab-btn.active {
+      background: #0d2035;
+      color: #fff;
+    }
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 20px;
+      right: 20px;
+      height: 2px;
+      background: #00F2EA;
+      border-radius: 2px;
+    }
+    .tab-btn:hover:not(.active) { color: #d1d5db; }
+    /* ── Sort videos by ── */
+    .sort-videos-dropdown {
+      display: flex; align-items: center; gap: 8px;
+      height: 36px; padding: 0 12px;
+      background: #0a1829; border: 1px solid #152438; border-radius: 8px;
+      color: #d1d5db; font-size: 13px; font-weight: 500;
+      cursor: pointer; white-space: nowrap; position: relative;
+      user-select: none; transition: border-color 0.15s;
+      font-family: 'Inter', sans-serif;
+    }
+    .sort-videos-dropdown:hover { border-color: #1e3a52; }
+    .sort-videos-dropdown span { color: #d1d5db; font-size: 13px; font-weight: 500; }
+    /* ── Date range ── */
+    .date-range-btn {
+      display: flex; align-items: center; gap: 8px;
+      height: 36px; padding: 0 12px;
+      background: #0a1829; border: 1px solid #152438; border-radius: 8px;
+      color: #d1d5db; font-size: 13px; font-weight: 500;
+      cursor: pointer; white-space: nowrap; position: relative;
+      user-select: none; transition: border-color 0.15s;
+      font-family: 'Inter', sans-serif;
+    }
+    .date-range-btn:hover { border-color: #1e3a52; }
+    .date-range-btn span { color: #d1d5db; font-size: 13px; font-weight: 500; }
+    .date-range-panel {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      width: 300px;
+      background: #0c1e30;
+      border: 1px solid #1e3a52;
+      border-radius: 10px;
+      z-index: 100;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.55);
+      padding: 16px;
+    }
+    .dr-label { font-size: 12px; font-weight: 600; color: #4b5563; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .dr-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .dr-field { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .dr-field-label { font-size: 11px; color: #6b7280; font-weight: 500; }
+    .dr-sep { color: #4b5563; font-size: 13px; margin-top: 14px; }
+    .dr-input {
+      height: 32px; padding: 0 9px;
+      background: #0a1829; border: 1px solid #1e3a52; border-radius: 6px;
+      color: #d1d5db; font-size: 12.5px; font-family: 'Inter', sans-serif;
+      outline: none; width: 100%;
+      color-scheme: dark;
+    }
+    .dr-input:focus { border-color: #00F2EA; }
+    .dr-presets { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+    .dr-preset {
+      padding: 5px 10px; border-radius: 6px; border: 1px solid #1e3a52;
+      background: transparent; color: #9ca3af; font-size: 12px; font-weight: 500;
+      cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.12s;
+    }
+    .dr-preset:hover { border-color: #00F2EA; color: #00F2EA; }
+    .dr-actions { display: flex; gap: 8px; justify-content: flex-end; }
+    .dr-clear {
+      height: 30px; padding: 0 14px; border-radius: 6px; border: 1px solid #1e3a52;
+      background: transparent; color: #9ca3af; font-size: 12.5px; font-weight: 500;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+    }
+    .dr-apply {
+      height: 30px; padding: 0 14px; border-radius: 6px; border: none;
+      background: #00F2EA; color: #060b21; font-size: 12.5px; font-weight: 600;
+      cursor: pointer; font-family: 'Inter', sans-serif; transition: opacity 0.15s;
+    }
+    .dr-apply:hover { opacity: 0.85; }
     .header-right {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
     /* Divider between groups */
     .hdr-divider {
@@ -1122,74 +1249,107 @@
     <div class="card-container">
       <!-- Section Header -->
       <div class="section-header">
-        <span class="section-title">Imported Search: Food Ideas</span>
-        <div class="header-right">
-          <!-- Add to Folders -->
-          <div class="dropdown-select folder-dropdown" id="folderDropdownTrigger" onclick="toggleFolderMenu(event)">
-            <span class="dd-icon">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                <path d="M1.5 3.5A1.5 1.5 0 013 2h2.379a1.5 1.5 0 011.06.44l.83.83A1.5 1.5 0 008.33 3.8H13A1.5 1.5 0 0114.5 5.3v7.2A1.5 1.5 0 0113 14H3a1.5 1.5 0 01-1.5-1.5v-9z" stroke="currentColor" stroke-width="1.3" fill="none"/>
+        <!-- Row 1: title + controls -->
+        <div class="section-header-top">
+          <div class="section-title-wrap">
+            <span class="section-title">Imported Search: Food Ideas</span>
+            <span class="section-subtitle">videos: 1,243</span>
+          </div>
+          <div class="header-right">
+            <!-- Sort videos by -->
+            <div class="sort-videos-dropdown" onclick="toggleSortMenu(event)">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;">
+                <path d="M1.5 2h13l-5 6v5.5l-3-1.5V8L1.5 2z" fill="#ef4444" stroke="#ef4444" stroke-width="0.5" stroke-linejoin="round"/>
               </svg>
-            </span>
-            <span>Add to Folders</span>
-            <svg width="12" height="12" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;">
-              <path d="M3 5l4 4 4-4" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <!-- Folder menu -->
-            <div class="folder-menu" id="folderMenu" style="display:none;" onclick="event.stopPropagation()">
-              <div class="folder-menu-label">Add to folder</div>
-              <div class="folder-list" id="folderList"></div>
-              <div class="folder-divider"></div>
-              <div class="folder-new-row">
-                <input class="folder-new-input" id="folderNewInput" type="text" placeholder="New folder name…" onclick="event.stopPropagation()" />
-                <button class="folder-new-btn" onclick="createFolder()">Create</button>
+              <span id="sortLabel">Sort videos by</span>
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;">
+                <path d="M3 5l4 4 4-4" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="sort-menu" id="sortMenu" style="display:none;" onclick="event.stopPropagation()">
+                <div class="sort-option active" onclick="selectSort(this,'Recent')">Recent</div>
+                <div class="sort-option" onclick="selectSort(this,'Popular')">Popular</div>
+                <div class="sort-option" onclick="selectSort(this,'Oldest')">Oldest</div>
               </div>
             </div>
-          </div>
-          <!-- Sort -->
-          <div class="dropdown-select sort-dropdown" onclick="toggleSortMenu(event)">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;color:#6b7280;">
-              <path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <span id="sortLabel">Recent</span>
-            <svg width="12" height="12" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;">
-              <path d="M3 5l4 4 4-4" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <div class="sort-menu" id="sortMenu" style="display:none;" onclick="event.stopPropagation()">
-              <div class="sort-option active" onclick="selectSort(this,'Recent')">Recent</div>
-              <div class="sort-option" onclick="selectSort(this,'Popular')">Popular</div>
-              <div class="sort-option" onclick="selectSort(this,'Oldest')">Oldest</div>
+            <!-- Set date range -->
+            <div class="date-range-btn" onclick="toggleDateRange(event)">
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;">
+                <rect x="1.5" y="2.5" width="13" height="12" rx="2" stroke="#22c55e" stroke-width="1.4" fill="none"/>
+                <path d="M1.5 6.5h13" stroke="#22c55e" stroke-width="1.4"/>
+                <path d="M5 1.5v2M11 1.5v2" stroke="#22c55e" stroke-width="1.4" stroke-linecap="round"/>
+                <rect x="4" y="9" width="2" height="2" rx="0.5" fill="#22c55e"/>
+                <rect x="7" y="9" width="2" height="2" rx="0.5" fill="#22c55e"/>
+                <rect x="10" y="9" width="2" height="2" rx="0.5" fill="#22c55e"/>
+              </svg>
+              <span>Set date range</span>
+              <!-- Date range panel -->
+              <div class="date-range-panel" id="dateRangePanel" style="display:none;" onclick="event.stopPropagation()">
+                <div class="dr-label">Date range</div>
+                <div class="dr-row">
+                  <div class="dr-field">
+                    <label class="dr-field-label">From</label>
+                    <input class="dr-input" type="date" id="drFrom" />
+                  </div>
+                  <div class="dr-sep">—</div>
+                  <div class="dr-field">
+                    <label class="dr-field-label">To</label>
+                    <input class="dr-input" type="date" id="drTo" />
+                  </div>
+                </div>
+                <div class="dr-presets">
+                  <button class="dr-preset" onclick="setDatePreset(7)">Last 7 days</button>
+                  <button class="dr-preset" onclick="setDatePreset(30)">Last 30 days</button>
+                  <button class="dr-preset" onclick="setDatePreset(90)">Last 90 days</button>
+                </div>
+                <div class="dr-actions">
+                  <button class="dr-clear" onclick="clearDateRange()">Clear</button>
+                  <button class="dr-apply" onclick="applyDateRange()">Apply</button>
+                </div>
+              </div>
+            </div>
+            <!-- Grid / List toggle -->
+            <div class="view-toggle">
+              <button class="view-toggle-btn active" id="btnGrid" onclick="setView('grid')" title="Grid view">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <rect x="0" y="0" width="6" height="6" rx="1.5" fill="currentColor"/>
+                  <rect x="8" y="0" width="6" height="6" rx="1.5" fill="currentColor"/>
+                  <rect x="0" y="8" width="6" height="6" rx="1.5" fill="currentColor"/>
+                  <rect x="8" y="8" width="6" height="6" rx="1.5" fill="currentColor"/>
+                </svg>
+              </button>
+              <button class="view-toggle-btn" id="btnTable" onclick="setView('table')" title="Table view">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <rect x="0" y="0" width="14" height="2.5" rx="1.25" fill="currentColor"/>
+                  <rect x="0" y="5" width="14" height="2.5" rx="1.25" fill="currentColor"/>
+                  <rect x="0" y="10" width="14" height="2.5" rx="1.25" fill="currentColor"/>
+                </svg>
+              </button>
             </div>
           </div>
-          <!-- Export -->
-          <button class="btn-export-clean">
-            <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-              <path d="M2 11v2a1 1 0 001 1h10a1 1 0 001-1v-2M8 2v8M5 7l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Export CSV
-          </button>
-          <!-- Grid / List toggle -->
-          <div class="view-toggle">
-            <button class="view-toggle-btn active" id="btnGrid" onclick="setView('grid')" title="Grid view">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <rect x="0" y="0" width="6" height="6" rx="1.5" fill="currentColor"/>
-                <rect x="8" y="0" width="6" height="6" rx="1.5" fill="currentColor"/>
-                <rect x="0" y="8" width="6" height="6" rx="1.5" fill="currentColor"/>
-                <rect x="8" y="8" width="6" height="6" rx="1.5" fill="currentColor"/>
-              </svg>
-            </button>
-            <button class="view-toggle-btn" id="btnTable" onclick="setView('table')" title="Table view">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <rect x="0" y="0" width="14" height="2.5" rx="1.25" fill="currentColor"/>
-                <rect x="0" y="5" width="14" height="2.5" rx="1.25" fill="currentColor"/>
-                <rect x="0" y="10" width="14" height="2.5" rx="1.25" fill="currentColor"/>
-              </svg>
-            </button>
-          </div>
+        </div>
+        <!-- Row 2: tabs -->
+        <div class="section-tabs">
+          <button class="tab-btn active" onclick="switchTab(this,'profile')">Profile Videos</button>
+          <button class="tab-btn" onclick="switchTab(this,'outliers')">Outliers</button>
+          <button class="tab-btn" onclick="switchTab(this,'top')">Top videos</button>
         </div>
       </div>
 
 
+      <!-- Folder menu (detached, opened by Add to Folders in toolbar) -->
+      <div style="position:relative;height:0;overflow:visible;">
+        <div class="folder-dropdown" style="position:absolute;top:0;left:0;">
+          <div class="folder-menu" id="folderMenu" style="display:none;" onclick="event.stopPropagation()">
+            <div class="folder-menu-label">Add to folder</div>
+            <div class="folder-list" id="folderList"></div>
+            <div class="folder-divider"></div>
+            <div class="folder-new-row">
+              <input class="folder-new-input" id="folderNewInput" type="text" placeholder="New folder name…" onclick="event.stopPropagation()" />
+              <button class="folder-new-btn" onclick="createFolder()">Create</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Toolbar -->
       <div class="toolbar">
         <div class="toolbar-left">
@@ -1902,10 +2062,50 @@
     toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
   }
 
-  // Close folder menu on outside click
+  // ─── TABS ────────────────────────────────────────────────────────────
+  function switchTab(el, key) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    // Future: filter videos by tab key
+  }
+
+  // ─── DATE RANGE ──────────────────────────────────────────────────────
+  function toggleDateRange(e) {
+    e.stopPropagation();
+    const panel = document.getElementById('dateRangePanel');
+    const isOpen = panel.style.display !== 'none';
+    document.getElementById('sortMenu').style.display = 'none';
+    panel.style.display = isOpen ? 'none' : 'block';
+  }
+
+  function setDatePreset(days) {
+    const to = new Date();
+    const from = new Date();
+    from.setDate(from.getDate() - days);
+    document.getElementById('drFrom').value = from.toISOString().split('T')[0];
+    document.getElementById('drTo').value   = to.toISOString().split('T')[0];
+  }
+
+  function clearDateRange() {
+    document.getElementById('drFrom').value = '';
+    document.getElementById('drTo').value   = '';
+    document.getElementById('dateRangePanel').style.display = 'none';
+    showToast('Date range cleared');
+  }
+
+  function applyDateRange() {
+    const from = document.getElementById('drFrom').value;
+    const to   = document.getElementById('drTo').value;
+    document.getElementById('dateRangePanel').style.display = 'none';
+    if (from && to) showToast(`Date range: ${from} → ${to}`);
+  }
+
+  // Close menus on outside click
   document.addEventListener('click', () => {
     const m = document.getElementById('folderMenu');
     if (m) m.style.display = 'none';
+    const p = document.getElementById('dateRangePanel');
+    if (p) p.style.display = 'none';
   });
 
   init();
