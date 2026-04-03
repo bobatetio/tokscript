@@ -1209,20 +1209,7 @@
         <div class="video-grid" id="videoGrid">
           <!-- Cards injected by JS -->
         </div>
-        <div class="pagination-section">
-          <div class="pagination-info">
-            Showing &nbsp;<span class="page-num">1</span>&nbsp; to &nbsp;<span class="page-num">12</span>&nbsp; of 1,247 results
-          </div>
-          <div class="pagination-controls">
-            <button class="page-btn">Previous</button>
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn">3</button>
-            <span class="page-dots">...</span>
-            <button class="page-btn">62</button>
-            <button class="page-btn">Next</button>
-          </div>
-        </div>
+        <div class="pagination-section" id="gridPagination"></div>
       </div>
 
       <!-- ── TABLE VIEW ── -->
@@ -1248,20 +1235,7 @@
             </tbody>
           </table>
         </div>
-        <div class="pagination-section">
-          <div class="pagination-info">
-            Showing &nbsp;<span class="page-num">1</span>&nbsp; to &nbsp;<span class="page-num">10</span>&nbsp; of 1,247 results
-          </div>
-          <div class="pagination-controls">
-            <button class="page-btn">Previous</button>
-            <button class="page-btn active">1</button>
-            <button class="page-btn">2</button>
-            <button class="page-btn">3</button>
-            <span class="page-dots">...</span>
-            <button class="page-btn">62</button>
-            <button class="page-btn">Next</button>
-          </div>
-        </div>
+        <div class="pagination-section" id="tablePagination"></div>
       </div>
 
     </div><!-- /card-container -->
@@ -1346,18 +1320,126 @@
   const avatarColors = ['#00c9c0','#be123c','#0284c7','#15803d','#b45309','#9333ea','#0891b2','#c2410c','#00F2EA','#047857','#db2777','#00b8b0'];
 
   const videos = [
-    { id:1,  img:'https://www.figma.com/api/mcp/asset/b0a9170e-9352-45ee-a5f2-0abb1f9f7683', user:'thefeedfeed',       likes:250500, views:278900, comments:100000, shares:132500, bookmarks:89000, date:'Mar 21, 2024', duration:'0:32', er:'8.7', cal:CAL,  lk:LIKE,  sh:SHR,  caption:'Last meal when I try new protein #foodideas #fitness' },
-    { id:2,  img:'https://www.figma.com/api/mcp/asset/65b02c18-7bb1-4ea1-b40b-04be6d1b8f98', user:'officialrubin',     likes:180200, views:512000, comments:87000,  shares:96400,  bookmarks:54000, date:'Mar 21, 2024', duration:'0:32', er:'5.4', cal:CAL2, lk:LIKE2, sh:SHR,  caption:'POV: healthy soda review — does it actually taste good?' },
-    { id:3,  img:'https://www.figma.com/api/mcp/asset/04628546-d508-4615-8227-f27fe660d79e', user:'anya_rasima',        likes:312800, views:1200000,comments:145000, shares:201000, bookmarks:110000,date:'Mar 21, 2024', duration:'0:32', er:'12.4',cal:CAL3, lk:LIKE2, sh:SHR,  caption:'finally trying bloom pops — healthy temples ✨ #cleaneating' },
-    { id:4,  img:'https://www.figma.com/api/mcp/asset/e13fa1ea-ee11-4c58-8bcf-7ce18c2802f8', user:'dillonthompson',    likes:227000, views:890000, comments:0,      shares:48000,  bookmarks:0,     date:'Feb 26, 2024', duration:'2:26', er:'3.1', cal:CAL4, lk:LIKE,  sh:SHR2, caption:'No Cap energy drink taste test 🔥 #healthysoda #nocap' },
-    { id:5,  img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'travelingsorry',    likes:140000, views:320000, comments:0,      shares:38000,  bookmarks:0,     date:'Feb 25, 2024', duration:'0:50', er:'9.1', cal:CAL5, lk:LIKE,  sh:SHR2, caption:'Healthy soda brands ranked — which one is actually good??' },
-    { id:6,  img:'https://www.figma.com/api/mcp/asset/30678361-d4ae-4656-bd45-90240dd67df3', user:'healthwithhunter',  likes:89000,  views:412000, comments:511,   shares:65000,  bookmarks:32000, date:'Mar 1, 2024',  duration:'1:29', er:'4.2', cal:CAL5, lk:LIKE,  sh:SHR2, caption:'I tried every healthy soda so you dont have to #poppi #olipop' },
-    { id:7,  img:'https://www.figma.com/api/mcp/asset/c4417764-170c-44a9-9fe1-174e032b65f8', user:'kaitlynnmcv',       likes:250500, views:278900, comments:100000, shares:132500, bookmarks:89000, date:'Mar 21, 2024', duration:'0:32', er:'8.7', cal:CAL,  lk:LIKE,  sh:SHR,  caption:'Healthier sodas @ Target & Costco 🤩 #healthysoda #zevia' },
-    { id:8,  img:'https://www.figma.com/api/mcp/asset/6da8d12e-a85f-4ab6-abca-c0ea24068c08', user:'consciouslyk',      likes:72300,  views:1600000,comments:0,      shares:0,      bookmarks:0,     date:'Feb 22, 2023', duration:'1:32', er:'5.4', cal:CAL2, lk:LIKE2, sh:SHR,  caption:'Replying to @awwreallyyy would I recommend Poppi as a holistic nutritionist? #poppi #drinkpoppi' },
-    { id:9,  img:'https://www.figma.com/api/mcp/asset/e66b2520-22cf-4761-89f8-d665df94484d', user:'clairethenutri',    likes:16600,  views:10800000,comments:0,     shares:0,      bookmarks:0,     date:'Jun 5, 2024',  duration:'0:58', er:'0.2', cal:CAL3, lk:LIKE2, sh:SHR,  caption:'new gut healthy soda anyone?? Get @SunSip at @Whole Foods Market 🌿🍋 #sunsippartner' },
-    { id:10, img:'https://www.figma.com/api/mcp/asset/29600988-2870-4725-b2b1-0b052976f778', user:'mayor_of_m',        likes:126,    views:3209,   comments:0,      shares:0,      bookmarks:0,     date:'May 28, 2025', duration:'1:17', er:'4.7', cal:CAL4, lk:LIKE,  sh:SHR2, caption:'How close does the marketing of @Drink Popwell match the actual product you get? 🤔' },
-    { id:11, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'betterwithbe',      likes:2430,   views:25300,  comments:0,      shares:0,      bookmarks:0,     date:'Jan 5, 2026',  duration:'0:58', er:'15.5',cal:CAL5, lk:LIKE,  sh:SHR2, caption:'Try this out and comment how you feel #menslifestyle #lifestyle #healthylifestyle @waterloo' },
-    { id:12, img:'https://www.figma.com/api/mcp/asset/988e05c7-9688-4fcd-b2ae-527372863160', user:'nunoliftz',         likes:14200,  views:128800, comments:0,      shares:0,      bookmarks:0,     date:'Feb 20, 2025', duration:'0:58', er:'13.2',cal:CAL6, lk:LIKE,  sh:SHR2, caption:'If you wanted to, you would. #healthysoda #fitness' },
+    { id:1, img:'https://www.figma.com/api/mcp/asset/b0a9170e-9352-45ee-a5f2-0abb1f9f7683', user:'thefeedfeed', likes:335343, views:1869825, comments:6556, shares:194393, bookmarks:36048, date:'Mar 21, 2024', duration:'0:32', er:'8.7', cal:CAL, lk:LIKE, sh:SHR, caption:'Last meal when I try new protein #foodideas #fitness' },
+    { id:2, img:'https://www.figma.com/api/mcp/asset/65b02c18-7bb1-4ea1-b40b-04be6d1b8f98', user:'officialrubin', likes:128493, views:3746854, comments:36579, shares:193061, bookmarks:13434, date:'Feb 26, 2024', duration:'1:17', er:'5.4', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'POV: healthy soda review — does it actually taste good?' },
+    { id:3, img:'https://www.figma.com/api/mcp/asset/04628546-d508-4615-8227-f27fe660d79e', user:'anya_rasima', likes:286029, views:1460591, comments:110604, shares:8331, bookmarks:3905, date:'Feb 25, 2024', duration:'0:58', er:'12.4', cal:CAL3, lk:LIKE, sh:SHR, caption:'finally trying bloom pops ✨ #cleaneating' },
+    { id:4, img:'https://www.figma.com/api/mcp/asset/e13fa1ea-ee11-4c58-8bcf-7ce18c2802f8', user:'dillonthompson', likes:49223, views:3670136, comments:60990, shares:132475, bookmarks:78907, date:'Mar 1, 2024', duration:'2:26', er:'3.1', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'No Cap energy drink taste test 🔥 #healthysoda' },
+    { id:5, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'travelingsorry', likes:14012, views:9418129, comments:52124, shares:187700, bookmarks:85181, date:'Jan 5, 2026', duration:'0:50', er:'9.1', cal:CAL5, lk:LIKE, sh:SHR, caption:'Healthy soda brands ranked — which is actually good?' },
+    { id:6, img:'https://www.figma.com/api/mcp/asset/30678361-d4ae-4656-bd45-90240dd67df3', user:'healthwithhunter', likes:285806, views:7040374, comments:57787, shares:117757, bookmarks:77236, date:'Feb 20, 2025', duration:'1:29', er:'4.2', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'I tried every healthy soda so you dont have to #poppi' },
+    { id:7, img:'https://www.figma.com/api/mcp/asset/c4417764-170c-44a9-9fe1-174e032b65f8', user:'kaitlynnmcv', likes:145952, views:111031, comments:41853, shares:183013, bookmarks:55392, date:'Jun 5, 2024', duration:'1:32', er:'15.5', cal:CAL, lk:LIKE, sh:SHR, caption:'Healthier sodas @ Target & Costco 🤩 #zevia' },
+    { id:8, img:'https://www.figma.com/api/mcp/asset/6da8d12e-a85f-4ab6-abca-c0ea24068c08', user:'consciouslyk', likes:178489, views:4663907, comments:40758, shares:56443, bookmarks:100072, date:'May 28, 2025', duration:'0:45', er:'13.2', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'Would I recommend Poppi as a nutritionist? #drinkpoppi' },
+    { id:9, img:'https://www.figma.com/api/mcp/asset/e66b2520-22cf-4761-89f8-d665df94484d', user:'clairethenutri', likes:176572, views:1716803, comments:24312, shares:99595, bookmarks:12676, date:'Feb 22, 2023', duration:'3:12', er:'0.2', cal:CAL3, lk:LIKE, sh:SHR, caption:'new gut healthy soda #sunsippartner 🌿🍋' },
+    { id:10, img:'https://www.figma.com/api/mcp/asset/29600988-2870-4725-b2b1-0b052976f778', user:'mayor_of_m', likes:188308, views:5772619, comments:69342, shares:11390, bookmarks:95647, date:'Oct 2, 2024', duration:'0:28', er:'4.7', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'How close does the marketing match the product? 🤔' },
+    { id:11, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'betterwithbe', likes:240970, views:8998414, comments:32722, shares:99230, bookmarks:10328, date:'Sep 6, 2024', duration:'1:05', er:'6.3', cal:CAL5, lk:LIKE, sh:SHR, caption:'Try this out #menslifestyle #healthylifestyle @waterloo' },
+    { id:12, img:'https://www.figma.com/api/mcp/asset/988e05c7-9688-4fcd-b2ae-527372863160', user:'nunoliftz', likes:289528, views:4920715, comments:94800, shares:151349, bookmarks:25203, date:'Jan 19, 2024', duration:'2:15', er:'9.1', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'If you wanted to, you would. #healthysoda' },
+    { id:13, img:'https://www.figma.com/api/mcp/asset/b0a9170e-9352-45ee-a5f2-0abb1f9f7683', user:'poppiofficial', likes:36566, views:770805, comments:59742, shares:202655, bookmarks:37930, date:'Apr 5, 2023', duration:'0:38', er:'7.8', cal:CAL, lk:LIKE, sh:SHR, caption:'The truth about prebiotic sodas #prebioticsoda' },
+    { id:14, img:'https://www.figma.com/api/mcp/asset/65b02c18-7bb1-4ea1-b40b-04be6d1b8f98', user:'olipopdrink', likes:41933, views:3907582, comments:26476, shares:99647, bookmarks:36434, date:'Mar 3, 2026', duration:'1:44', er:'11.2', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'Rating every healthy soda at Whole Foods 🛒' },
+    { id:15, img:'https://www.figma.com/api/mcp/asset/04628546-d508-4615-8227-f27fe660d79e', user:'zeviadrinks', likes:237817, views:10667015, comments:95638, shares:42638, bookmarks:48520, date:'Nov 15, 2024', duration:'0:52', er:'2.9', cal:CAL3, lk:LIKE, sh:SHR, caption:'Is Zevia actually healthy? Full breakdown' },
+    { id:16, img:'https://www.figma.com/api/mcp/asset/e13fa1ea-ee11-4c58-8bcf-7ce18c2802f8', user:'gabbituft', likes:186364, views:3516944, comments:69986, shares:183977, bookmarks:89593, date:'Mar 21, 2024', duration:'0:32', er:'8.7', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'Poppi vs Olipop — which one wins?' },
+    { id:17, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'healthyswaps', likes:339857, views:1199935, comments:44862, shares:140021, bookmarks:95568, date:'Feb 26, 2024', duration:'1:17', er:'5.4', cal:CAL5, lk:LIKE, sh:SHR, caption:'Best healthy soda for gut health 2024' },
+    { id:18, img:'https://www.figma.com/api/mcp/asset/30678361-d4ae-4656-bd45-90240dd67df3', user:'sodareview', likes:128451, views:2743438, comments:121178, shares:99471, bookmarks:35382, date:'Feb 25, 2024', duration:'0:58', er:'12.4', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'I drank a healthy soda every day for 30 days' },
+    { id:19, img:'https://www.figma.com/api/mcp/asset/c4417764-170c-44a9-9fe1-174e032b65f8', user:'drinkpopwell', likes:335644, views:11547441, comments:146001, shares:57570, bookmarks:89733, date:'Mar 1, 2024', duration:'2:26', er:'3.1', cal:CAL, lk:LIKE, sh:SHR, caption:'Healthy soda taste test blind challenge 🙈' },
+    { id:20, img:'https://www.figma.com/api/mcp/asset/6da8d12e-a85f-4ab6-abca-c0ea24068c08', user:'cleandrinks', likes:170117, views:940483, comments:60043, shares:8414, bookmarks:105518, date:'Jan 5, 2026', duration:'0:50', er:'9.1', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'What I actually think about #drinkpoppi after 6 months' },
+    { id:21, img:'https://www.figma.com/api/mcp/asset/e66b2520-22cf-4761-89f8-d665df94484d', user:'thefeedfeed', likes:165488, views:6732428, comments:70186, shares:17350, bookmarks:27653, date:'Feb 20, 2025', duration:'1:29', er:'4.2', cal:CAL3, lk:LIKE, sh:SHR, caption:'Last meal when I try new protein #foodideas #fitness' },
+    { id:22, img:'https://www.figma.com/api/mcp/asset/29600988-2870-4725-b2b1-0b052976f778', user:'officialrubin', likes:297465, views:5281418, comments:55738, shares:171819, bookmarks:65435, date:'Jun 5, 2024', duration:'1:32', er:'15.5', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'POV: healthy soda review — does it actually taste good?' },
+    { id:23, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'anya_rasima', likes:207525, views:10787264, comments:120285, shares:37452, bookmarks:34718, date:'May 28, 2025', duration:'0:45', er:'13.2', cal:CAL5, lk:LIKE, sh:SHR, caption:'finally trying bloom pops ✨ #cleaneating' },
+    { id:24, img:'https://www.figma.com/api/mcp/asset/988e05c7-9688-4fcd-b2ae-527372863160', user:'dillonthompson', likes:73306, views:4139722, comments:147159, shares:141289, bookmarks:34438, date:'Feb 22, 2023', duration:'3:12', er:'0.2', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'No Cap energy drink taste test 🔥 #healthysoda' },
+    { id:25, img:'https://www.figma.com/api/mcp/asset/b0a9170e-9352-45ee-a5f2-0abb1f9f7683', user:'travelingsorry', likes:306591, views:7189926, comments:104700, shares:94895, bookmarks:28746, date:'Oct 2, 2024', duration:'0:28', er:'4.7', cal:CAL, lk:LIKE, sh:SHR, caption:'Healthy soda brands ranked — which is actually good?' },
+    { id:26, img:'https://www.figma.com/api/mcp/asset/65b02c18-7bb1-4ea1-b40b-04be6d1b8f98', user:'healthwithhunter', likes:72625, views:8550432, comments:129372, shares:23831, bookmarks:99061, date:'Sep 6, 2024', duration:'1:05', er:'6.3', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'I tried every healthy soda so you dont have to #poppi' },
+    { id:27, img:'https://www.figma.com/api/mcp/asset/04628546-d508-4615-8227-f27fe660d79e', user:'kaitlynnmcv', likes:24802, views:1841607, comments:40066, shares:164481, bookmarks:20969, date:'Jan 19, 2024', duration:'2:15', er:'9.1', cal:CAL3, lk:LIKE, sh:SHR, caption:'Healthier sodas @ Target & Costco 🤩 #zevia' },
+    { id:28, img:'https://www.figma.com/api/mcp/asset/e13fa1ea-ee11-4c58-8bcf-7ce18c2802f8', user:'consciouslyk', likes:221433, views:10008083, comments:16653, shares:100864, bookmarks:50019, date:'Apr 5, 2023', duration:'0:38', er:'7.8', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'Would I recommend Poppi as a nutritionist? #drinkpoppi' },
+    { id:29, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'clairethenutri', likes:312517, views:7854574, comments:138704, shares:65906, bookmarks:72512, date:'Mar 3, 2026', duration:'1:44', er:'11.2', cal:CAL5, lk:LIKE, sh:SHR, caption:'new gut healthy soda #sunsippartner 🌿🍋' },
+    { id:30, img:'https://www.figma.com/api/mcp/asset/30678361-d4ae-4656-bd45-90240dd67df3', user:'mayor_of_m', likes:6119, views:11415261, comments:30029, shares:178706, bookmarks:70381, date:'Nov 15, 2024', duration:'0:52', er:'2.9', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'How close does the marketing match the product? 🤔' },
+    { id:31, img:'https://www.figma.com/api/mcp/asset/c4417764-170c-44a9-9fe1-174e032b65f8', user:'betterwithbe', likes:139993, views:10755554, comments:89174, shares:29242, bookmarks:38469, date:'Mar 21, 2024', duration:'0:32', er:'8.7', cal:CAL, lk:LIKE, sh:SHR, caption:'Try this out #menslifestyle #healthylifestyle @waterloo' },
+    { id:32, img:'https://www.figma.com/api/mcp/asset/6da8d12e-a85f-4ab6-abca-c0ea24068c08', user:'nunoliftz', likes:228042, views:2655446, comments:118940, shares:850, bookmarks:94646, date:'Feb 26, 2024', duration:'1:17', er:'5.4', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'If you wanted to, you would. #healthysoda' },
+    { id:33, img:'https://www.figma.com/api/mcp/asset/e66b2520-22cf-4761-89f8-d665df94484d', user:'poppiofficial', likes:138191, views:8400441, comments:46832, shares:133085, bookmarks:13947, date:'Feb 25, 2024', duration:'0:58', er:'12.4', cal:CAL3, lk:LIKE, sh:SHR, caption:'The truth about prebiotic sodas #prebioticsoda' },
+    { id:34, img:'https://www.figma.com/api/mcp/asset/29600988-2870-4725-b2b1-0b052976f778', user:'olipopdrink', likes:327937, views:5009072, comments:133080, shares:159637, bookmarks:26071, date:'Mar 1, 2024', duration:'2:26', er:'3.1', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'Rating every healthy soda at Whole Foods 🛒' },
+    { id:35, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'zeviadrinks', likes:80231, views:6275233, comments:42349, shares:141394, bookmarks:102056, date:'Jan 5, 2026', duration:'0:50', er:'9.1', cal:CAL5, lk:LIKE, sh:SHR, caption:'Is Zevia actually healthy? Full breakdown' },
+    { id:36, img:'https://www.figma.com/api/mcp/asset/988e05c7-9688-4fcd-b2ae-527372863160', user:'gabbituft', likes:278158, views:11594, comments:84975, shares:128085, bookmarks:2552, date:'Feb 20, 2025', duration:'1:29', er:'4.2', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'Poppi vs Olipop — which one wins?' },
+    { id:37, img:'https://www.figma.com/api/mcp/asset/b0a9170e-9352-45ee-a5f2-0abb1f9f7683', user:'healthyswaps', likes:58750, views:6091806, comments:80612, shares:62770, bookmarks:7592, date:'Jun 5, 2024', duration:'1:32', er:'15.5', cal:CAL, lk:LIKE, sh:SHR, caption:'Best healthy soda for gut health 2024' },
+    { id:38, img:'https://www.figma.com/api/mcp/asset/65b02c18-7bb1-4ea1-b40b-04be6d1b8f98', user:'sodareview', likes:126386, views:9520669, comments:20645, shares:22453, bookmarks:95932, date:'May 28, 2025', duration:'0:45', er:'13.2', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'I drank a healthy soda every day for 30 days' },
+    { id:39, img:'https://www.figma.com/api/mcp/asset/04628546-d508-4615-8227-f27fe660d79e', user:'drinkpopwell', likes:254898, views:1163193, comments:139645, shares:200758, bookmarks:16483, date:'Feb 22, 2023', duration:'3:12', er:'0.2', cal:CAL3, lk:LIKE, sh:SHR, caption:'Healthy soda taste test blind challenge 🙈' },
+    { id:40, img:'https://www.figma.com/api/mcp/asset/e13fa1ea-ee11-4c58-8bcf-7ce18c2802f8', user:'cleandrinks', likes:67414, views:11070782, comments:124592, shares:144127, bookmarks:21643, date:'Oct 2, 2024', duration:'0:28', er:'4.7', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'What I actually think about #drinkpoppi after 6 months' },
+    { id:41, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'thefeedfeed', likes:139066, views:8854897, comments:110923, shares:55521, bookmarks:70686, date:'Sep 6, 2024', duration:'1:05', er:'6.3', cal:CAL5, lk:LIKE, sh:SHR, caption:'Last meal when I try new protein #foodideas #fitness' },
+    { id:42, img:'https://www.figma.com/api/mcp/asset/30678361-d4ae-4656-bd45-90240dd67df3', user:'officialrubin', likes:105561, views:11963298, comments:81714, shares:104593, bookmarks:88039, date:'Jan 19, 2024', duration:'2:15', er:'9.1', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'POV: healthy soda review — does it actually taste good?' },
+    { id:43, img:'https://www.figma.com/api/mcp/asset/c4417764-170c-44a9-9fe1-174e032b65f8', user:'anya_rasima', likes:340823, views:6266956, comments:114845, shares:135679, bookmarks:59177, date:'Apr 5, 2023', duration:'0:38', er:'7.8', cal:CAL, lk:LIKE, sh:SHR, caption:'finally trying bloom pops ✨ #cleaneating' },
+    { id:44, img:'https://www.figma.com/api/mcp/asset/6da8d12e-a85f-4ab6-abca-c0ea24068c08', user:'dillonthompson', likes:63541, views:4161166, comments:58903, shares:16784, bookmarks:44313, date:'Mar 3, 2026', duration:'1:44', er:'11.2', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'No Cap energy drink taste test 🔥 #healthysoda' },
+    { id:45, img:'https://www.figma.com/api/mcp/asset/e66b2520-22cf-4761-89f8-d665df94484d', user:'travelingsorry', likes:11128, views:9872182, comments:145207, shares:60323, bookmarks:77128, date:'Nov 15, 2024', duration:'0:52', er:'2.9', cal:CAL3, lk:LIKE, sh:SHR, caption:'Healthy soda brands ranked — which is actually good?' },
+    { id:46, img:'https://www.figma.com/api/mcp/asset/29600988-2870-4725-b2b1-0b052976f778', user:'healthwithhunter', likes:115557, views:122642, comments:18610, shares:185556, bookmarks:82719, date:'Mar 21, 2024', duration:'0:32', er:'8.7', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'I tried every healthy soda so you dont have to #poppi' },
+    { id:47, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'kaitlynnmcv', likes:30966, views:3843005, comments:17668, shares:8234, bookmarks:112674, date:'Feb 26, 2024', duration:'1:17', er:'5.4', cal:CAL5, lk:LIKE, sh:SHR, caption:'Healthier sodas @ Target & Costco 🤩 #zevia' },
+    { id:48, img:'https://www.figma.com/api/mcp/asset/988e05c7-9688-4fcd-b2ae-527372863160', user:'consciouslyk', likes:173339, views:1190789, comments:134782, shares:62391, bookmarks:36500, date:'Feb 25, 2024', duration:'0:58', er:'12.4', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'Would I recommend Poppi as a nutritionist? #drinkpoppi' },
+    { id:49, img:'https://www.figma.com/api/mcp/asset/b0a9170e-9352-45ee-a5f2-0abb1f9f7683', user:'clairethenutri', likes:254596, views:3596297, comments:141356, shares:34684, bookmarks:94811, date:'Mar 1, 2024', duration:'2:26', er:'3.1', cal:CAL, lk:LIKE, sh:SHR, caption:'new gut healthy soda #sunsippartner 🌿🍋' },
+    { id:50, img:'https://www.figma.com/api/mcp/asset/65b02c18-7bb1-4ea1-b40b-04be6d1b8f98', user:'mayor_of_m', likes:299491, views:9669227, comments:123907, shares:63700, bookmarks:102841, date:'Jan 5, 2026', duration:'0:50', er:'9.1', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'How close does the marketing match the product? 🤔' },
+    { id:51, img:'https://www.figma.com/api/mcp/asset/04628546-d508-4615-8227-f27fe660d79e', user:'betterwithbe', likes:248074, views:6831332, comments:49914, shares:24726, bookmarks:12704, date:'Feb 20, 2025', duration:'1:29', er:'4.2', cal:CAL3, lk:LIKE, sh:SHR, caption:'Try this out #menslifestyle #healthylifestyle @waterloo' },
+    { id:52, img:'https://www.figma.com/api/mcp/asset/e13fa1ea-ee11-4c58-8bcf-7ce18c2802f8', user:'nunoliftz', likes:345596, views:7233838, comments:92876, shares:111038, bookmarks:53883, date:'Jun 5, 2024', duration:'1:32', er:'15.5', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'If you wanted to, you would. #healthysoda' },
+    { id:53, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'poppiofficial', likes:244955, views:910841, comments:25799, shares:15889, bookmarks:52772, date:'May 28, 2025', duration:'0:45', er:'13.2', cal:CAL5, lk:LIKE, sh:SHR, caption:'The truth about prebiotic sodas #prebioticsoda' },
+    { id:54, img:'https://www.figma.com/api/mcp/asset/30678361-d4ae-4656-bd45-90240dd67df3', user:'olipopdrink', likes:177992, views:1835230, comments:65183, shares:50224, bookmarks:24931, date:'Feb 22, 2023', duration:'3:12', er:'0.2', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'Rating every healthy soda at Whole Foods 🛒' },
+    { id:55, img:'https://www.figma.com/api/mcp/asset/c4417764-170c-44a9-9fe1-174e032b65f8', user:'zeviadrinks', likes:281268, views:7528486, comments:36747, shares:110593, bookmarks:24050, date:'Oct 2, 2024', duration:'0:28', er:'4.7', cal:CAL, lk:LIKE, sh:SHR, caption:'Is Zevia actually healthy? Full breakdown' },
+    { id:56, img:'https://www.figma.com/api/mcp/asset/6da8d12e-a85f-4ab6-abca-c0ea24068c08', user:'gabbituft', likes:146137, views:7763611, comments:65485, shares:19761, bookmarks:58082, date:'Sep 6, 2024', duration:'1:05', er:'6.3', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'Poppi vs Olipop — which one wins?' },
+    { id:57, img:'https://www.figma.com/api/mcp/asset/e66b2520-22cf-4761-89f8-d665df94484d', user:'healthyswaps', likes:288628, views:1644635, comments:13261, shares:170955, bookmarks:70855, date:'Jan 19, 2024', duration:'2:15', er:'9.1', cal:CAL3, lk:LIKE, sh:SHR, caption:'Best healthy soda for gut health 2024' },
+    { id:58, img:'https://www.figma.com/api/mcp/asset/29600988-2870-4725-b2b1-0b052976f778', user:'sodareview', likes:7837, views:1566689, comments:61965, shares:43597, bookmarks:53269, date:'Apr 5, 2023', duration:'0:38', er:'7.8', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'I drank a healthy soda every day for 30 days' },
+    { id:59, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'drinkpopwell', likes:254715, views:8077854, comments:56032, shares:105130, bookmarks:7685, date:'Mar 3, 2026', duration:'1:44', er:'11.2', cal:CAL5, lk:LIKE, sh:SHR, caption:'Healthy soda taste test blind challenge 🙈' },
+    { id:60, img:'https://www.figma.com/api/mcp/asset/988e05c7-9688-4fcd-b2ae-527372863160', user:'cleandrinks', likes:86417, views:6360113, comments:565, shares:102346, bookmarks:34760, date:'Nov 15, 2024', duration:'0:52', er:'2.9', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'What I actually think about #drinkpoppi after 6 months' },
+    { id:61, img:'https://www.figma.com/api/mcp/asset/b0a9170e-9352-45ee-a5f2-0abb1f9f7683', user:'thefeedfeed', likes:238655, views:4787687, comments:110888, shares:182607, bookmarks:95748, date:'Mar 21, 2024', duration:'0:32', er:'8.7', cal:CAL, lk:LIKE, sh:SHR, caption:'Last meal when I try new protein #foodideas #fitness' },
+    { id:62, img:'https://www.figma.com/api/mcp/asset/65b02c18-7bb1-4ea1-b40b-04be6d1b8f98', user:'officialrubin', likes:291482, views:11106357, comments:127577, shares:40579, bookmarks:24890, date:'Feb 26, 2024', duration:'1:17', er:'5.4', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'POV: healthy soda review — does it actually taste good?' },
+    { id:63, img:'https://www.figma.com/api/mcp/asset/04628546-d508-4615-8227-f27fe660d79e', user:'anya_rasima', likes:155660, views:3654414, comments:15331, shares:151828, bookmarks:96434, date:'Feb 25, 2024', duration:'0:58', er:'12.4', cal:CAL3, lk:LIKE, sh:SHR, caption:'finally trying bloom pops ✨ #cleaneating' },
+    { id:64, img:'https://www.figma.com/api/mcp/asset/e13fa1ea-ee11-4c58-8bcf-7ce18c2802f8', user:'dillonthompson', likes:284366, views:1024698, comments:82209, shares:14985, bookmarks:6572, date:'Mar 1, 2024', duration:'2:26', er:'3.1', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'No Cap energy drink taste test 🔥 #healthysoda' },
+    { id:65, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'travelingsorry', likes:306377, views:8001183, comments:131819, shares:139231, bookmarks:20635, date:'Jan 5, 2026', duration:'0:50', er:'9.1', cal:CAL5, lk:LIKE, sh:SHR, caption:'Healthy soda brands ranked — which is actually good?' },
+    { id:66, img:'https://www.figma.com/api/mcp/asset/30678361-d4ae-4656-bd45-90240dd67df3', user:'healthwithhunter', likes:29921, views:8521948, comments:21000, shares:48712, bookmarks:8981, date:'Feb 20, 2025', duration:'1:29', er:'4.2', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'I tried every healthy soda so you dont have to #poppi' },
+    { id:67, img:'https://www.figma.com/api/mcp/asset/c4417764-170c-44a9-9fe1-174e032b65f8', user:'kaitlynnmcv', likes:312069, views:1142194, comments:61657, shares:105847, bookmarks:15713, date:'Jun 5, 2024', duration:'1:32', er:'15.5', cal:CAL, lk:LIKE, sh:SHR, caption:'Healthier sodas @ Target & Costco 🤩 #zevia' },
+    { id:68, img:'https://www.figma.com/api/mcp/asset/6da8d12e-a85f-4ab6-abca-c0ea24068c08', user:'consciouslyk', likes:298773, views:4132808, comments:10418, shares:162367, bookmarks:10745, date:'May 28, 2025', duration:'0:45', er:'13.2', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'Would I recommend Poppi as a nutritionist? #drinkpoppi' },
+    { id:69, img:'https://www.figma.com/api/mcp/asset/e66b2520-22cf-4761-89f8-d665df94484d', user:'clairethenutri', likes:219894, views:11030891, comments:148170, shares:137044, bookmarks:41467, date:'Feb 22, 2023', duration:'3:12', er:'0.2', cal:CAL3, lk:LIKE, sh:SHR, caption:'new gut healthy soda #sunsippartner 🌿🍋' },
+    { id:70, img:'https://www.figma.com/api/mcp/asset/29600988-2870-4725-b2b1-0b052976f778', user:'mayor_of_m', likes:136816, views:3428900, comments:82361, shares:62570, bookmarks:34814, date:'Oct 2, 2024', duration:'0:28', er:'4.7', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'How close does the marketing match the product? 🤔' },
+    { id:71, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'betterwithbe', likes:207605, views:2197773, comments:78642, shares:119858, bookmarks:41441, date:'Sep 6, 2024', duration:'1:05', er:'6.3', cal:CAL5, lk:LIKE, sh:SHR, caption:'Try this out #menslifestyle #healthylifestyle @waterloo' },
+    { id:72, img:'https://www.figma.com/api/mcp/asset/988e05c7-9688-4fcd-b2ae-527372863160', user:'nunoliftz', likes:38133, views:158287, comments:120136, shares:162833, bookmarks:73792, date:'Jan 19, 2024', duration:'2:15', er:'9.1', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'If you wanted to, you would. #healthysoda' },
+    { id:73, img:'https://www.figma.com/api/mcp/asset/b0a9170e-9352-45ee-a5f2-0abb1f9f7683', user:'poppiofficial', likes:52518, views:1231110, comments:140937, shares:55877, bookmarks:66307, date:'Apr 5, 2023', duration:'0:38', er:'7.8', cal:CAL, lk:LIKE, sh:SHR, caption:'The truth about prebiotic sodas #prebioticsoda' },
+    { id:74, img:'https://www.figma.com/api/mcp/asset/65b02c18-7bb1-4ea1-b40b-04be6d1b8f98', user:'olipopdrink', likes:139141, views:2224252, comments:91490, shares:18033, bookmarks:32018, date:'Mar 3, 2026', duration:'1:44', er:'11.2', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'Rating every healthy soda at Whole Foods 🛒' },
+    { id:75, img:'https://www.figma.com/api/mcp/asset/04628546-d508-4615-8227-f27fe660d79e', user:'zeviadrinks', likes:193838, views:4783295, comments:41352, shares:114867, bookmarks:109280, date:'Nov 15, 2024', duration:'0:52', er:'2.9', cal:CAL3, lk:LIKE, sh:SHR, caption:'Is Zevia actually healthy? Full breakdown' },
+    { id:76, img:'https://www.figma.com/api/mcp/asset/e13fa1ea-ee11-4c58-8bcf-7ce18c2802f8', user:'gabbituft', likes:284902, views:11805441, comments:79303, shares:160347, bookmarks:105788, date:'Mar 21, 2024', duration:'0:32', er:'8.7', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'Poppi vs Olipop — which one wins?' },
+    { id:77, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'healthyswaps', likes:342971, views:8876152, comments:2050, shares:175076, bookmarks:107099, date:'Feb 26, 2024', duration:'1:17', er:'5.4', cal:CAL5, lk:LIKE, sh:SHR, caption:'Best healthy soda for gut health 2024' },
+    { id:78, img:'https://www.figma.com/api/mcp/asset/30678361-d4ae-4656-bd45-90240dd67df3', user:'sodareview', likes:290871, views:5024741, comments:27154, shares:35203, bookmarks:34664, date:'Feb 25, 2024', duration:'0:58', er:'12.4', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'I drank a healthy soda every day for 30 days' },
+    { id:79, img:'https://www.figma.com/api/mcp/asset/c4417764-170c-44a9-9fe1-174e032b65f8', user:'drinkpopwell', likes:60617, views:1797765, comments:145024, shares:40749, bookmarks:35697, date:'Mar 1, 2024', duration:'2:26', er:'3.1', cal:CAL, lk:LIKE, sh:SHR, caption:'Healthy soda taste test blind challenge 🙈' },
+    { id:80, img:'https://www.figma.com/api/mcp/asset/6da8d12e-a85f-4ab6-abca-c0ea24068c08', user:'cleandrinks', likes:147821, views:10149360, comments:55215, shares:188117, bookmarks:44942, date:'Jan 5, 2026', duration:'0:50', er:'9.1', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'What I actually think about #drinkpoppi after 6 months' },
+    { id:81, img:'https://www.figma.com/api/mcp/asset/e66b2520-22cf-4761-89f8-d665df94484d', user:'thefeedfeed', likes:106843, views:11536287, comments:69201, shares:132489, bookmarks:64032, date:'Feb 20, 2025', duration:'1:29', er:'4.2', cal:CAL3, lk:LIKE, sh:SHR, caption:'Last meal when I try new protein #foodideas #fitness' },
+    { id:82, img:'https://www.figma.com/api/mcp/asset/29600988-2870-4725-b2b1-0b052976f778', user:'officialrubin', likes:131759, views:854264, comments:24195, shares:166273, bookmarks:55518, date:'Jun 5, 2024', duration:'1:32', er:'15.5', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'POV: healthy soda review — does it actually taste good?' },
+    { id:83, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'anya_rasima', likes:145160, views:741653, comments:929, shares:87439, bookmarks:101072, date:'May 28, 2025', duration:'0:45', er:'13.2', cal:CAL5, lk:LIKE, sh:SHR, caption:'finally trying bloom pops ✨ #cleaneating' },
+    { id:84, img:'https://www.figma.com/api/mcp/asset/988e05c7-9688-4fcd-b2ae-527372863160', user:'dillonthompson', likes:68687, views:10690988, comments:68670, shares:42357, bookmarks:97154, date:'Feb 22, 2023', duration:'3:12', er:'0.2', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'No Cap energy drink taste test 🔥 #healthysoda' },
+    { id:85, img:'https://www.figma.com/api/mcp/asset/b0a9170e-9352-45ee-a5f2-0abb1f9f7683', user:'travelingsorry', likes:231749, views:9257661, comments:112115, shares:147038, bookmarks:1267, date:'Oct 2, 2024', duration:'0:28', er:'4.7', cal:CAL, lk:LIKE, sh:SHR, caption:'Healthy soda brands ranked — which is actually good?' },
+    { id:86, img:'https://www.figma.com/api/mcp/asset/65b02c18-7bb1-4ea1-b40b-04be6d1b8f98', user:'healthwithhunter', likes:58754, views:1264382, comments:39073, shares:143023, bookmarks:4722, date:'Sep 6, 2024', duration:'1:05', er:'6.3', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'I tried every healthy soda so you dont have to #poppi' },
+    { id:87, img:'https://www.figma.com/api/mcp/asset/04628546-d508-4615-8227-f27fe660d79e', user:'kaitlynnmcv', likes:193675, views:9774888, comments:144841, shares:38821, bookmarks:56333, date:'Jan 19, 2024', duration:'2:15', er:'9.1', cal:CAL3, lk:LIKE, sh:SHR, caption:'Healthier sodas @ Target & Costco 🤩 #zevia' },
+    { id:88, img:'https://www.figma.com/api/mcp/asset/e13fa1ea-ee11-4c58-8bcf-7ce18c2802f8', user:'consciouslyk', likes:66918, views:703771, comments:80808, shares:95591, bookmarks:104349, date:'Apr 5, 2023', duration:'0:38', er:'7.8', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'Would I recommend Poppi as a nutritionist? #drinkpoppi' },
+    { id:89, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'clairethenutri', likes:21016, views:6005042, comments:55070, shares:178799, bookmarks:32706, date:'Mar 3, 2026', duration:'1:44', er:'11.2', cal:CAL5, lk:LIKE, sh:SHR, caption:'new gut healthy soda #sunsippartner 🌿🍋' },
+    { id:90, img:'https://www.figma.com/api/mcp/asset/30678361-d4ae-4656-bd45-90240dd67df3', user:'mayor_of_m', likes:349765, views:1726590, comments:92714, shares:204502, bookmarks:73385, date:'Nov 15, 2024', duration:'0:52', er:'2.9', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'How close does the marketing match the product? 🤔' },
+    { id:91, img:'https://www.figma.com/api/mcp/asset/c4417764-170c-44a9-9fe1-174e032b65f8', user:'betterwithbe', likes:213158, views:10414972, comments:40515, shares:62059, bookmarks:113325, date:'Mar 21, 2024', duration:'0:32', er:'8.7', cal:CAL, lk:LIKE, sh:SHR, caption:'Try this out #menslifestyle #healthylifestyle @waterloo' },
+    { id:92, img:'https://www.figma.com/api/mcp/asset/6da8d12e-a85f-4ab6-abca-c0ea24068c08', user:'nunoliftz', likes:85297, views:2972445, comments:108080, shares:6497, bookmarks:23509, date:'Feb 26, 2024', duration:'1:17', er:'5.4', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'If you wanted to, you would. #healthysoda' },
+    { id:93, img:'https://www.figma.com/api/mcp/asset/e66b2520-22cf-4761-89f8-d665df94484d', user:'poppiofficial', likes:174260, views:6909400, comments:65055, shares:69941, bookmarks:20866, date:'Feb 25, 2024', duration:'0:58', er:'12.4', cal:CAL3, lk:LIKE, sh:SHR, caption:'The truth about prebiotic sodas #prebioticsoda' },
+    { id:94, img:'https://www.figma.com/api/mcp/asset/29600988-2870-4725-b2b1-0b052976f778', user:'olipopdrink', likes:56773, views:6419985, comments:10151, shares:123388, bookmarks:29154, date:'Mar 1, 2024', duration:'2:26', er:'3.1', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'Rating every healthy soda at Whole Foods 🛒' },
+    { id:95, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'zeviadrinks', likes:104733, views:7724606, comments:91660, shares:80003, bookmarks:107549, date:'Jan 5, 2026', duration:'0:50', er:'9.1', cal:CAL5, lk:LIKE, sh:SHR, caption:'Is Zevia actually healthy? Full breakdown' },
+    { id:96, img:'https://www.figma.com/api/mcp/asset/988e05c7-9688-4fcd-b2ae-527372863160', user:'gabbituft', likes:119425, views:3742036, comments:6203, shares:173023, bookmarks:25313, date:'Feb 20, 2025', duration:'1:29', er:'4.2', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'Poppi vs Olipop — which one wins?' },
+    { id:97, img:'https://www.figma.com/api/mcp/asset/b0a9170e-9352-45ee-a5f2-0abb1f9f7683', user:'healthyswaps', likes:209010, views:5509321, comments:73034, shares:18198, bookmarks:101361, date:'Jun 5, 2024', duration:'1:32', er:'15.5', cal:CAL, lk:LIKE, sh:SHR, caption:'Best healthy soda for gut health 2024' },
+    { id:98, img:'https://www.figma.com/api/mcp/asset/65b02c18-7bb1-4ea1-b40b-04be6d1b8f98', user:'sodareview', likes:146441, views:5893254, comments:133537, shares:104773, bookmarks:89065, date:'May 28, 2025', duration:'0:45', er:'13.2', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'I drank a healthy soda every day for 30 days' },
+    { id:99, img:'https://www.figma.com/api/mcp/asset/04628546-d508-4615-8227-f27fe660d79e', user:'drinkpopwell', likes:281231, views:5557772, comments:7235, shares:30236, bookmarks:114955, date:'Feb 22, 2023', duration:'3:12', er:'0.2', cal:CAL3, lk:LIKE, sh:SHR, caption:'Healthy soda taste test blind challenge 🙈' },
+    { id:100, img:'https://www.figma.com/api/mcp/asset/e13fa1ea-ee11-4c58-8bcf-7ce18c2802f8', user:'cleandrinks', likes:137051, views:2997870, comments:69590, shares:10028, bookmarks:14208, date:'Oct 2, 2024', duration:'0:28', er:'4.7', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'What I actually think about #drinkpoppi after 6 months' },
+    { id:101, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'thefeedfeed', likes:312875, views:7292770, comments:90619, shares:190983, bookmarks:103078, date:'Sep 6, 2024', duration:'1:05', er:'6.3', cal:CAL5, lk:LIKE, sh:SHR, caption:'Last meal when I try new protein #foodideas #fitness' },
+    { id:102, img:'https://www.figma.com/api/mcp/asset/30678361-d4ae-4656-bd45-90240dd67df3', user:'officialrubin', likes:164557, views:7323474, comments:134066, shares:30315, bookmarks:50488, date:'Jan 19, 2024', duration:'2:15', er:'9.1', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'POV: healthy soda review — does it actually taste good?' },
+    { id:103, img:'https://www.figma.com/api/mcp/asset/c4417764-170c-44a9-9fe1-174e032b65f8', user:'anya_rasima', likes:302398, views:3190992, comments:66773, shares:11635, bookmarks:92901, date:'Apr 5, 2023', duration:'0:38', er:'7.8', cal:CAL, lk:LIKE, sh:SHR, caption:'finally trying bloom pops ✨ #cleaneating' },
+    { id:104, img:'https://www.figma.com/api/mcp/asset/6da8d12e-a85f-4ab6-abca-c0ea24068c08', user:'dillonthompson', likes:228719, views:30374, comments:136293, shares:141151, bookmarks:90027, date:'Mar 3, 2026', duration:'1:44', er:'11.2', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'No Cap energy drink taste test 🔥 #healthysoda' },
+    { id:105, img:'https://www.figma.com/api/mcp/asset/e66b2520-22cf-4761-89f8-d665df94484d', user:'travelingsorry', likes:103403, views:6112622, comments:113062, shares:18343, bookmarks:87062, date:'Nov 15, 2024', duration:'0:52', er:'2.9', cal:CAL3, lk:LIKE, sh:SHR, caption:'Healthy soda brands ranked — which is actually good?' },
+    { id:106, img:'https://www.figma.com/api/mcp/asset/29600988-2870-4725-b2b1-0b052976f778', user:'healthwithhunter', likes:173219, views:10456812, comments:82291, shares:173903, bookmarks:111151, date:'Mar 21, 2024', duration:'0:32', er:'8.7', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'I tried every healthy soda so you dont have to #poppi' },
+    { id:107, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'kaitlynnmcv', likes:65439, views:5040571, comments:132939, shares:81077, bookmarks:87410, date:'Feb 26, 2024', duration:'1:17', er:'5.4', cal:CAL5, lk:LIKE, sh:SHR, caption:'Healthier sodas @ Target & Costco 🤩 #zevia' },
+    { id:108, img:'https://www.figma.com/api/mcp/asset/988e05c7-9688-4fcd-b2ae-527372863160', user:'consciouslyk', likes:214215, views:5474441, comments:105486, shares:182769, bookmarks:38752, date:'Feb 25, 2024', duration:'0:58', er:'12.4', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'Would I recommend Poppi as a nutritionist? #drinkpoppi' },
+    { id:109, img:'https://www.figma.com/api/mcp/asset/b0a9170e-9352-45ee-a5f2-0abb1f9f7683', user:'clairethenutri', likes:290771, views:2137534, comments:50289, shares:110217, bookmarks:87153, date:'Mar 1, 2024', duration:'2:26', er:'3.1', cal:CAL, lk:LIKE, sh:SHR, caption:'new gut healthy soda #sunsippartner 🌿🍋' },
+    { id:110, img:'https://www.figma.com/api/mcp/asset/65b02c18-7bb1-4ea1-b40b-04be6d1b8f98', user:'mayor_of_m', likes:198881, views:11365509, comments:45620, shares:161353, bookmarks:74593, date:'Jan 5, 2026', duration:'0:50', er:'9.1', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'How close does the marketing match the product? 🤔' },
+    { id:111, img:'https://www.figma.com/api/mcp/asset/04628546-d508-4615-8227-f27fe660d79e', user:'betterwithbe', likes:157884, views:6814810, comments:143638, shares:106, bookmarks:39829, date:'Feb 20, 2025', duration:'1:29', er:'4.2', cal:CAL3, lk:LIKE, sh:SHR, caption:'Try this out #menslifestyle #healthylifestyle @waterloo' },
+    { id:112, img:'https://www.figma.com/api/mcp/asset/e13fa1ea-ee11-4c58-8bcf-7ce18c2802f8', user:'nunoliftz', likes:150525, views:3528280, comments:112692, shares:205981, bookmarks:76019, date:'Jun 5, 2024', duration:'1:32', er:'15.5', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'If you wanted to, you would. #healthysoda' },
+    { id:113, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'poppiofficial', likes:318165, views:10986137, comments:84475, shares:121893, bookmarks:57905, date:'May 28, 2025', duration:'0:45', er:'13.2', cal:CAL5, lk:LIKE, sh:SHR, caption:'The truth about prebiotic sodas #prebioticsoda' },
+    { id:114, img:'https://www.figma.com/api/mcp/asset/30678361-d4ae-4656-bd45-90240dd67df3', user:'olipopdrink', likes:231919, views:11337144, comments:56020, shares:134001, bookmarks:62021, date:'Feb 22, 2023', duration:'3:12', er:'0.2', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'Rating every healthy soda at Whole Foods 🛒' },
+    { id:115, img:'https://www.figma.com/api/mcp/asset/c4417764-170c-44a9-9fe1-174e032b65f8', user:'zeviadrinks', likes:89067, views:11055681, comments:22228, shares:74392, bookmarks:67561, date:'Oct 2, 2024', duration:'0:28', er:'4.7', cal:CAL, lk:LIKE, sh:SHR, caption:'Is Zevia actually healthy? Full breakdown' },
+    { id:116, img:'https://www.figma.com/api/mcp/asset/6da8d12e-a85f-4ab6-abca-c0ea24068c08', user:'gabbituft', likes:348150, views:10620985, comments:87867, shares:24480, bookmarks:107272, date:'Sep 6, 2024', duration:'1:05', er:'6.3', cal:CAL2, lk:LIKE2, sh:SHR2, caption:'Poppi vs Olipop — which one wins?' },
+    { id:117, img:'https://www.figma.com/api/mcp/asset/e66b2520-22cf-4761-89f8-d665df94484d', user:'healthyswaps', likes:123238, views:11289638, comments:81374, shares:58888, bookmarks:105717, date:'Jan 19, 2024', duration:'2:15', er:'9.1', cal:CAL3, lk:LIKE, sh:SHR, caption:'Best healthy soda for gut health 2024' },
+    { id:118, img:'https://www.figma.com/api/mcp/asset/29600988-2870-4725-b2b1-0b052976f778', user:'sodareview', likes:104501, views:2474189, comments:6402, shares:12114, bookmarks:32092, date:'Apr 5, 2023', duration:'0:38', er:'7.8', cal:CAL4, lk:LIKE2, sh:SHR2, caption:'I drank a healthy soda every day for 30 days' },
+    { id:119, img:'https://www.figma.com/api/mcp/asset/3d136295-7e37-4a8a-8bbd-690da24fa992', user:'drinkpopwell', likes:249208, views:10257475, comments:19091, shares:119384, bookmarks:54321, date:'Mar 3, 2026', duration:'1:44', er:'11.2', cal:CAL5, lk:LIKE, sh:SHR, caption:'Healthy soda taste test blind challenge 🙈' },
+    { id:120, img:'https://www.figma.com/api/mcp/asset/988e05c7-9688-4fcd-b2ae-527372863160', user:'cleandrinks', likes:330278, views:9660155, comments:50970, shares:188310, bookmarks:91272, date:'Nov 15, 2024', duration:'0:52', er:'2.9', cal:CAL6, lk:LIKE2, sh:SHR2, caption:'What I actually think about #drinkpoppi after 6 months' }
   ];
 
   const columns = [
@@ -1397,6 +1479,7 @@
   function init() {
     renderGrid();
     renderTable();
+    renderPagination();
     renderColumnsPanel();
   }
 
@@ -1419,7 +1502,7 @@
 
   function renderGrid() {
     const grid = document.getElementById('videoGrid');
-    grid.innerHTML = filteredVideos.map((v, i) => {
+    grid.innerHTML = pageVideos().map((v, i) => {
       const color = avatarColors[i % avatarColors.length];
       const initials = v.user.substring(0,2).toUpperCase();
       const sel = selectedIds.has(v.id);
@@ -1474,7 +1557,7 @@
   // ─── TABLE RENDER ────────────────────────────────────────────────────
   function renderTable() {
     const tbody = document.getElementById('tableBody');
-    tbody.innerHTML = filteredVideos.map((v, i) => {
+    tbody.innerHTML = pageVideos().map((v, i) => {
       const color = avatarColors[i % avatarColors.length];
       const initials = v.user.substring(0,2).toUpperCase();
       const sel = selectedIds.has(v.id);
@@ -1646,8 +1729,10 @@
     });
     const total = filteredVideos.length;
     document.getElementById('toolbarCount').textContent = `(${total.toLocaleString()} of ${videos.length.toLocaleString()})`;
+    currentPage = 1;
     renderGrid();
     renderTable();
+    renderPagination();
   }
 
   // ─── SORT DROPDOWN ──────────────────────────────────────────────────
@@ -1666,6 +1751,60 @@
     const menu = document.getElementById('sortMenu');
     if (menu) menu.style.display = 'none';
   });
+
+  // ─── PAGINATION ─────────────────────────────────────────────────────
+  const PER_PAGE = 60;
+  let currentPage = 1;
+
+  function totalPages() {
+    return Math.ceil(filteredVideos.length / PER_PAGE);
+  }
+
+  function pageVideos() {
+    const start = (currentPage - 1) * PER_PAGE;
+    return filteredVideos.slice(start, start + PER_PAGE);
+  }
+
+  function goToPage(p) {
+    const total = totalPages();
+    if (p < 1 || p > total) return;
+    currentPage = p;
+    renderGrid();
+    renderTable();
+    renderPagination();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function renderPagination() {
+    const total   = totalPages();
+    const count   = filteredVideos.length;
+    const start   = (currentPage - 1) * PER_PAGE + 1;
+    const end     = Math.min(currentPage * PER_PAGE, count);
+
+    const info = `Showing &nbsp;<span class="page-num">${start}</span>&nbsp; to &nbsp;<span class="page-num">${end}</span>&nbsp; of ${count.toLocaleString()} results`;
+
+    // Build page number buttons (show up to 5 around current)
+    let pages = [];
+    pages.push('<button class="page-btn" onclick="goToPage(currentPage-1)">Previous</button>');
+
+    const range = [];
+    for (let i = 1; i <= total; i++) {
+      if (i === 1 || i === total || (i >= currentPage - 1 && i <= currentPage + 1)) {
+        range.push(i);
+      }
+    }
+    let prev = null;
+    for (const p of range) {
+      if (prev !== null && p - prev > 1) pages.push('<span class="page-dots">...</span>');
+      pages.push(`<button class="page-btn${p === currentPage ? ' active' : ''}" onclick="goToPage(${p})">${p}</button>`);
+      prev = p;
+    }
+    pages.push('<button class="page-btn" onclick="goToPage(currentPage+1)">Next</button>');
+
+    const html = `<div class="pagination-info">${info}</div><div class="pagination-controls">${pages.join('')}</div>`;
+    document.getElementById('gridPagination').innerHTML  = html;
+    document.getElementById('tablePagination').innerHTML = html;
+  }
 
   </script>
 
