@@ -356,15 +356,12 @@
       display: flex;
       flex-direction: column;
       gap: 0;
-      border-bottom: 1px solid #132030;
-      padding-bottom: 0;
       margin-bottom: 14px;
     }
     .section-header-top {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding-bottom: 14px;
+      padding-bottom: 10px;
     }
     .section-title-wrap {
       display: flex;
@@ -384,6 +381,16 @@
       font-weight: 400;
       white-space: nowrap;
     }
+    /* ── Unified bar: tabs + controls in one row ── */
+    .section-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #132030;
+      flex-wrap: nowrap;
+    }
+    .section-bar-spacer { flex: 1; }
     /* ── Tabs ── */
     .section-tabs {
       display: flex;
@@ -394,8 +401,7 @@
       border-radius: 10px;
       padding: 4px;
       width: fit-content;
-      margin-bottom: 16px;
-      margin-top: 4px;
+      flex-shrink: 0;
     }
     .tab-btn {
       padding: 7px 20px;
@@ -781,6 +787,7 @@
     }
     .btn-filter:hover { border-color: #00F2EA; color: #00F2EA; }
     .filter-tags { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+    .filter-tags-bar { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
     .filter-tag {
       height: 26px; padding: 0 9px;
       border-radius: 20px;
@@ -1302,134 +1309,155 @@
     <div class="card-container">
       <!-- Section Header -->
       <div class="section-header">
-        <!-- Row 1: title + controls -->
+        <!-- Title row -->
         <div class="section-header-top">
           <div class="section-title-wrap">
             <span class="section-title">Imported Search: Food Ideas</span>
           </div>
-          <div class="header-right">
-            <!-- Sort videos by -->
-            <div class="sort-videos-dropdown" onclick="toggleSortMenu(event)">
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;">
-                <path d="M1.5 2h13l-5 6v5.5l-3-1.5V8L1.5 2z" fill="#ef4444" stroke="#ef4444" stroke-width="0.5" stroke-linejoin="round"/>
-              </svg>
-              <span id="sortLabel">Sort videos by</span>
-              <svg width="12" height="12" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;">
-                <path d="M3 5l4 4 4-4" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-              <div class="sort-menu" id="sortMenu" style="display:none;" onclick="event.stopPropagation()">
-                <div class="sort-group-label">Date</div>
-                <div class="sort-option active" onclick="selectSort(this,'Most Recent','date_desc')">Most Recent</div>
-                <div class="sort-option" onclick="selectSort(this,'Oldest First','date_asc')">Oldest First</div>
-                <div class="sort-group-label">Engagement</div>
-                <div class="sort-option" onclick="selectSort(this,'Most Likes','likes')">Most Likes</div>
-                <div class="sort-option" onclick="selectSort(this,'Most Comments','comments')">Most Comments</div>
-                <div class="sort-option" onclick="selectSort(this,'Most Shares','shares')">Most Shares</div>
-                <div class="sort-option" onclick="selectSort(this,'Most Bookmarks','bookmarks')">Most Bookmarks</div>
-                <div class="sort-group-label">Performance</div>
-                <div class="sort-option" onclick="selectSort(this,'Most Views','views')">Most Views</div>
-                <div class="sort-option" onclick="selectSort(this,'Longest Duration','duration_desc')">Longest Duration</div>
-                <div class="sort-option" onclick="selectSort(this,'Shortest Duration','duration_asc')">Shortest Duration</div>
-              </div>
+        </div>
+        <!-- Unified bar: tabs + all controls in one row -->
+        <div class="section-bar">
+          <!-- Tabs -->
+          <div class="section-tabs">
+            <button class="tab-btn active" onclick="switchTab(this,'profile')">Profile Videos</button>
+            <button class="tab-btn" onclick="switchTab(this,'outliers')">Outliers</button>
+            <button class="tab-btn" onclick="switchTab(this,'top')">Top videos</button>
+          </div>
+          <div class="section-bar-spacer"></div>
+          <!-- Video count -->
+          <span class="videos-label">Videos <span id="toolbarCount">(1,243)</span></span>
+          <!-- Select Videos -->
+          <button class="btn-select-videos" id="btnSelectVideos" onclick="toggleSelectMode()">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+              <path d="M4 7l2.5 2.5L10 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Select Videos
+          </button>
+          <!-- Select-mode actions (hidden by default) -->
+          <button class="btn-delete-selected" id="btnDeleteSelected" style="display:none;">
+            <svg width="13" height="13" fill="none" viewBox="0 0 16 16"><path d="M6.5 1h3a.5.5 0 010 1h-3a.5.5 0 010-1zM2 3a.5.5 0 01.5-.5h11a.5.5 0 010 1H13v9a1.5 1.5 0 01-1.5 1.5h-7A1.5 1.5 0 013 13V3.5H2A.5.5 0 012 3zm2 .5V13a.5.5 0 00.5.5h7a.5.5 0 00.5-.5V3.5H4z" fill="currentColor"/></svg>
+            Delete Selected (<span id="deleteCount">0</span>)
+          </button>
+          <button class="btn-add-folder" id="btnAddFolder" style="display:none;">
+            <svg width="13" height="13" fill="none" viewBox="0 0 16 16"><path d="M1 3.5A1.5 1.5 0 012.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0115 5.5v7a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 011 12.5v-9z" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
+            Add to Folder (<span id="folderCount">0</span>)
+          </button>
+          <!-- Sort videos by -->
+          <div class="sort-videos-dropdown" onclick="toggleSortMenu(event)">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;">
+              <path d="M1.5 2h13l-5 6v5.5l-3-1.5V8L1.5 2z" fill="#ef4444" stroke="#ef4444" stroke-width="0.5" stroke-linejoin="round"/>
+            </svg>
+            <span id="sortLabel">Sort videos by</span>
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;">
+              <path d="M3 5l4 4 4-4" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="sort-menu" id="sortMenu" style="display:none;" onclick="event.stopPropagation()">
+              <div class="sort-group-label">Date</div>
+              <div class="sort-option active" onclick="selectSort(this,'Most Recent','date_desc')">Most Recent</div>
+              <div class="sort-option" onclick="selectSort(this,'Oldest First','date_asc')">Oldest First</div>
+              <div class="sort-group-label">Engagement</div>
+              <div class="sort-option" onclick="selectSort(this,'Most Likes','likes')">Most Likes</div>
+              <div class="sort-option" onclick="selectSort(this,'Most Comments','comments')">Most Comments</div>
+              <div class="sort-option" onclick="selectSort(this,'Most Shares','shares')">Most Shares</div>
+              <div class="sort-option" onclick="selectSort(this,'Most Bookmarks','bookmarks')">Most Bookmarks</div>
+              <div class="sort-group-label">Performance</div>
+              <div class="sort-option" onclick="selectSort(this,'Most Views','views')">Most Views</div>
+              <div class="sort-option" onclick="selectSort(this,'Longest Duration','duration_desc')">Longest Duration</div>
+              <div class="sort-option" onclick="selectSort(this,'Shortest Duration','duration_asc')">Shortest Duration</div>
             </div>
-            <!-- Set date range -->
-            <div class="date-range-btn" onclick="toggleDateRange(event)">
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;">
-                <rect x="1.5" y="2.5" width="13" height="12" rx="2" stroke="#22c55e" stroke-width="1.4" fill="none"/>
-                <path d="M1.5 6.5h13" stroke="#22c55e" stroke-width="1.4"/>
-                <path d="M5 1.5v2M11 1.5v2" stroke="#22c55e" stroke-width="1.4" stroke-linecap="round"/>
-                <rect x="4" y="9" width="2" height="2" rx="0.5" fill="#22c55e"/>
-                <rect x="7" y="9" width="2" height="2" rx="0.5" fill="#22c55e"/>
-                <rect x="10" y="9" width="2" height="2" rx="0.5" fill="#22c55e"/>
-              </svg>
-              <span>Set date range</span>
-              <!-- Date range panel -->
-              <div class="date-range-panel" id="dateRangePanel" style="display:none;" onclick="event.stopPropagation()">
-                <div class="dr-inner">
-                  <!-- Left: presets -->
-                  <div class="dr-presets-col">
-                    <label class="dr-preset-radio active" id="drPresetLastN">
-                      <span class="dr-radio active" id="drRadioLastN"></span>
-                      <span>Last</span>
-                      <input class="dr-days-input" id="drDaysInput" type="number" value="7" min="1" max="365" onclick="event.stopPropagation();selectPreset('lastN')" oninput="selectPreset('lastN')" />
-                      <span>Days</span>
-                    </label>
-                    <label class="dr-preset-radio" onclick="selectPreset('week')">
-                      <span class="dr-radio" id="drRadioWeek"></span>
-                      <span>This week</span>
-                    </label>
-                    <label class="dr-preset-radio" onclick="selectPreset('month')">
-                      <span class="dr-radio" id="drRadioMonth"></span>
-                      <span id="drMonthLabel">This month</span>
-                    </label>
-                    <label class="dr-preset-radio" onclick="selectPreset('lastmonth')">
-                      <span class="dr-radio" id="drRadioLastMonth"></span>
-                      <span id="drLastMonthLabel">Last month</span>
-                    </label>
-                    <label class="dr-preset-radio" onclick="selectPreset('alltime')">
-                      <span class="dr-radio" id="drRadioAll"></span>
-                      <span>All time</span>
-                    </label>
-                    <label class="dr-preset-radio" onclick="selectPreset('year')">
-                      <span class="dr-radio" id="drRadioYear"></span>
-                      <span id="drYearLabel">This year</span>
-                    </label>
+          </div>
+          <!-- Set date range -->
+          <div class="date-range-btn" onclick="toggleDateRange(event)">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;">
+              <rect x="1.5" y="2.5" width="13" height="12" rx="2" stroke="#22c55e" stroke-width="1.4" fill="none"/>
+              <path d="M1.5 6.5h13" stroke="#22c55e" stroke-width="1.4"/>
+              <path d="M5 1.5v2M11 1.5v2" stroke="#22c55e" stroke-width="1.4" stroke-linecap="round"/>
+              <rect x="4" y="9" width="2" height="2" rx="0.5" fill="#22c55e"/>
+              <rect x="7" y="9" width="2" height="2" rx="0.5" fill="#22c55e"/>
+              <rect x="10" y="9" width="2" height="2" rx="0.5" fill="#22c55e"/>
+            </svg>
+            <span>Set date range</span>
+            <!-- Date range panel -->
+            <div class="date-range-panel" id="dateRangePanel" style="display:none;" onclick="event.stopPropagation()">
+              <div class="dr-inner">
+                <!-- Left: presets -->
+                <div class="dr-presets-col">
+                  <label class="dr-preset-radio active" id="drPresetLastN">
+                    <span class="dr-radio active" id="drRadioLastN"></span>
+                    <span>Last</span>
+                    <input class="dr-days-input" id="drDaysInput" type="number" value="7" min="1" max="365" onclick="event.stopPropagation();selectPreset('lastN')" oninput="selectPreset('lastN')" />
+                    <span>Days</span>
+                  </label>
+                  <label class="dr-preset-radio" onclick="selectPreset('week')">
+                    <span class="dr-radio" id="drRadioWeek"></span>
+                    <span>This week</span>
+                  </label>
+                  <label class="dr-preset-radio" onclick="selectPreset('month')">
+                    <span class="dr-radio" id="drRadioMonth"></span>
+                    <span id="drMonthLabel">This month</span>
+                  </label>
+                  <label class="dr-preset-radio" onclick="selectPreset('lastmonth')">
+                    <span class="dr-radio" id="drRadioLastMonth"></span>
+                    <span id="drLastMonthLabel">Last month</span>
+                  </label>
+                  <label class="dr-preset-radio" onclick="selectPreset('alltime')">
+                    <span class="dr-radio" id="drRadioAll"></span>
+                    <span>All time</span>
+                  </label>
+                  <label class="dr-preset-radio" onclick="selectPreset('year')">
+                    <span class="dr-radio" id="drRadioYear"></span>
+                    <span id="drYearLabel">This year</span>
+                  </label>
+                </div>
+                <!-- Right: calendar -->
+                <div class="dr-cal-col">
+                  <div class="dr-range-display">
+                    <span class="dr-range-val" id="drDisplayFrom">Today</span>
+                    <span class="dr-range-sep">–</span>
+                    <span class="dr-range-val" id="drDisplayTo">Today</span>
                   </div>
-                  <!-- Right: calendar -->
-                  <div class="dr-cal-col">
-                    <div class="dr-range-display">
-                      <span class="dr-range-val" id="drDisplayFrom">Today</span>
-                      <span class="dr-range-sep">–</span>
-                      <span class="dr-range-val" id="drDisplayTo">Today</span>
+                  <div class="dr-cal">
+                    <div class="dr-cal-header">
+                      <button class="dr-nav" onclick="calNav(-1)">&#8592;</button>
+                      <span class="dr-cal-month" id="calMonthLabel">January</span>
+                      <button class="dr-nav" onclick="calNav(1)">&#8594;</button>
                     </div>
-                    <div class="dr-cal">
-                      <div class="dr-cal-header">
-                        <button class="dr-nav" onclick="calNav(-1)">&#8592;</button>
-                        <span class="dr-cal-month" id="calMonthLabel">January</span>
-                        <button class="dr-nav" onclick="calNav(1)">&#8594;</button>
-                      </div>
-                      <div class="dr-cal-year-row">
-                        <span class="dr-cal-year" id="calYearLabel">2024</span>
-                        <span class="dr-cal-year-arrow">&#9660;</span>
-                      </div>
-                      <div class="dr-cal-grid">
-                        <span class="dr-cal-dow">Mo</span><span class="dr-cal-dow">Tu</span><span class="dr-cal-dow">We</span><span class="dr-cal-dow">Th</span><span class="dr-cal-dow">Fr</span><span class="dr-cal-dow">Sa</span><span class="dr-cal-dow">Su</span>
-                        <div id="calDays"></div>
-                      </div>
+                    <div class="dr-cal-year-row">
+                      <span class="dr-cal-year" id="calYearLabel">2024</span>
+                      <span class="dr-cal-year-arrow">&#9660;</span>
                     </div>
-                    <div class="dr-actions">
-                      <button class="dr-clear" onclick="clearDateRange()">Clear</button>
-                      <button class="dr-apply" onclick="applyDateRange()">Apply</button>
+                    <div class="dr-cal-grid">
+                      <span class="dr-cal-dow">Mo</span><span class="dr-cal-dow">Tu</span><span class="dr-cal-dow">We</span><span class="dr-cal-dow">Th</span><span class="dr-cal-dow">Fr</span><span class="dr-cal-dow">Sa</span><span class="dr-cal-dow">Su</span>
+                      <div id="calDays"></div>
                     </div>
+                  </div>
+                  <div class="dr-actions">
+                    <button class="dr-clear" onclick="clearDateRange()">Clear</button>
+                    <button class="dr-apply" onclick="applyDateRange()">Apply</button>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- Grid / List toggle -->
-            <div class="view-toggle">
-              <button class="view-toggle-btn active" id="btnGrid" onclick="setView('grid')" title="Grid view">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <rect x="0" y="0" width="6" height="6" rx="1.5" fill="currentColor"/>
-                  <rect x="8" y="0" width="6" height="6" rx="1.5" fill="currentColor"/>
-                  <rect x="0" y="8" width="6" height="6" rx="1.5" fill="currentColor"/>
-                  <rect x="8" y="8" width="6" height="6" rx="1.5" fill="currentColor"/>
-                </svg>
-              </button>
-              <button class="view-toggle-btn" id="btnTable" onclick="setView('table')" title="Table view">
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <rect x="0" y="0" width="14" height="2.5" rx="1.25" fill="currentColor"/>
-                  <rect x="0" y="5" width="14" height="2.5" rx="1.25" fill="currentColor"/>
-                  <rect x="0" y="10" width="14" height="2.5" rx="1.25" fill="currentColor"/>
-                </svg>
-              </button>
-            </div>
           </div>
-        </div>
-        <!-- Row 2: tabs -->
-        <div class="section-tabs">
-          <button class="tab-btn active" onclick="switchTab(this,'profile')">Profile Videos</button>
-          <button class="tab-btn" onclick="switchTab(this,'outliers')">Outliers</button>
-          <button class="tab-btn" onclick="switchTab(this,'top')">Top videos</button>
+          <!-- Grid / List toggle -->
+          <div class="view-toggle">
+            <button class="view-toggle-btn active" id="btnGrid" onclick="setView('grid')" title="Grid view">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <rect x="0" y="0" width="6" height="6" rx="1.5" fill="currentColor"/>
+                <rect x="8" y="0" width="6" height="6" rx="1.5" fill="currentColor"/>
+                <rect x="0" y="8" width="6" height="6" rx="1.5" fill="currentColor"/>
+                <rect x="8" y="8" width="6" height="6" rx="1.5" fill="currentColor"/>
+              </svg>
+            </button>
+            <button class="view-toggle-btn" id="btnTable" onclick="setView('table')" title="Table view">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <rect x="0" y="0" width="14" height="2.5" rx="1.25" fill="currentColor"/>
+                <rect x="0" y="5" width="14" height="2.5" rx="1.25" fill="currentColor"/>
+                <rect x="0" y="10" width="14" height="2.5" rx="1.25" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -1448,32 +1476,8 @@
           </div>
         </div>
       </div>
-      <!-- Toolbar -->
-      <div class="toolbar">
-        <div class="toolbar-left">
-          <span class="videos-label">Videos <span id="toolbarCount">(1,243)</span></span>
-          <button class="btn-select-videos" id="btnSelectVideos" onclick="toggleSelectMode()">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
-              <path d="M4 7l2.5 2.5L10 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Select Videos
-          </button>
-          <!-- Select-mode actions (hidden by default) -->
-          <button class="btn-delete-selected" id="btnDeleteSelected" style="display:none;">
-            <svg width="13" height="13" fill="none" viewBox="0 0 16 16"><path d="M6.5 1h3a.5.5 0 010 1h-3a.5.5 0 010-1zM2 3a.5.5 0 01.5-.5h11a.5.5 0 010 1H13v9a1.5 1.5 0 01-1.5 1.5h-7A1.5 1.5 0 013 13V3.5H2A.5.5 0 012 3zm2 .5V13a.5.5 0 00.5.5h7a.5.5 0 00.5-.5V3.5H4z" fill="currentColor"/></svg>
-            Delete Selected (<span id="deleteCount">0</span>)
-          </button>
-          <button class="btn-add-folder" id="btnAddFolder" style="display:none;">
-            <svg width="13" height="13" fill="none" viewBox="0 0 16 16"><path d="M1 3.5A1.5 1.5 0 012.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0115 5.5v7a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 011 12.5v-9z" stroke="currentColor" stroke-width="1.3" fill="none"/></svg>
-            Add to Folder (<span id="folderCount">0</span>)
-          </button>
-        </div>
-        <div class="toolbar-right">
-          <!-- Active filter tags -->
-          <div class="filter-tags" id="filterTags"></div>
-        </div>
-      </div>
+      <!-- Filter tags (shown when active filters applied) -->
+      <div class="filter-tags-bar" id="filterTags"></div>
 <!-- ── GRID VIEW ── -->
       <div id="gridView">
         <div class="video-grid" id="videoGrid">
