@@ -777,6 +777,15 @@
       white-space: nowrap;
     }
     .select-mode-count strong { color: #e5e7eb; }
+    .btn-select-all {
+      height: 32px; padding: 0 13px;
+      border: 1px solid #1e3a52; border-radius: 7px;
+      background: transparent; color: #9ca3af;
+      font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 500;
+      cursor: pointer; transition: color 0.15s, border-color 0.15s;
+    }
+    .btn-select-all:hover { color: #e5e7eb; border-color: #2d4a66; }
+    .btn-select-all.all-selected { color: #00F2EA; border-color: #00F2EA; }
     .btn-download {
       height: 32px; padding: 0 13px;
       border: none; border-radius: 7px;
@@ -1387,6 +1396,7 @@
           </button>
           <!-- Select mode pill group (shown while selecting) -->
           <div class="select-mode-group" id="selectModeGroup">
+            <button class="btn-select-all" id="btnSelectAll" onclick="toggleSelectAll()">Select All</button>
             <span class="select-mode-count"><strong id="selectCount">0</strong>/<span id="selectTotal">0</span> selected</span>
             <button class="btn-download" onclick="openDownloadModal()">
               <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
@@ -1951,6 +1961,24 @@
     const n = selectedIds.size;
     document.getElementById('selectCount').textContent = n;
     document.getElementById('selectTotal').textContent = videos.length.toLocaleString();
+    const allSelected = filteredVideos.length > 0 && filteredVideos.every(v => selectedIds.has(v.id));
+    const btn = document.getElementById('btnSelectAll');
+    if (btn) {
+      btn.textContent = allSelected ? 'Deselect All' : 'Select All';
+      btn.classList.toggle('all-selected', allSelected);
+    }
+  }
+
+  function toggleSelectAll() {
+    const allSelected = filteredVideos.every(v => selectedIds.has(v.id));
+    if (allSelected) {
+      filteredVideos.forEach(v => selectedIds.delete(v.id));
+    } else {
+      filteredVideos.forEach(v => selectedIds.add(v.id));
+    }
+    updateSelectCounts();
+    renderGrid();
+    renderTable();
   }
 
   // ─── DOWNLOAD MODAL ──────────────────────────────────────────────────
