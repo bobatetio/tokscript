@@ -621,6 +621,12 @@
     }
     .sort-option:hover { background: rgba(0,242,234,0.07); color: #e5e7eb; }
     .sort-option.active { color: #00F2EA; }
+    .sort-group-label {
+      padding: 8px 16px 4px;
+      font-size: 10.5px; font-weight: 600; color: #374151;
+      text-transform: uppercase; letter-spacing: 0.07em;
+    }
+    #sortMenu { min-width: 180px; }
 
     /* ── Export button ── */
     .btn-export-clean {
@@ -1266,9 +1272,18 @@
                 <path d="M3 5l4 4 4-4" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               <div class="sort-menu" id="sortMenu" style="display:none;" onclick="event.stopPropagation()">
-                <div class="sort-option active" onclick="selectSort(this,'Recent')">Recent</div>
-                <div class="sort-option" onclick="selectSort(this,'Popular')">Popular</div>
-                <div class="sort-option" onclick="selectSort(this,'Oldest')">Oldest</div>
+                <div class="sort-group-label">Date</div>
+                <div class="sort-option active" onclick="selectSort(this,'Most Recent','date_desc')">Most Recent</div>
+                <div class="sort-option" onclick="selectSort(this,'Oldest First','date_asc')">Oldest First</div>
+                <div class="sort-group-label">Engagement</div>
+                <div class="sort-option" onclick="selectSort(this,'Most Likes','likes')">Most Likes</div>
+                <div class="sort-option" onclick="selectSort(this,'Most Comments','comments')">Most Comments</div>
+                <div class="sort-option" onclick="selectSort(this,'Most Shares','shares')">Most Shares</div>
+                <div class="sort-option" onclick="selectSort(this,'Most Bookmarks','bookmarks')">Most Bookmarks</div>
+                <div class="sort-group-label">Performance</div>
+                <div class="sort-option" onclick="selectSort(this,'Most Views','views')">Most Views</div>
+                <div class="sort-option" onclick="selectSort(this,'Longest Duration','duration_desc')">Longest Duration</div>
+                <div class="sort-option" onclick="selectSort(this,'Shortest Duration','duration_asc')">Shortest Duration</div>
               </div>
             </div>
             <!-- Set date range -->
@@ -1922,11 +1937,33 @@
     menu.style.display = menu.style.display === 'none' ? '' : 'none';
     e.stopPropagation();
   }
-  function selectSort(el, val) {
+  function parseDuration(str) {
+    // e.g. "1:23" or "0:45"
+    const parts = str.split(':').map(Number);
+    return parts.length === 2 ? parts[0] * 60 + parts[1] : parts[0];
+  }
+  function selectSort(el, label, key) {
     document.querySelectorAll('.sort-option').forEach(o => o.classList.remove('active'));
     el.classList.add('active');
-    document.getElementById('sortLabel').textContent = val;
+    document.getElementById('sortLabel').textContent = label;
     document.getElementById('sortMenu').style.display = 'none';
+    // Sort filteredVideos
+    filteredVideos.sort((a, b) => {
+      switch (key) {
+        case 'date_desc':  return new Date(b.date) - new Date(a.date);
+        case 'date_asc':   return new Date(a.date) - new Date(b.date);
+        case 'likes':      return b.likes - a.likes;
+        case 'comments':   return b.comments - a.comments;
+        case 'shares':     return b.shares - a.shares;
+        case 'bookmarks':  return b.bookmarks - a.bookmarks;
+        case 'views':      return b.views - a.views;
+        case 'duration_desc': return parseDuration(b.duration) - parseDuration(a.duration);
+        case 'duration_asc':  return parseDuration(a.duration) - parseDuration(b.duration);
+        default: return 0;
+      }
+    });
+    currentPage = 1;
+    renderGrid(); renderTable(); renderPagination();
   }
   document.addEventListener('click', () => {
     const menu = document.getElementById('sortMenu');
