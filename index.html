@@ -452,37 +452,81 @@
     .date-range-btn span { color: #d1d5db; font-size: 13px; font-weight: 500; }
     .date-range-panel {
       position: absolute;
-      top: calc(100% + 6px);
+      top: calc(100% + 8px);
       right: 0;
-      width: 300px;
       background: #0c1e30;
       border: 1px solid #1e3a52;
-      border-radius: 10px;
-      z-index: 100;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.55);
-      padding: 16px;
+      border-radius: 12px;
+      z-index: 200;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.65);
+      overflow: hidden;
     }
-    .dr-label { font-size: 12px; font-weight: 600; color: #4b5563; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
-    .dr-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-    .dr-field { flex: 1; display: flex; flex-direction: column; gap: 4px; }
-    .dr-field-label { font-size: 11px; color: #6b7280; font-weight: 500; }
-    .dr-sep { color: #4b5563; font-size: 13px; margin-top: 14px; }
-    .dr-input {
-      height: 32px; padding: 0 9px;
-      background: #0a1829; border: 1px solid #1e3a52; border-radius: 6px;
-      color: #d1d5db; font-size: 12.5px; font-family: 'Inter', sans-serif;
-      outline: none; width: 100%;
-      color-scheme: dark;
+    .dr-inner { display: flex; }
+    /* Left presets */
+    .dr-presets-col {
+      width: 200px; padding: 16px 12px;
+      border-right: 1px solid #1a2f44;
+      display: flex; flex-direction: column; gap: 4px;
     }
-    .dr-input:focus { border-color: #00F2EA; }
-    .dr-presets { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
-    .dr-preset {
-      padding: 5px 10px; border-radius: 6px; border: 1px solid #1e3a52;
-      background: transparent; color: #9ca3af; font-size: 12px; font-weight: 500;
-      cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.12s;
+    .dr-preset-radio {
+      display: flex; align-items: center; gap: 9px;
+      padding: 9px 10px; border-radius: 7px; cursor: pointer;
+      font-size: 13.5px; color: #9ca3af; font-weight: 400;
+      transition: background 0.12s; user-select: none;
     }
-    .dr-preset:hover { border-color: #00F2EA; color: #00F2EA; }
-    .dr-actions { display: flex; gap: 8px; justify-content: flex-end; }
+    .dr-preset-radio:hover { background: rgba(255,255,255,0.04); color: #d1d5db; }
+    .dr-preset-radio.active-preset { color: #fff; }
+    .dr-radio {
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 2px solid #374151; flex-shrink: 0;
+      transition: border-color 0.15s;
+    }
+    .dr-radio.active { border-color: #00F2EA; box-shadow: inset 0 0 0 3px #0c1e30, inset 0 0 0 5px #00F2EA; }
+    .dr-days-input {
+      width: 42px; height: 24px; padding: 0 6px; text-align: center;
+      background: #0a1829; border: 1px solid #1e3a52; border-radius: 5px;
+      color: #00F2EA; font-size: 13px; font-family: 'Inter', sans-serif;
+      outline: none;
+    }
+    .dr-days-input:focus { border-color: #00F2EA; }
+    /* Right calendar */
+    .dr-cal-col { width: 270px; padding: 14px 14px 12px; display: flex; flex-direction: column; gap: 10px; }
+    .dr-range-display {
+      display: flex; align-items: center; gap: 10px;
+      background: #0a1829; border: 1px solid #1e3a52; border-radius: 8px;
+      padding: 8px 14px; font-size: 13px;
+    }
+    .dr-range-val { color: #d1d5db; font-weight: 500; flex: 1; text-align: center; }
+    .dr-range-sep { color: #4b5563; }
+    .dr-cal { background: #0d2035; border-radius: 10px; padding: 12px; }
+    .dr-cal-year-row { display: flex; align-items: center; justify-content: center; gap: 5px; margin-bottom: 8px; }
+    .dr-cal-year { color: #00F2EA; font-size: 14px; font-weight: 700; cursor: pointer; }
+    .dr-cal-year-arrow { color: #00F2EA; font-size: 10px; }
+    .dr-cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+    .dr-cal-month { color: #00F2EA; font-size: 15px; font-weight: 700; }
+    .dr-nav {
+      width: 28px; height: 28px; border-radius: 50%; border: 1px solid #1e3a52;
+      background: transparent; color: #9ca3af; cursor: pointer; font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.12s;
+    }
+    .dr-nav:hover { border-color: #00F2EA; color: #00F2EA; }
+    .dr-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+    .dr-cal-dow { text-align: center; font-size: 11px; color: #4b5563; font-weight: 600; padding: 4px 0; }
+    #calDays { display: contents; }
+    .dr-day {
+      text-align: center; padding: 5px 2px; border-radius: 6px;
+      font-size: 12.5px; color: #d1d5db; cursor: pointer;
+      transition: background 0.1s; font-weight: 400;
+    }
+    .dr-day:hover { background: rgba(0,242,234,0.12); color: #fff; }
+    .dr-day.today { font-weight: 700; color: #fff; }
+    .dr-day.selected { background: #00F2EA; color: #060b21; font-weight: 700; border-radius: 50%; }
+    .dr-day.in-range { background: rgba(0,242,234,0.12); border-radius: 0; }
+    .dr-day.range-start { background: #00F2EA; color: #060b21; font-weight: 700; border-radius: 50% 0 0 50%; }
+    .dr-day.range-end { background: #00F2EA; color: #060b21; font-weight: 700; border-radius: 0 50% 50% 0; }
+    .dr-day.other-month { color: #374151; }
+    .dr-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 2px; }
     .dr-clear {
       height: 30px; padding: 0 14px; border-radius: 6px; border: 1px solid #1e3a52;
       background: transparent; color: #9ca3af; font-size: 12.5px; font-weight: 500;
@@ -1299,26 +1343,63 @@
               <span>Set date range</span>
               <!-- Date range panel -->
               <div class="date-range-panel" id="dateRangePanel" style="display:none;" onclick="event.stopPropagation()">
-                <div class="dr-label">Date range</div>
-                <div class="dr-row">
-                  <div class="dr-field">
-                    <label class="dr-field-label">From</label>
-                    <input class="dr-input" type="date" id="drFrom" />
+                <div class="dr-inner">
+                  <!-- Left: presets -->
+                  <div class="dr-presets-col">
+                    <label class="dr-preset-radio active" id="drPresetLastN">
+                      <span class="dr-radio active" id="drRadioLastN"></span>
+                      <span>Last</span>
+                      <input class="dr-days-input" id="drDaysInput" type="number" value="7" min="1" max="365" onclick="event.stopPropagation();selectPreset('lastN')" oninput="selectPreset('lastN')" />
+                      <span>Days</span>
+                    </label>
+                    <label class="dr-preset-radio" onclick="selectPreset('week')">
+                      <span class="dr-radio" id="drRadioWeek"></span>
+                      <span>This week</span>
+                    </label>
+                    <label class="dr-preset-radio" onclick="selectPreset('month')">
+                      <span class="dr-radio" id="drRadioMonth"></span>
+                      <span id="drMonthLabel">This month</span>
+                    </label>
+                    <label class="dr-preset-radio" onclick="selectPreset('lastmonth')">
+                      <span class="dr-radio" id="drRadioLastMonth"></span>
+                      <span id="drLastMonthLabel">Last month</span>
+                    </label>
+                    <label class="dr-preset-radio" onclick="selectPreset('alltime')">
+                      <span class="dr-radio" id="drRadioAll"></span>
+                      <span>All time</span>
+                    </label>
+                    <label class="dr-preset-radio" onclick="selectPreset('year')">
+                      <span class="dr-radio" id="drRadioYear"></span>
+                      <span id="drYearLabel">This year</span>
+                    </label>
                   </div>
-                  <div class="dr-sep">—</div>
-                  <div class="dr-field">
-                    <label class="dr-field-label">To</label>
-                    <input class="dr-input" type="date" id="drTo" />
+                  <!-- Right: calendar -->
+                  <div class="dr-cal-col">
+                    <div class="dr-range-display">
+                      <span class="dr-range-val" id="drDisplayFrom">Today</span>
+                      <span class="dr-range-sep">–</span>
+                      <span class="dr-range-val" id="drDisplayTo">Today</span>
+                    </div>
+                    <div class="dr-cal">
+                      <div class="dr-cal-header">
+                        <button class="dr-nav" onclick="calNav(-1)">&#8592;</button>
+                        <span class="dr-cal-month" id="calMonthLabel">January</span>
+                        <button class="dr-nav" onclick="calNav(1)">&#8594;</button>
+                      </div>
+                      <div class="dr-cal-year-row">
+                        <span class="dr-cal-year" id="calYearLabel">2024</span>
+                        <span class="dr-cal-year-arrow">&#9660;</span>
+                      </div>
+                      <div class="dr-cal-grid">
+                        <span class="dr-cal-dow">Mo</span><span class="dr-cal-dow">Tu</span><span class="dr-cal-dow">We</span><span class="dr-cal-dow">Th</span><span class="dr-cal-dow">Fr</span><span class="dr-cal-dow">Sa</span><span class="dr-cal-dow">Su</span>
+                        <div id="calDays"></div>
+                      </div>
+                    </div>
+                    <div class="dr-actions">
+                      <button class="dr-clear" onclick="clearDateRange()">Clear</button>
+                      <button class="dr-apply" onclick="applyDateRange()">Apply</button>
+                    </div>
                   </div>
-                </div>
-                <div class="dr-presets">
-                  <button class="dr-preset" onclick="setDatePreset(7)">Last 7 days</button>
-                  <button class="dr-preset" onclick="setDatePreset(30)">Last 30 days</button>
-                  <button class="dr-preset" onclick="setDatePreset(90)">Last 90 days</button>
-                </div>
-                <div class="dr-actions">
-                  <button class="dr-clear" onclick="clearDateRange()">Clear</button>
-                  <button class="dr-apply" onclick="applyDateRange()">Apply</button>
                 </div>
               </div>
             </div>
@@ -2106,35 +2187,156 @@
     // Future: filter videos by tab key
   }
 
-  // ─── DATE RANGE ──────────────────────────────────────────────────────
+  // ─── DATE RANGE CALENDAR ─────────────────────────────────────────────
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  let calDate = new Date();           // currently displayed month
+  let drFrom = null, drTo = null;     // selected range (Date objects)
+  let drPickStep = 0;                 // 0=pick start, 1=pick end
+  let activePreset = 'lastN';
+
+  function fmtDisp(d) {
+    if (!d) return 'Today';
+    return d.toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+  }
+  function fmtDate(d) { return d ? d.toISOString().split('T')[0] : ''; }
+
+  function renderCal() {
+    const y = calDate.getFullYear(), m = calDate.getMonth();
+    document.getElementById('calMonthLabel').textContent = MONTHS[m];
+    document.getElementById('calYearLabel').textContent  = y;
+    document.getElementById('drDisplayFrom').textContent = fmtDisp(drFrom);
+    document.getElementById('drDisplayTo').textContent   = fmtDisp(drTo);
+
+    const today = new Date(); today.setHours(0,0,0,0);
+    const firstDay = new Date(y, m, 1);
+    // Mon=0 offset
+    let startOffset = (firstDay.getDay() + 6) % 7;
+    const daysInMonth = new Date(y, m+1, 0).getDate();
+    const daysInPrev  = new Date(y, m, 0).getDate();
+
+    let html = '';
+    // prev month padding
+    for (let i = startOffset - 1; i >= 0; i--) {
+      const d = new Date(y, m-1, daysInPrev - i);
+      html += `<span class="dr-day other-month" onclick="pickDay(new Date(${d.getTime()}))">${daysInPrev - i}</span>`;
+    }
+    for (let day = 1; day <= daysInMonth; day++) {
+      const d = new Date(y, m, day);
+      let cls = 'dr-day';
+      if (d.getTime() === today.getTime()) cls += ' today';
+      if (drFrom && drTo) {
+        const t = d.getTime(), s = drFrom.getTime(), e = drTo.getTime();
+        if (t === s && t === e) cls += ' selected';
+        else if (t === s) cls += ' range-start';
+        else if (t === e) cls += ' range-end';
+        else if (t > s && t < e) cls += ' in-range';
+      } else if (drFrom && d.getTime() === drFrom.getTime()) {
+        cls += ' selected';
+      }
+      html += `<span class="${cls}" onclick="pickDay(new Date(${d.getTime()}))">${day}</span>`;
+    }
+    // next month padding to fill grid
+    const total = startOffset + daysInMonth;
+    const remain = total % 7 === 0 ? 0 : 7 - (total % 7);
+    for (let day = 1; day <= remain; day++) {
+      const d = new Date(y, m+1, day);
+      html += `<span class="dr-day other-month" onclick="pickDay(new Date(${d.getTime()}))">${day}</span>`;
+    }
+    document.getElementById('calDays').innerHTML = html;
+  }
+
+  function pickDay(d) {
+    d.setHours(0,0,0,0);
+    if (drPickStep === 0) {
+      drFrom = d; drTo = null; drPickStep = 1;
+    } else {
+      if (d < drFrom) { drTo = drFrom; drFrom = d; } else { drTo = d; }
+      drPickStep = 0;
+      clearActivePreset();
+    }
+    renderCal();
+  }
+
+  function calNav(dir) {
+    calDate = new Date(calDate.getFullYear(), calDate.getMonth() + dir, 1);
+    renderCal();
+  }
+
+  function clearActivePreset() {
+    document.querySelectorAll('.dr-preset-radio').forEach(el => el.classList.remove('active-preset'));
+    document.querySelectorAll('.dr-radio').forEach(el => el.classList.remove('active'));
+  }
+
+  function selectPreset(key) {
+    activePreset = key;
+    clearActivePreset();
+    const now = new Date(); now.setHours(0,0,0,0);
+    let from = new Date(now), to = new Date(now);
+
+    if (key === 'lastN') {
+      const days = parseInt(document.getElementById('drDaysInput').value) || 7;
+      from = new Date(now); from.setDate(from.getDate() - days);
+      document.getElementById('drRadioLastN').classList.add('active');
+      document.getElementById('drPresetLastN').classList.add('active-preset');
+    } else if (key === 'week') {
+      const dow = (now.getDay() + 6) % 7;
+      from = new Date(now); from.setDate(from.getDate() - dow);
+      document.getElementById('drRadioWeek').classList.add('active');
+      document.querySelectorAll('.dr-preset-radio')[1].classList.add('active-preset');
+    } else if (key === 'month') {
+      from = new Date(now.getFullYear(), now.getMonth(), 1);
+      document.getElementById('drRadioMonth').classList.add('active');
+      document.querySelectorAll('.dr-preset-radio')[2].classList.add('active-preset');
+    } else if (key === 'lastmonth') {
+      from = new Date(now.getFullYear(), now.getMonth()-1, 1);
+      to   = new Date(now.getFullYear(), now.getMonth(), 0);
+      document.getElementById('drRadioLastMonth').classList.add('active');
+      document.querySelectorAll('.dr-preset-radio')[3].classList.add('active-preset');
+    } else if (key === 'alltime') {
+      from = new Date(2020, 0, 1);
+      document.getElementById('drRadioAll').classList.add('active');
+      document.querySelectorAll('.dr-preset-radio')[4].classList.add('active-preset');
+    } else if (key === 'year') {
+      from = new Date(now.getFullYear(), 0, 1);
+      document.getElementById('drRadioYear').classList.add('active');
+      document.querySelectorAll('.dr-preset-radio')[5].classList.add('active-preset');
+    }
+    drFrom = from; drTo = to; drPickStep = 0;
+    calDate = new Date(from.getFullYear(), from.getMonth(), 1);
+    renderCal();
+  }
+
   function toggleDateRange(e) {
     e.stopPropagation();
     const panel = document.getElementById('dateRangePanel');
     const isOpen = panel.style.display !== 'none';
     document.getElementById('sortMenu').style.display = 'none';
+    if (!isOpen) {
+      // Set month/year labels
+      const now = new Date();
+      document.getElementById('drMonthLabel').textContent = `This month (${MONTHS[now.getMonth()]})`;
+      document.getElementById('drLastMonthLabel').textContent = `Last month (${MONTHS[(now.getMonth()+11)%12]})`;
+      document.getElementById('drYearLabel').textContent = `This year (${now.getFullYear()})`;
+      calDate = new Date();
+      selectPreset('lastN');
+    }
     panel.style.display = isOpen ? 'none' : 'block';
   }
 
-  function setDatePreset(days) {
-    const to = new Date();
-    const from = new Date();
-    from.setDate(from.getDate() - days);
-    document.getElementById('drFrom').value = from.toISOString().split('T')[0];
-    document.getElementById('drTo').value   = to.toISOString().split('T')[0];
-  }
-
   function clearDateRange() {
-    document.getElementById('drFrom').value = '';
-    document.getElementById('drTo').value   = '';
+    drFrom = null; drTo = null; drPickStep = 0;
+    clearActivePreset();
+    renderCal();
     document.getElementById('dateRangePanel').style.display = 'none';
     showToast('Date range cleared');
   }
 
   function applyDateRange() {
-    const from = document.getElementById('drFrom').value;
-    const to   = document.getElementById('drTo').value;
     document.getElementById('dateRangePanel').style.display = 'none';
-    if (from && to) showToast(`Date range: ${from} → ${to}`);
+    if (drFrom || drTo) {
+      const label = `${fmtDisp(drFrom)} → ${fmtDisp(drTo)}`;
+      showToast(`Date range: ${label}`);
+    }
   }
 
   // Close menus on outside click
