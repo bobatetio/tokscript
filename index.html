@@ -763,31 +763,23 @@
     }
     .btn-select-videos:hover { background: #00d8d0; }
 
-    /* ── Select mode pill group ── */
+    /* ── Select mode group ── */
     .select-mode-group {
       display: none;
       align-items: center;
-      background: #0a1829;
-      border: 1px solid #1e3a52;
-      border-radius: 8px;
-      overflow: hidden;
+      gap: 8px;
       flex-shrink: 0;
     }
     .select-mode-count {
-      padding: 0 11px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 500;
       color: #9ca3af;
       white-space: nowrap;
-      border-right: 1px solid #1e3a52;
     }
-    .select-mode-count strong { color: #e5e7eb; margin-right: 3px; }
+    .select-mode-count strong { color: #e5e7eb; }
     .btn-download {
       height: 32px; padding: 0 13px;
-      border: none; border-right: 1px solid #1e3a52;
+      border: none; border-radius: 7px;
       background: #00F2EA; color: #060b21;
       font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 600;
       cursor: pointer; display: flex; align-items: center; gap: 5px;
@@ -796,15 +788,15 @@
     .btn-download:hover { background: #00d8d0; }
     .btn-folder-inline {
       height: 32px; padding: 0 13px;
-      border: none; border-right: 1px solid #1e3a52;
+      border: 1px solid #1e3a52; border-radius: 7px;
       background: transparent; color: #9ca3af;
       font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 500;
       cursor: pointer; display: flex; align-items: center; gap: 5px;
-      transition: color 0.15s, background 0.15s;
+      transition: color 0.15s, border-color 0.15s;
     }
-    .btn-folder-inline:hover { color: #e5e7eb; background: #0d1f33; }
+    .btn-folder-inline:hover { color: #e5e7eb; border-color: #2d4a66; }
     .btn-cancel-select {
-      height: 32px; padding: 0 11px;
+      height: 32px; padding: 0 8px;
       border: none; background: transparent; color: #6b7280;
       font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1;
       cursor: pointer; display: flex; align-items: center;
@@ -1401,7 +1393,7 @@
           </button>
           <!-- Select mode pill group (shown while selecting) -->
           <div class="select-mode-group" id="selectModeGroup">
-            <span class="select-mode-count"><strong id="selectCount">0</strong> selected</span>
+            <span class="select-mode-count"><strong id="selectCount">0</strong>/<span id="selectTotal">0</span> selected</span>
             <button class="btn-download" onclick="openDownloadModal()">
               <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
                 <path d="M8 2v8M5 7l3 3 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1964,6 +1956,7 @@
   function updateSelectCounts() {
     const n = selectedIds.size;
     document.getElementById('selectCount').textContent = n;
+    document.getElementById('selectTotal').textContent = filteredVideos.length.toLocaleString();
   }
 
   // ─── DOWNLOAD MODAL ──────────────────────────────────────────────────
