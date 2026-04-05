@@ -6,7 +6,7 @@
   <title>TokScript for ChatGPT | Transcripts, Stats &amp; Downloads for TikTok, Instagram, YouTube Shorts &amp; YouTube Inside ChatGPT</title>
   <meta name="description" content="Connect TokScript to ChatGPT and pull transcripts, engagement stats, video downloads, and creator data from TikTok, Instagram Reels, YouTube Shorts, and full-length YouTube videos. All inside your ChatGPT conversation. Free to start." />
   <link rel="canonical" href="https://tokscript.com/chatgpt" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"TokScript for ChatGPT","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Connect TokScript to ChatGPT and pull transcripts, engagement stats, video downloads, and creator data from TikTok, Instagram Reels, YouTube Shorts, and YouTube.","offers":[{"@type":"Offer","price":"0","priceCurrency":"USD","name":"Free Plan"},{"@type":"Offer","price":"39","priceCurrency":"USD","billingDuration":"P1Y","name":"Pro Plan"}],"url":"https://tokscript.com/chatgpt"},{"@type":"HowTo","name":"How to connect TokScript to ChatGPT","step":[{"@type":"HowToStep","position":1,"text":"Open ChatGPT and start a new conversation."},{"@type":"HowToStep","position":2,"text":"Click the tools or plug icon in the message bar."},{"@type":"HowToStep","position":3,"text":"Paste the connection link: https://api.tokscript.com/mcp"},{"@type":"HowToStep","position":4,"text":"Sign in with Google to authorize the connection."}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What platforms does TokScript support inside ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"TokScript works with TikTok, Instagram Reels, YouTube Shorts, and full-length YouTube videos inside ChatGPT."}},{"@type":"Question","name":"How do I connect TokScript to ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"Open ChatGPT, click the tools icon, and add TokScript as an MCP tool using https://api.tokscript.com/mcp. Sign in and you're connected in about 30 seconds."}}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"TokScript for ChatGPT","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Connect TokScript to ChatGPT and pull transcripts, engagement stats, video downloads, and creator data from TikTok, Instagram Reels, YouTube Shorts, and YouTube.","offers":[{"@type":"Offer","price":"0","priceCurrency":"USD","name":"Free Plan"},{"@type":"Offer","price":"39","priceCurrency":"USD","billingDuration":"P1Y","name":"Pro Plan"}],"url":"https://tokscript.com/chatgpt"},{"@type":"HowTo","name":"How to connect TokScript to ChatGPT","step":[{"@type":"HowToStep","position":1,"text":"Open ChatGPT and start a new conversation."},{"@type":"HowToStep","position":2,"text":"Click the tools or plug icon in the message bar."},{"@type":"HowToStep","position":3,"text":"Paste the connection link: https://api.tokscript.com/mcp"},{"@type":"HowToStep","position":4,"text":"Sign in with Google to authorize the connection."}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What platforms does TokScript support inside ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"TokScript works with TikTok, Instagram Reels, YouTube Shorts, and full-length YouTube videos inside ChatGPT."}},{"@type":"Question","name":"How do I connect TokScript to ChatGPT?","acceptedAnswer":{"@type":"Answer","text":"Open ChatGPT, click the tools icon in the message bar, and add TokScript as an MCP tool using https://api.tokscript.com/mcp. Sign in and you're connected in about 30 seconds."}}]}]}</script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -17,7 +17,7 @@
       --white: #fff; --muted: rgba(255,255,255,.48); --muted2: rgba(255,255,255,.26);
       --border: rgba(255,255,255,.07); --r: 14px; --font: 'Inter', system-ui, sans-serif;
     }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body { background: var(--bg); color: var(--white); font-family: var(--font); line-height: 1.65; overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
     button { font-family: var(--font); cursor: pointer; }
@@ -31,21 +31,43 @@
     }
 
     /* ── NAV ── */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 300; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 68px; background: rgba(13,13,13,.88); backdrop-filter: blur(20px); }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 68px;
+      background: rgba(13,13,13,.88); backdrop-filter: blur(20px);
+    }
     .nav-logo img { height: 28.5px; width: 138px; object-fit: contain; }
     .nav-links { display: flex; align-items: center; gap: 32px; }
     .nav-links a { font-size: 14px; color: rgba(255,255,255,.8); transition: color .2s; white-space: nowrap; }
     .nav-links a:hover { color: var(--white); }
     .nav-links a.active { color: var(--white); font-weight: 500; position: relative; }
-    .nav-links a.active::after { content: ''; position: absolute; left: 50%; transform: translateX(-50%); bottom: -8px; width: 40px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, transparent, #00D9B4, transparent); box-shadow: 0 0 8px rgba(0,217,180,.8), 0 0 16px rgba(0,217,180,.4); }
+    .nav-links a.active::after {
+      content: ''; position: absolute; left: 50%; transform: translateX(-50%); bottom: -8px;
+      width: 40px; height: 2px; border-radius: 2px;
+      background: linear-gradient(90deg, transparent, #00D9B4, transparent);
+      box-shadow: 0 0 8px rgba(0,217,180,.8), 0 0 16px rgba(0,217,180,.4);
+    }
     .nav-actions { display: flex; align-items: center; gap: 10px; }
     .nav-dropdown { position: relative; }
     .nav-dropdown > a { display: flex; align-items: center; gap: 5px; cursor: pointer; }
-    .nav-dropdown > a::before { content: ''; display: inline-block; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid rgba(255,255,255,.6); transition: transform .2s; margin-left: 2px; order: 2; }
+    .nav-dropdown > a::before {
+      content: ''; display: inline-block; width: 0; height: 0;
+      border-left: 4px solid transparent; border-right: 4px solid transparent;
+      border-top: 4px solid rgba(255,255,255,.6); transition: transform .2s; margin-left: 2px; order: 2;
+    }
     .nav-dropdown:hover > a::before { transform: rotate(180deg); border-top-color: #fff; }
-    .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding-top: 14px; background: rgba(18,18,18,.96); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; min-width: 140px; box-shadow: 0 12px 40px rgba(0,0,0,.5); }
+    .nav-dropdown-menu {
+      display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); padding-top: 14px;
+      background: rgba(18,18,18,.96); backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.1); border-radius: 12px;
+      padding: 6px; min-width: 140px; box-shadow: 0 12px 40px rgba(0,0,0,.5);
+    }
     .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-    .nav-dropdown-menu a { display: block; padding: 9px 14px; border-radius: 8px; font-size: 13px; color: rgba(255,255,255,.8); white-space: nowrap; transition: background .15s, color .15s; }
+    .nav-dropdown-menu a {
+      display: block; padding: 9px 14px; border-radius: 8px;
+      font-size: 13px; color: rgba(255,255,255,.8); white-space: nowrap; transition: background .15s, color .15s;
+    }
     .nav-dropdown-menu a:hover, .nav-dropdown-menu a.active { background: rgba(255,255,255,.07); color: #fff; }
     .btn-ghost { height: 38px; padding: 0 18px; border: 1px solid rgba(255,255,255,.2); border-radius: 14px; background: transparent; color: var(--white); font-size: 14px; font-weight: 500; transition: border-color .2s, background .2s; }
     .btn-ghost:hover { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.05); }
@@ -64,89 +86,266 @@
     .mobile-nav-actions .btn-ghost, .mobile-nav-actions .btn-solid { flex: 1; }
 
     /* ── HERO ── */
-    #hero { min-height: 100vh; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; }
-    .hero-flare { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 1440px; height: 798px; pointer-events: none; z-index: 1; background: radial-gradient(ellipse 55% 50% at 50% 100%, rgba(211,255,248,1) 0%, rgba(0,217,180,.9) 10%, rgba(0,180,150,.5) 22%, rgba(0,80,60,.25) 40%, transparent 62%); }
-    .hero-body { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 160px; width: 100%; padding-bottom: 140px; }
-    .badge { display: inline-flex; align-items: center; gap: 8px; background: #202223; border-radius: 50px; height: 35px; padding: 0 16px 0 10px; font-size: 10.9px; font-weight: 500; color: #fff; margin-bottom: 24px; position: relative; z-index: 1; }
+    #hero { height: 100vh; position: relative; overflow: hidden; }
+    .hero-bg {
+      position: absolute; left: 0; right: 0; top: 0;
+      pointer-events: none; z-index: 0;
+    }
+    .hero-bg img { width: 100%; height: auto; display: block; }
+    .hero-flare {
+      position: absolute; bottom: -0.5px; left: 0; right: 0;
+      aspect-ratio: 2880/1596; pointer-events: none; z-index: 1;
+    }
+    .hero-flare img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-body {
+      position: absolute; left: 50%; top: calc(50% + 19px);
+      transform: translate(-50%, -50%);
+      width: 941px; max-width: calc(100% - 48px);
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; z-index: 2;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #202223; border-radius: 50px; height: 35px; padding: 0 16px 0 10px;
+      font-size: 10.9px; font-weight: 500; color: #fff; margin-bottom: 17px;
+    }
     .badge img { width: 17px; height: 17px; }
-    h1 { font-size: 58px; font-weight: 700; letter-spacing: -1.8px; line-height: 64px; margin-bottom: 16px; position: relative; z-index: 1; color: #fff; }
-    .hero-mcp-underline { display: inline-block; position: relative; }
-    .hero-mcp-underline img { position: absolute; left: 0; bottom: -6px; width: 100%; pointer-events: none; }
-    .hero-sub { font-size: 17px; color: rgba(255,255,255,.8); max-width: 640px; margin: 0 auto 36px; position: relative; z-index: 1; line-height: 32px; font-weight: 400; }
-    .hero-cta-row { display: flex; align-items: center; gap: 12px; position: relative; z-index: 2; flex-wrap: wrap; justify-content: center; }
-    .btn-hero-primary { display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 28px; background: var(--teal); border: none; border-radius: 16px; color: #0d0d0d; font-size: 15px; font-weight: 700; font-family: var(--font); cursor: pointer; transition: opacity .2s; white-space: nowrap; text-decoration: none; }
+    h1 { font-size: 58px; font-weight: 700; letter-spacing: -1.8px; line-height: 64px; margin-bottom: 0; color: #fff; }
+    .hero-sub { font-size: 17px; color: rgba(255,255,255,.8); max-width: 785px; margin: 7px auto 30px; line-height: 32px; font-weight: 400; }
+    .hero-cta-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .btn-hero-primary {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 13.7px 27.5px; background: #00b8b2; border: none; border-radius: 14px;
+      color: #fff; font-size: 14px; font-weight: 500; font-family: var(--font);
+      cursor: pointer; transition: opacity .2s; white-space: nowrap; text-decoration: none;
+    }
     .btn-hero-primary:hover { opacity: .88; }
-    .btn-hero-primary img { width: 18px; height: 18px; }
-    .btn-hero-secondary { display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 28px; background: transparent; border: 1.5px solid rgba(255,255,255,.3); border-radius: 16px; color: #fff; font-size: 15px; font-weight: 600; font-family: var(--font); cursor: pointer; transition: border-color .2s, background .2s; white-space: nowrap; text-decoration: none; }
-    .btn-hero-secondary:hover { border-color: rgba(255,255,255,.6); background: rgba(255,255,255,.05); }
-    .btn-hero-secondary img { width: 18px; height: 18px; }
+    .btn-hero-primary .arrow-wrap { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 20.594px; height: 20.594px; }
+    .btn-hero-secondary {
+      display: inline-flex; align-items: center; gap: 8.6px;
+      height: 48px; padding: 0 27.5px 0 10.3px; background: #fff; border: none; border-radius: 14px;
+      color: rgba(10,21,25,.7); font-size: 14px; font-weight: 400; font-family: var(--font);
+      cursor: pointer; transition: opacity .2s; white-space: nowrap; text-decoration: none;
+    }
+    .btn-hero-secondary:hover { opacity: .88; }
+    .btn-hero-secondary img { width: 34.3px; height: 34.3px; display: block; flex-shrink: 0; }
     .hero-float-icon { position: absolute; z-index: 4; pointer-events: none; }
     .hero-float-icon img { width: 100%; height: 100%; display: block; }
-    .hero-bottom-fade { position: absolute; left: 0; right: 0; bottom: 0; height: 200px; z-index: 3; pointer-events: none; background: linear-gradient(to bottom, transparent 0%, #0d0d0d 100%); }
 
-    /* ── SHARED SECTION STYLES ── */
-    #problem { background: #141414; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 80px 20px; }
-    .prob-inner { width: 900px; max-width: 100%; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-    .prob-header { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
-    .sec-pill { display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(#0d0d0d,#0d0d0d) padding-box, linear-gradient(135deg,#00d9b4,rgba(255,255,255,.12)) border-box; border: 0.5px solid transparent; border-radius: 20px; padding: 0 12px; height: 24px; font-size: 12px; color: #fff; }
+    @keyframes float-a { 0%,100% { transform: translate(0,0); } 25% { transform: translate(6px,-8px); } 50% { transform: translate(-4px,-14px); } 75% { transform: translate(-8px,-6px); } }
+    @keyframes float-b { 0%,100% { transform: translate(0,0); } 25% { transform: translate(-7px,-10px); } 50% { transform: translate(5px,-16px); } 75% { transform: translate(8px,-5px); } }
+    @keyframes float-c { 0%,100% { transform: translate(0,0); } 25% { transform: translate(8px,-6px); } 50% { transform: translate(3px,-12px); } 75% { transform: translate(-6px,-9px); } }
+    @keyframes float-d { 0%,100% { transform: translate(0,0); } 25% { transform: translate(-5px,-12px); } 50% { transform: translate(-9px,-7px); } 75% { transform: translate(4px,-10px); } }
+    .float-a { animation: float-a 7s ease-in-out infinite; }
+    .float-b { animation: float-b 8.5s ease-in-out infinite; }
+    .float-c { animation: float-c 6.5s ease-in-out infinite; }
+    .float-d { animation: float-d 9s ease-in-out infinite; }
+
+    .hero-sparkles {
+      position: absolute; left: 0; right: 0; bottom: 0; height: 260px;
+      pointer-events: none; z-index: 3; overflow: hidden;
+    }
+    .hero-sparkles span {
+      position: absolute; bottom: 0; border-radius: 50%; opacity: 0;
+      animation: sparkle-rise var(--dur) ease-out var(--delay) infinite;
+    }
+    @keyframes sparkle-rise {
+      0%   { transform: translate(0, 0) scale(1); opacity: 0; }
+      10%  { opacity: 1; }
+      80%  { opacity: .5; }
+      100% { transform: translate(var(--dx), -220px) scale(0); opacity: 0; }
+    }
+
+    /* ── PROBLEM + WHAT CHANGES ── */
+    #problem-what-changes { background: #0d0d0d; padding: 100px 20px; }
+    .pwc-inner { max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 120px; }
+    .pwc-row { display: flex; align-items: center; gap: 90px; }
+    .pwc-row-reverse { flex-direction: row-reverse; }
+    .pwc-card-wrap {
+      flex-shrink: 0; width: 614px; height: 630px; border-radius: 27px;
+      border: 1.04px solid rgba(255,255,255,.1); backdrop-filter: blur(20.8px);
+      background: radial-gradient(ellipse at 104% 100%, rgba(255,255,255,.09) 0%, rgba(128,128,128,.045) 50%, transparent 100%);
+      overflow: hidden; position: relative;
+    }
+    .pwc-card-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pwc-content { flex: 1; display: flex; flex-direction: column; gap: 24px; }
+    .pwc-pill-wrap { display: flex; }
+    .pwc-pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: #0d0d0d; border: 0.5px solid #00d9b4; border-radius: 20px;
+      height: 22px; padding: 0 10px; font-size: 12px; color: #fff; white-space: nowrap;
+    }
+    .pwc-h2 { font-size: 40px; font-weight: 600; line-height: 1.2; color: #fff; margin: 0; }
+    .pwc-desc { font-size: 18px; font-weight: 500; color: rgba(255,255,255,.7); line-height: 1.45; margin: 0; max-width: 515px; }
+    .pwc-list { list-style: none; display: flex; flex-direction: column; gap: 20px; margin: 0; padding: 0; }
+    .pwc-list-item {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 18px; font-weight: 500; color: rgba(255,255,255,.7);
+    }
+    .pwc-bullet { flex-shrink: 0; width: 26px; height: 26px; border-radius: 100px; display: flex; align-items: center; justify-content: center; }
+    .pwc-bullet img { display: block; }
+    .pwc-bullet-x { background: #b6b6b6; }
+    .pwc-bullet-x img { width: 18px; height: 18px; }
+    .pwc-bullet-check { background: #00b8b2; }
+    .pwc-bullet-check img { width: 20px; height: 20px; }
+    .pwc-cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #00b8b2; border: none; border-radius: 14px;
+      height: 36px; padding: 0 32px;
+      color: #fff; font-size: 16px; font-weight: 500; font-family: var(--font);
+      cursor: pointer; transition: opacity .2s; align-self: flex-start; margin-top: 16px;
+    }
+    .pwc-cta-btn:hover { opacity: .88; }
+
+    .sec-pill {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: linear-gradient(#0d0d0d,#0d0d0d) padding-box, linear-gradient(135deg,#00d9b4,rgba(255,255,255,.12)) border-box;
+      border: 0.5px solid transparent; border-radius: 20px; padding: 0 12px; height: 24px; font-size: 12px; color: #fff;
+    }
     .sec-h2 { font-size: 40px; font-weight: 800; letter-spacing: -1.4px; line-height: 1.12; color: #fff; text-align: center; }
     .sec-sub { font-size: 16px; color: rgba(255,255,255,.6); line-height: 1.7; text-align: center; max-width: 680px; }
-    .prob-steps-outer { width: 100%; border-radius: 27px; border: 1.04px solid rgba(255,255,255,.1); backdrop-filter: blur(20.8px); background: radial-gradient(ellipse at 104% 100%, rgba(255,255,255,.09) 0%, rgba(128,128,128,.045) 50%, transparent 100%); padding: 36px 40px; }
-    .prob-steps { display: flex; flex-direction: column; gap: 0; border-left: 2px solid rgba(255,255,255,.08); padding-left: 24px; margin: 0 0 28px; }
-    .prob-step { font-size: 15px; color: rgba(255,255,255,.45); line-height: 1.6; padding: 7px 0; position: relative; }
-    .prob-step::before { content: ''; position: absolute; left: -31px; top: 50%; transform: translateY(-50%); width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.12); }
-    .prob-step.hot { color: rgba(255,255,255,.9); font-weight: 500; }
-    .prob-step.hot::before { background: var(--teal); box-shadow: 0 0 8px rgba(0,217,180,.6); }
-    .prob-emphasis { font-size: 17px; color: rgba(255,255,255,.8); font-weight: 600; line-height: 1.65; margin-bottom: 18px; }
-    .prob-resolve { font-size: 16px; color: var(--teal); font-weight: 700; }
-    #what-changes { background: #0d0d0d; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 80px 20px; }
-    .wc-inner { width: 1100px; max-width: 100%; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-    .wc-header { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
-    .wc-cards-outer { width: 100%; border-radius: 27px; border: 1.04px solid rgba(255,255,255,.1); backdrop-filter: blur(20.8px); background: radial-gradient(ellipse at 104% 100%, rgba(255,255,255,.09) 0%, rgba(128,128,128,.045) 50%, transparent 100%); padding: 24px; }
-    .wc-cards-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-    .wc-card { background: #1a1a1a; border-radius: 16px; border: 1px solid rgba(255,255,255,.08); padding: 24px 22px; display: flex; flex-direction: column; gap: 12px; }
-    .wc-card-icon { font-size: 24px; }
-    .wc-card-title { font-size: 15px; font-weight: 700; color: #fff; }
-    .wc-card-desc { font-size: 13.5px; color: rgba(255,255,255,.6); line-height: 1.7; }
-    .wc-payoff { width: 100%; padding: 24px 32px; background: var(--teal06); border: 1px solid var(--teal25); border-radius: 16px; font-size: 17px; color: rgba(255,255,255,.85); line-height: 1.7; font-weight: 600; text-align: center; }
-    .plat-section { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 80px 20px; }
+
+    /* ── TIKTOK SECTION ── */
+    #tiktok, #instagram, #youtube-shorts, #youtube { background: #0d0d0d; padding: 0 20px 80px; display: flex; flex-direction: column; align-items: center; gap: 23px; position: relative; overflow: hidden; }
+    .tiktok-logo-bg { position: absolute; top: 48px; left: 50%; transform: translateX(-50%); width: 331px; height: 304px; pointer-events: none; z-index: 0; }
+    .tiktok-logo-bg img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .tiktok-header { position: relative; z-index: 1; width: 884px; max-width: 100%; display: flex; flex-direction: column; align-items: center; gap: 11px; text-align: center; padding-top: 160px; }
+    .tiktok-pill {
+      display: inline-flex; align-items: center; gap: 3px;
+      background: #0d0d0d; border: 0.5px solid #00d9b4; border-radius: 20px;
+      height: 22px; padding: 0 10px; font-size: 12px; color: #fff;
+    }
+    .tiktok-pill img { width: 12px; height: 12px; display: block; }
+    .tiktok-h2 { font-size: 40px; font-weight: 800; letter-spacing: -1.4px; line-height: 1.12; color: #fff; max-width: 694px; }
+    .tiktok-sub { font-size: 16px; color: rgba(255,255,255,.7); line-height: 1.65; max-width: 730px; }
+    .tiktok-grid-outer {
+      width: 1100px; max-width: 100%; height: 815px; position: relative;
+      border-radius: 27px; border: 1.04px solid rgba(255,255,255,.1);
+      backdrop-filter: blur(20.8px); overflow: hidden;
+      background: radial-gradient(ellipse at 104% 100%, rgba(255,255,255,.09) 0%, rgba(128,128,128,.045) 50%, transparent 100%);
+    }
+    .tg-card {
+      position: absolute; width: 350px; height: 389px;
+      border-radius: 19px; border: 1.04px solid rgba(255,255,255,.1);
+      backdrop-filter: blur(20.8px); overflow: hidden;
+      background: radial-gradient(ellipse at 104% 100%, rgba(255,255,255,.09) 0%, rgba(255,255,255,.06) 50%, transparent 100%);
+    }
+    .tg-card-bg { position: absolute; left: 50%; transform: translateX(-50%); top: -1.04px; width: 350px; height: 275px; object-fit: cover; pointer-events: none; }
+    .tg-card-title { position: absolute; top: 15px; left: 0; right: 0; text-align: center; font-size: 14.7px; font-weight: 700; color: #fff; }
+    .tg-card-content { position: absolute; left: 15px; top: 46px; right: 15px; height: 274px; overflow: hidden; }
+    .tg-card-content img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .tg-card-desc { position: absolute; left: 20px; right: 20px; bottom: 18px; text-align: center; font-size: 13.3px; color: rgba(255,255,255,.8); line-height: 21.25px; }
+    .tiktok-cta { display: flex; flex-direction: column; align-items: center; gap: 11px; }
+    .tiktok-cta-label { font-size: 14.1px; color: rgba(255,255,255,.48); }
+    .tiktok-cta-btn { display: inline-flex; align-items: center; justify-content: center; background: #fff; color: #06091a; font-size: 14px; font-weight: 500; border-radius: 14px; height: 36px; padding: 0 20px; border: none; cursor: pointer; font-family: var(--font); transition: opacity .2s; white-space: nowrap; }
+    .tiktok-cta-btn:hover { opacity: .86; }
+
+    /* ── PLATFORM SECTIONS ── */
+    .plat-section {
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center; padding: 80px 20px;
+    }
     .plat-section.dark { background: #0d0d0d; }
     .plat-section.mid { background: #141414; }
     .plat-inner { width: 1100px; max-width: 100%; display: flex; flex-direction: column; align-items: center; gap: 36px; }
     .plat-header { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
-    .plat-pill { display: inline-flex; align-items: center; gap: 7px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 50px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,.7); }
+    .plat-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 50px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,.7);
+    }
     .plat-pill-dot { width: 6px; height: 6px; border-radius: 50%; }
     .dot-tiktok { background: #ff0050; }
     .dot-instagram { background: #c13584; }
     .dot-ytshorts { background: #ff0000; }
     .dot-youtube { background: #ff0000; }
-    .plat-features-outer { width: 100%; border-radius: 27px; border: 1.04px solid rgba(255,255,255,.1); backdrop-filter: blur(20.8px); background: radial-gradient(ellipse at 104% 100%, rgba(255,255,255,.09) 0%, rgba(128,128,128,.045) 50%, transparent 100%); padding: 20px; }
+    .plat-features-outer {
+      width: 100%; border-radius: 27px; border: 1.04px solid rgba(255,255,255,.1);
+      backdrop-filter: blur(20.8px); background: radial-gradient(ellipse at 104% 100%, rgba(255,255,255,.09) 0%, rgba(128,128,128,.045) 50%, transparent 100%);
+      padding: 20px;
+    }
     .plat-features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .plat-feat-card { background: #1a1a1a; border-radius: 16px; border: 1px solid rgba(255,255,255,.08); padding: 22px 20px; }
+    .plat-feat-card {
+      background: #1a1a1a; border-radius: 16px; border: 1px solid rgba(255,255,255,.08);
+      padding: 22px 20px;
+    }
     .plat-feat-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--teal); margin-bottom: 8px; }
     .plat-feat-desc { font-size: 13.5px; color: rgba(255,255,255,.62); line-height: 1.7; }
-    #how-it-works { background: #0d0d0d; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 80px 20px; }
-    .hiw-bg-texture { position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 1440px; height: 100%; pointer-events: none; z-index: 0; object-fit: cover; }
-    .hiw-inner { width: 1100px; max-width: 100%; display: flex; flex-direction: column; align-items: center; gap: 40px; position: relative; z-index: 2; }
-    .hiw-header-block { position: relative; width: 884px; max-width: 100%; height: 148px; display: flex; align-items: center; justify-content: center; }
-    .hiw-header-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-    .hiw-header-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; width: 694px; }
-    .hiw-pill { display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(#0d0d0d,#0d0d0d) padding-box, linear-gradient(135deg,#00d9b4,rgba(255,255,255,.12)) border-box; border: 0.5px solid transparent; border-radius: 20px; padding: 0 10px; height: 22px; font-size: 12px; color: #fff; }
-    .hiw-h2 { font-size: 40px; font-weight: 800; letter-spacing: -1.4px; line-height: 1.12; color: #fff; }
-    .hiw-sub { font-size: 16px; color: rgba(255,255,255,.7); line-height: 1.65; max-width: 730px; }
-    .hiw-cards-outer { position: relative; width: 100%; height: 357px; border-radius: 27px; border: 1.04px solid rgba(255,255,255,.1); backdrop-filter: blur(20.8px); overflow: hidden; background: radial-gradient(ellipse at 104% 100%, rgba(255,255,255,.09) 0%, rgba(128,128,128,.045) 50%, transparent 100%); }
-    .hiw-cards-row { position: absolute; left: 15px; top: 14px; display: flex; gap: 10px; }
-    .hiw-card { width: 350px; height: 326px; flex-shrink: 0; border-radius: 19px; border: 1.04px solid rgba(255,255,255,.1); overflow: hidden; position: relative; background: #1a1a1a; }
-    .hiw-card-bg-img { position: absolute; left: 50%; top: -1px; transform: translateX(-50%); width: 350px; height: 275px; object-fit: cover; pointer-events: none; }
-    .hiw-step-label { position: absolute; top: 15px; left: 0; right: 0; text-align: center; font-size: 10.9px; font-weight: 500; letter-spacing: 1.088px; text-transform: uppercase; color: rgba(255,255,255,.44); }
-    .hiw-card-title { position: absolute; top: 33px; left: 0; right: 0; text-align: center; font-size: 14.7px; font-weight: 700; color: #fff; }
-    .hiw-card-img-wrap { position: absolute; left: 15px; top: 72px; width: 318px; height: 182px; overflow: hidden; border-radius: 10px; }
-    .hiw-card-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hiw-card-desc { position: absolute; left: 20px; right: 20px; bottom: 18px; text-align: center; font-size: 13.3px; color: rgba(255,255,255,.8); line-height: 21.25px; }
-    .hiw-cta { display: flex; flex-direction: column; align-items: center; gap: 11px; }
-    .hiw-cta-text { font-size: 14.1px; color: rgba(255,255,255,.48); }
-    .hiw-cta-btn { display: inline-flex; align-items: center; justify-content: center; background: #fff; color: #06091a; font-size: 14px; font-weight: 500; border-radius: 14px; width: 200px; height: 36px; transition: opacity .2s; }
-    .hiw-cta-btn:hover { opacity: .86; }
+
+    /* ── TOOLS ── */
+    #tools, #use-cases { padding: 80px 24px; background: #0d0d0d; }
+    .tools-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+    .tools-header-block { position: relative; width: 884px; max-width: 100%; height: auto; display: flex; justify-content: center; }
+    .tools-header-bg { position: absolute; left: 50%; top: 0; transform: translateX(-50%); width: 884px; height: 100%; object-fit: cover; pointer-events: none; }
+    .tools-header-content { position: relative; z-index: 1; padding: clamp(32px,6vw,60px) 20px 8px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; width: 694px; max-width: 100%; }
+    .tools-pill { display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(#0d0d0d,#0d0d0d) padding-box, linear-gradient(135deg,#00d9b4,rgba(255,255,255,.12)) border-box; border: 0.5px solid transparent; border-radius: 20px; padding: 0 10px; height: 22px; font-size: 12px; color: #fff; }
+    .tools-h2 { font-size: clamp(24px,5vw,40px); font-weight: 800; letter-spacing: -1.4px; line-height: 1.12; color: #fff; margin: 0; }
+    .tools-sub { font-size: clamp(13px,2vw,16px); color: rgba(255,255,255,0.7); line-height: 1.65; max-width: 900px; margin: 0; white-space: normal; }
+    .tools-table { width: 100%; max-width: 900px; border-collapse: collapse; font-family: var(--font); }
+    .tools-table thead tr { border-bottom: 1px solid rgba(0,217,180,0.3); }
+    .tools-table thead th { padding: 12px 16px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-align: left; }
+    .tools-table .t-icon { width: 44px; padding: 10px 8px 10px 0; vertical-align: middle; }
+    .tools-table .t-icon svg { display: block; }
+    .tools-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.05); transition: background .15s ease; }
+    .tools-table tbody tr:hover { background: rgba(255,255,255,0.03); }
+    .tools-table tbody td { padding: 14px 16px; vertical-align: middle; }
+    .tools-table .t-icon { width: 48px; text-align: center; padding: 10px 8px; }
+    .tools-table .t-icon img { width: 32px; height: 32px; object-fit: contain; display: inline-block; }
+    .tools-table .t-name { font-size: 13px; font-weight: 600; color: #fff; font-family: var(--font); white-space: nowrap; }
+    .tools-table .t-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+    .tools-table .t-check { width: 80px; text-align: center; white-space: nowrap; }
+    .tools-table thead th.t-check { text-align: center; }
+    .tools-table .t-check svg { display: inline-block; }
+    @media (max-width: 820px) { .tools-inner { gap: 28px; } .tools-table .t-desc { font-size: 12px; } }
+    @media (max-width: 640px) {
+      .tools-table { table-layout: fixed; width: 100%; }
+      .tools-table thead th { padding: 10px 6px; font-size: 10px; letter-spacing: 0.05em; }
+      .tools-table .t-icon { width: 32px; padding: 8px 4px 8px 0; }
+      .tools-table .t-icon svg, .tools-table .t-icon img { width: 24px; height: 24px; }
+      .tools-table .t-name { font-size: 11px; white-space: normal; word-break: break-all; padding-bottom: 2px; }
+      .tools-table .t-desc { font-size: 11px; color: rgba(255,255,255,0.45); }
+      .tools-table .t-check { width: 40px; }
+      .tools-table tbody td { padding: 10px 4px; }
+    }
+
+    /* ── HOW IT WORKS ── */
+    #how-it-works { background: #212121; position: relative; overflow: hidden; display: flex; justify-content: center; padding: 80px 20px; }
+    .hiw2-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .hiw2-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .6; }
+    .hiw2-inner { width: 795px; max-width: 100%; display: flex; flex-direction: column; align-items: center; gap: 32px; position: relative; z-index: 1; }
+    .hiw2-header { display: flex; flex-direction: column; align-items: center; gap: 11px; text-align: center; }
+    .hiw2-h2 { font-size: clamp(26px,4vw,40px); font-weight: 800; letter-spacing: -1.4px; line-height: 1.12; color: #fff; margin: 0; max-width: 794px; }
+    .hiw2-sub { font-size: 16px; color: rgba(255,255,255,.48); line-height: 1.65; margin: 0; }
+    .hiw2-card { width: 100%; border-radius: 27px; border: 1.04px solid rgba(255,255,255,.1); backdrop-filter: blur(20.8px); background: rgba(0,0,0,.5); overflow: hidden; display: flex; align-items: stretch; gap: 0; }
+    .hiw2-steps { flex: 0 0 374px; padding: 32px 26px; display: flex; flex-direction: column; gap: 0; }
+    .hiw2-step { cursor: pointer; padding: 4px 0 10px; }
+    .hiw2-step-label { font-size: 13.3px; color: rgba(255,255,255,.7); line-height: 1.55; }
+    .hiw2-step-title { font-size: 18px; font-weight: 600; letter-spacing: -1.4px; color: rgba(255,255,255,.4); line-height: 1.7; transition: color .2s; }
+    .hiw2-step.active .hiw2-step-title { color: #fff; }
+    .hiw2-step-label { display: none; }
+    .hiw2-step.active .hiw2-step-label { display: block; }
+    .hiw2-step-desc { font-size: 13.3px; color: rgba(255,255,255,.7); line-height: 1.55; max-height: 0; overflow: hidden; transition: max-height .35s ease, opacity .25s ease; opacity: 0; }
+    .hiw2-step.active .hiw2-step-desc { max-height: 120px; opacity: 1; }
+    .hiw2-url { font-size: 12px; background: rgba(255,255,255,.08); padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #00d9b4; word-break: break-all; }
+    .hiw2-divider { height: 1px; background: rgba(255,255,255,.12); margin: 8px 0; }
+    .hiw2-video-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 32px 24px 32px 10px; }
+    .hiw2-video-outer { position: relative; width: 355px; height: 205px; flex-shrink: 0; }
+    .hiw2-video-shadow { position: absolute; top: 0; left: 13px; width: 342px; height: 192px; border-radius: 27px; background: rgba(243,244,246,.04); }
+    .hiw2-video-frame { position: absolute; top: 13px; left: 0; width: 342px; height: 192px; border-radius: 17px; border: 6px solid #191c1e; background: #f3f4f6; overflow: hidden; }
+    .hiw2-video-placeholder { position: absolute; inset: 0; opacity: .8; overflow: hidden; }
+    .hiw2-video-placeholder img { position: absolute; width: 100%; height: 133.33%; top: -16.66%; left: 0; object-fit: cover; }
+    .hiw2-video-screen-wrap { position: absolute; inset: 0; background: #fff; overflow: hidden; }
+    .hiw2-video-screen-wrap img { position: absolute; width: 364px; height: 211px; top: 50%; left: 50%; transform: translate(-50%, -50%); object-fit: cover; max-width: none; }
+    .hiw2-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; border-radius: 50%; background: rgba(0,0,0,.7); backdrop-filter: blur(2.5px); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,.3); }
+    .hiw2-play img { width: 20px; height: 20px; display: block; }
+    .hiw2-verify { width: 100%; display: flex; flex-direction: column; gap: 4px; }
+    .hiw2-verify-title { font-size: 16px; font-weight: 600; color: #fff; margin: 0; }
+    .hiw2-verify-desc { font-size: 16px; color: rgba(255,255,255,.48); line-height: 1.65; margin: 0; }
+    .hiw2-cta { display: flex; flex-direction: column; align-items: center; gap: 11px; }
+    .hiw2-btn-secondary { height: 36px; padding: 0 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,.2); background: transparent; color: rgba(255,255,255,.7); font-size: 14px; font-weight: 500; font-family: var(--font); cursor: pointer; transition: border-color .2s, color .2s; white-space: nowrap; }
+    .hiw2-btn-secondary:hover { border-color: rgba(255,255,255,.4); color: #fff; }
+
+    /* ── WHO ── */
     #who { background: #0d0d0d; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 80px 20px; }
     .who-bg-spiral { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%) rotate(8.68deg); width: 1634px; height: 1602px; pointer-events: none; z-index: 0; object-fit: cover; opacity: 0.4; filter: blur(50px); }
     .who-inner { width: 1100px; max-width: 100%; display: flex; flex-direction: column; align-items: center; gap: 40px; position: relative; z-index: 2; }
@@ -174,26 +373,41 @@
     .who-cta-text { font-size: 14.1px; color: rgba(255,255,255,.48); }
     .who-cta-btn { display: inline-flex; align-items: center; justify-content: center; background: #fff; color: #06091a; font-size: 14px; font-weight: 500; border-radius: 14px; width: 200px; height: 36px; transition: opacity .2s; }
     .who-cta-btn:hover { opacity: .86; }
-    #pricing { background: #141414; display: flex; align-items: center; justify-content: center; padding: 80px 20px; }
-    .pricing-inner { width: 900px; max-width: 100%; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-    .pricing-header { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
-    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
-    .pricing-card { border-radius: 20px; padding: 32px 30px; display: flex; flex-direction: column; gap: 20px; }
-    .pricing-card.free { background: #1a1a1a; border: 1px solid rgba(255,255,255,.1); }
-    .pricing-card.pro { background: linear-gradient(135deg, rgba(0,217,180,.08) 0%, rgba(0,0,0,0) 60%); border: 1px solid var(--teal25); }
-    .pricing-plan-name { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
-    .pricing-plan-name.pro { color: var(--teal); }
-    .pricing-amount { font-size: 44px; font-weight: 800; letter-spacing: -1.5px; }
-    .pricing-period { font-size: 14px; color: var(--muted); }
-    .pricing-alt { font-size: 13px; color: var(--muted); margin-top: 2px; }
-    .pricing-divider { height: 1px; background: rgba(255,255,255,.08); }
-    .pricing-features { display: flex; flex-direction: column; gap: 10px; }
-    .pricing-feat { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: rgba(255,255,255,.72); line-height: 1.5; }
-    .pricing-check { color: var(--teal); font-weight: 700; flex-shrink: 0; }
-    .pricing-cta-btn { display: block; text-align: center; padding: 13px 0; border-radius: 12px; font-size: 14px; font-weight: 700; font-family: var(--font); cursor: pointer; transition: opacity .2s; border: none; }
-    .pricing-cta-btn.free { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); color: #fff; }
-    .pricing-cta-btn.pro { background: var(--teal); color: #0d0d0d; }
-    .pricing-cta-btn:hover { opacity: .86; }
+
+    /* ── PRICING ── */
+    #pricing { background: #0d0d0d; position: relative; overflow: hidden; display: flex; justify-content: center; padding: 80px 20px; }
+    .pr-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .pr-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .5; }
+    .pr-inner { width: 1001px; max-width: 100%; display: flex; flex-direction: column; align-items: center; gap: 40px; position: relative; z-index: 1; }
+    .pr-header { display: flex; flex-direction: column; align-items: center; gap: 13px; text-align: center; }
+    .pr-h2 { font-size: clamp(26px,4vw,40px); font-weight: 800; letter-spacing: -1.4px; line-height: 1.12; color: #fff; margin: 0; }
+    .pr-sub { font-size: 16px; color: rgba(255,255,255,.6); line-height: 1.65; margin: 0; max-width: 730px; }
+    .pr-outer { width: 100%; border-radius: 42px; border: 1.04px solid rgba(255,255,255,.1); backdrop-filter: blur(20.8px); background: radial-gradient(ellipse at 104% 100%, rgba(255,255,255,.09) 0%, rgba(128,128,128,.045) 50%, transparent 100%); overflow: hidden; padding: 20px; }
+    .pr-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .pr-card { border-radius: 27px; border: 1.04px solid rgba(255,255,255,.1); backdrop-filter: blur(20.8px); background: radial-gradient(ellipse at 104% 100%, rgba(255,255,255,.09) 0%, rgba(128,128,128,.045) 50%, transparent 100%); padding: 24px; display: flex; flex-direction: column; min-height: 543px; position: relative; }
+    .pr-badge { display: inline-flex; align-items: center; background: #262626; border: 1px solid #262626; border-radius: 999px; padding: 5px 11px; font-size: 10px; letter-spacing: .5px; text-transform: uppercase; color: #888; margin-bottom: 16px; white-space: nowrap; align-self: flex-start; }
+    .pr-plan-name { font-size: 14px; color: #888; margin: 0 0 8px; }
+    .pr-price-row { display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; }
+    .pr-amount { font-size: 36px; font-weight: 700; letter-spacing: -.9px; color: #fff; line-height: 1; }
+    .pr-period { font-size: 14px; color: #888; }
+    .pr-sub-price { font-size: 12px; color: #555; margin: 0 0 4px; }
+    .pr-tagline { font-size: 12px; color: #888; margin: 0 0 16px; }
+    .pr-divider { height: 1px; background: #262626; margin-bottom: 16px; }
+    .pr-section-label { font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; color: #555; margin: 0 0 12px; }
+    .pr-not-label { color: #3a3a3a; margin-top: 14px; }
+    .pr-features { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .pr-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: #888; }
+    .pr-excluded { opacity: .4; }
+    .pr-star { font-size: 13px; color: #888; flex-shrink: 0; }
+    .pr-cross { font-size: 11px; color: #888; flex-shrink: 0; }
+    .pr-spacer { flex: 1; min-height: 20px; }
+    .pr-btn { display: block; width: 100%; height: 46px; border-radius: 14px; font-size: 14px; font-weight: 500; font-family: var(--font); cursor: pointer; transition: opacity .2s; }
+    .pr-btn-ghost { background: transparent; border: 1px solid #262626; color: #888; }
+    .pr-btn-ghost:hover { border-color: rgba(255,255,255,.3); color: #fff; }
+    .pr-btn-white { background: #fff; border: none; color: #111; }
+    .pr-btn-white:hover { opacity: .88; }
+
+    /* ── FAQ ── */
     #faq { padding: 80px 24px; }
     .faq-inner { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px; }
     .faq-header { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
@@ -208,6 +422,8 @@
     .faq-a { display: none; padding: 0 24px 20px; font-size: .88rem; color: var(--muted); line-height: 1.7; }
     .faq-a.open { display: block; }
     .faq-a a { color: var(--teal); }
+
+    /* ── CTA ONE PLAN ── */
     #cta-oneplan { background: #0d0d0d; display: flex; align-items: center; justify-content: center; padding: 80px 20px; overflow: hidden; }
     .ctap-outer { position: relative; width: 1200px; max-width: 100%; border-radius: 20px; overflow: hidden; }
     .ctap-bg { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 100%; height: 100%; min-height: 600px; object-fit: cover; pointer-events: none; z-index: 0; }
@@ -223,6 +439,8 @@
     .ctap-url-text { flex: 1; font-size: 14px; color: #d4d4d4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .ctap-url-btn { flex-shrink: 0; width: 114px; height: 36px; background: #fff; color: #06091a; font-size: 14px; font-weight: 500; border: none; border-radius: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; font-family: var(--font); transition: opacity .2s; }
     .ctap-url-btn:hover { opacity: .86; }
+
+    /* ── FOOTER ── */
     .ft-root { background: #0d0d0d; padding: 40px 20px 0; display: flex; flex-direction: column; align-items: center; gap: 40px; }
     .ft-top { width: 100%; max-width: 1146px; display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; }
     .ft-brand { display: flex; flex-direction: column; gap: 20px; width: 277px; flex-shrink: 0; }
@@ -248,19 +466,10 @@
       .nav-links, .nav-actions { display: none; }
       .nav-hamburger { display: flex; }
       h1 { font-size: clamp(28px, 7vw, 48px); letter-spacing: -1px; line-height: 1.15; }
-      .url-bar { width: min(507px, calc(100vw - 40px)); }
-      .hero-body { padding-top: 84px; }
-      .hero-ai-logo { display: none; }
-      .hero-flare { position: relative; left: auto; top: auto; transform: none; width: 100%; height: 120px; }
-      .hero-video { position: relative; left: auto; top: auto; transform: none; width: calc(100% - 40px); margin: -50px auto 0; }
-      .hero-play-btn { display: none; }
       .hero-sparkles { display: none; }
       .wc-cards-row { grid-template-columns: 1fr; }
       .plat-features-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
-      .who-cards-outer { height: auto; display: flex; flex-direction: column; gap: 12px; padding: 12px; }
-      .who-card { position: relative !important; left: 0 !important; top: 0 !important; width: 100% !important; height: 340px !important; border-radius: 16px; }
-      .who-card-img-lg { width: calc(100% - 30px) !important; }
       .ctap-deco-left, .ctap-deco-right { display: none; }
       .ctap-content { padding: 60px 32px 56px; }
       .ctap-title { font-size: clamp(36px, 7vw, 64px); }
@@ -272,14 +481,143 @@
       .ft-copyright { white-space: normal; text-align: center; }
       .ft-disclaimer p { text-align: center; }
     }
-    @media (max-width: 540px) { .sec-h2 { font-size: clamp(26px, 8vw, 40px); } .hiw-h2, .who-h2 { font-size: clamp(26px, 8vw, 40px); } }
+    @media (max-width: 540px) {
+      .sec-h2 { font-size: clamp(26px, 8vw, 40px); }
+      .hiw-h2, .who-h2 { font-size: clamp(26px, 8vw, 40px); }
+    }
+
+    /* ── TABLET (≤1024px) ── */
+    @media (max-width: 1024px) {
+      .pwc-row { gap: 48px; }
+      .pwc-card-wrap { width: 480px; height: 500px; }
+      .pr-cards { grid-template-columns: repeat(2, 1fr); }
+      .who-card-1, .who-card-2, .who-card-3 { width: calc(33.33% - 22px); }
+      .who-card-4 { width: calc(50% - 18px); }
+      .who-card-5 { width: calc(50% - 18px); left: calc(50% + 6px); }
+    }
+
+    /* ── TABLET PORTRAIT + LARGE MOBILE (≤820px) additions ── */
+    @media (max-width: 820px) {
+      #hero { height: 100vh; }
+      .hero-bg { display: none; }
+      .hero-flare { display: none; }
+      .hero-body {
+        width: calc(100% - 40px);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        align-items: center;
+        text-align: center;
+      }
+      .hero-float-icon { display: none; }
+      h1 { font-size: clamp(28px, 7vw, 48px); letter-spacing: -1px; line-height: 1.15; }
+      .hero-sub { font-size: 15px; line-height: 1.7; }
+      .btn-hero-primary, .btn-hero-secondary { width: 100%; justify-content: center; }
+      .hero-cta-row { flex-direction: column; width: 100%; max-width: 360px; margin: 0 auto; }
+
+      #problem-what-changes { padding: 60px 20px; }
+      .pwc-inner { gap: 72px; }
+      .pwc-row { flex-direction: column !important; gap: 36px; align-items: stretch; }
+      .pwc-card-wrap { width: 100%; height: auto; aspect-ratio: 614 / 500; flex-shrink: unset; backdrop-filter: none; }
+      .pwc-h2 { font-size: clamp(26px, 5vw, 36px); }
+      .pwc-desc { font-size: 16px; }
+      .pwc-list-item { font-size: 16px; }
+
+      .tiktok-grid-outer {
+        height: auto; display: flex; flex-direction: column;
+        gap: 12px; padding: 12px;
+        backdrop-filter: none; background: #141414;
+      }
+      .tg-card {
+        position: relative !important;
+        left: 0 !important; top: 0 !important;
+        width: 100% !important; height: auto !important;
+        backdrop-filter: none; background: #1a1a1a;
+        display: flex; flex-direction: column; overflow: hidden;
+      }
+      .tg-card-bg { display: none; }
+      .tg-card-title { position: static; padding: 16px 16px 8px; text-align: center; font-size: 14px; font-weight: 700; color: #fff; }
+      .tg-card-content { position: static; width: 100%; height: 210px; flex-shrink: 0; overflow: hidden; }
+      .tg-card-content img { width: 100%; height: 210px; object-fit: cover; object-position: top center; display: block; }
+      .tg-card-desc { position: static; padding: 12px 20px 18px; text-align: center; font-size: 13px; line-height: 1.5; }
+      .tiktok-header { padding-top: 120px; width: 100%; }
+      .tiktok-h2 { font-size: clamp(22px, 5vw, 36px); }
+
+      .who-cards-outer { height: auto; display: flex; flex-direction: column; gap: 12px; padding: 12px; backdrop-filter: none; background: #141414; }
+      .who-card { position: relative !important; left: 0 !important; top: 0 !important; width: 100% !important; height: auto !important; display: flex; flex-direction: column; overflow: hidden; backdrop-filter: none; }
+      .who-card-grid-bg { display: none; }
+      .who-card-title { position: static; padding: 16px 16px 8px; text-align: center; font-size: 14.7px; font-weight: 700; color: #fff; }
+      .who-card-img { position: static; width: calc(100% - 30px); height: 210px; flex-shrink: 0; margin: 0 15px; border-radius: 10px; overflow: hidden; top: 0; left: 0; }
+      .who-card-img-sm { width: calc(100% - 30px); height: 210px; }
+      .who-card-img-lg { width: calc(100% - 30px); height: 210px; }
+      .who-card-img img { width: 100%; height: 210px; object-fit: cover; object-position: top center; display: block; }
+      .who-card-desc { position: static; padding: 12px 20px 18px; text-align: center; font-size: 13px; line-height: 1.5; }
+
+      .pr-outer { backdrop-filter: none; background: #141414; }
+      .pr-card { backdrop-filter: none; background: #1e1e1e; }
+
+      .hiw2-card { flex-direction: column; }
+      .hiw2-steps { flex: unset; width: 100%; padding: 28px 24px 20px; }
+      .hiw2-video-wrap { padding: 0 24px 28px; justify-content: center; }
+      .hiw2-video-outer { width: min(355px, 100%); height: auto; aspect-ratio: 355 / 218; flex-shrink: 0; }
+      .hiw2-h2 { font-size: clamp(24px, 5vw, 36px); }
+
+      .who-h2 { font-size: clamp(24px, 5vw, 36px); }
+      .who-header-block { width: 100%; }
+
+      #pricing { padding: 60px 20px; }
+      .pr-cards { grid-template-columns: 1fr; }
+      .pr-card { min-height: auto; }
+
+      .ctap-title { font-size: clamp(32px, 8vw, 56px); letter-spacing: -0.5px; }
+      .ctap-desc { font-size: 14px; }
+      .ctap-url-bar { width: 100%; max-width: 100%; }
+      .ctap-content { padding: 60px 24px 56px; }
+
+      .plat-features-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── MOBILE (≤540px) ── */
+    @media (max-width: 540px) {
+      .sec-h2 { font-size: clamp(22px, 7vw, 36px); }
+      .hiw2-h2, .who-h2, .tiktok-h2 { font-size: clamp(22px, 7vw, 34px); }
+      .pwc-h2 { font-size: clamp(22px, 7vw, 34px); }
+
+      .hero-body { top: 52%; }
+      .badge { font-size: 10px; }
+      h1 { font-size: clamp(26px, 8vw, 40px); }
+      .hero-sub { font-size: 14px; }
+
+      #problem-what-changes { padding: 48px 16px; }
+      #tiktok, #instagram, #youtube-shorts, #youtube { padding: 0 16px 60px; }
+      #how-it-works { padding: 60px 16px; }
+      #who { padding: 60px 16px; }
+      #pricing { padding: 48px 16px; }
+      #faq { padding: 48px 16px; }
+      #cta-oneplan { padding: 60px 16px; }
+
+      .plat-features-grid { grid-template-columns: 1fr; }
+
+      .pr-outer { padding: 12px; }
+      .pr-cards { gap: 12px; }
+
+      .ctap-title { font-size: clamp(28px, 9vw, 48px); }
+      .ctap-checks { flex-direction: column; align-items: flex-start; gap: 6px; }
+
+      .hiw2-video-wrap { padding: 0 16px 24px; }
+      .hiw2-steps { padding: 24px 16px 16px; }
+
+      .ft-nav { flex-wrap: wrap; gap: 28px 40px; }
+    }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo"><img src="https://www.figma.com/api/mcp/asset/f3539015-f15c-4b9b-b779-6ebc5e74e7e5" alt="TokScript" /></div>
+  <div class="nav-logo">
+    <img src="https://www.figma.com/api/mcp/asset/f3539015-f15c-4b9b-b779-6ebc5e74e7e5" alt="TokScript" />
+  </div>
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="#">Features</a>
@@ -310,7 +648,7 @@
   <a href="#">Pricing</a>
   <a href="index.html" class="active">MCP</a>
   <a href="claude.html" style="padding-left:20px;font-size:13px;opacity:.75;">↳ Claude</a>
-  <a href="chatgpt.html" style="padding-left:20px;font-size:13px;opacity:.75;">↳ ChatGPT</a>
+  <a href="chatgpt.html" style="padding-left:20px;font-size:13px;opacity:.75;" class="active">↳ ChatGPT</a>
   <a href="#">FAQs</a>
   <a href="#">Affiliates</a>
   <div class="mobile-nav-actions">
@@ -321,203 +659,475 @@
 
 <!-- ① HERO -->
 <section id="hero">
-  <!-- Gradient flare -->
-  <div class="hero-flare"></div>
-  <!-- Content -->
+  <div class="hero-bg">
+    <img src="https://www.figma.com/api/mcp/asset/f2f687af-7dcd-42c2-bfcf-1d5e0d247afa" alt="" />
+  </div>
+  <div class="hero-flare">
+    <img src="https://www.figma.com/api/mcp/asset/0ca345ed-5eca-4910-a2a3-cbe88f37675e" alt="" />
+  </div>
+  <div class="hero-float-icon float-a" style="left:calc(50% - 530.23px);top:161px;width:106px;height:106px;">
+    <img src="https://www.figma.com/api/mcp/asset/6109abca-c6bb-4eba-8618-294022d4b475" alt="TikTok" />
+  </div>
+  <div class="hero-float-icon float-b" style="right:111.75px;top:179px;width:114px;height:116px;">
+    <img src="https://www.figma.com/api/mcp/asset/26aa3bf5-c1f4-423b-91b7-2d0ff46b9ccf" alt="YouTube" />
+  </div>
+  <div class="hero-float-icon float-c" style="right:175.26px;top:592.51px;width:113.5px;height:115px;">
+    <img src="https://www.figma.com/api/mcp/asset/9d40e866-9b7b-4d34-b773-7482b58dc351" alt="Instagram" />
+  </div>
+  <div class="hero-float-icon float-d" style="left:195.37px;top:629.51px;width:112px;height:113px;">
+    <img src="https://www.figma.com/api/mcp/asset/9aa232fa-1a5c-458b-9034-09e59b99296e" alt="" />
+  </div>
+  <div class="hero-sparkles">
+    <span style="--dx:-40px;--dur:3.2s;--delay:0s;    left:calc(50% - 60px); width:2px;height:2px;background:#fff;   box-shadow:0 0 4px 2px rgba(0,217,180,.9);"></span>
+    <span style="--dx: 55px;--dur:2.8s;--delay:.6s;   left:calc(50% + 20px); width:2px;height:2px;background:#00d9b4;box-shadow:0 0 4px 2px rgba(0,217,180,.8);"></span>
+    <span style="--dx:-25px;--dur:3.6s;--delay:1.2s;  left:calc(50% - 10px); width:3px;height:3px;background:#fff;   box-shadow:0 0 5px 2px rgba(255,255,255,.6);"></span>
+    <span style="--dx: 70px;--dur:2.5s;--delay:.3s;   left:calc(50% + 50px); width:2px;height:2px;background:#00d9b4;box-shadow:0 0 4px 2px rgba(0,217,180,.7);"></span>
+    <span style="--dx:-70px;--dur:3.0s;--delay:1.8s;  left:calc(50% - 80px); width:2px;height:2px;background:#fff;   box-shadow:0 0 3px 1px rgba(255,255,255,.7);"></span>
+    <span style="--dx: 30px;--dur:3.4s;--delay:.9s;   left:calc(50% - 40px); width:2px;height:2px;background:#00d9b4;box-shadow:0 0 5px 2px rgba(0,217,180,.6);"></span>
+    <span style="--dx:-55px;--dur:2.6s;--delay:2.2s;  left:calc(50% + 60px); width:2px;height:2px;background:#fff;   box-shadow:0 0 4px 2px rgba(0,217,180,.5);"></span>
+    <span style="--dx: 45px;--dur:3.8s;--delay:.4s;   left:calc(50% - 25px); width:3px;height:3px;background:#00d9b4;box-shadow:0 0 6px 3px rgba(0,217,180,.8);"></span>
+    <span style="--dx:-30px;--dur:2.9s;--delay:1.5s;  left:calc(50% + 35px); width:2px;height:2px;background:#fff;   box-shadow:0 0 4px 2px rgba(255,255,255,.5);"></span>
+    <span style="--dx: 60px;--dur:3.1s;--delay:2.7s;  left:calc(50% - 55px); width:2px;height:2px;background:#00d9b4;box-shadow:0 0 4px 2px rgba(0,217,180,.9);"></span>
+    <span style="--dx:-80px;--dur:3.5s;--delay:.7s;   left:calc(50% + 10px); width:2px;height:2px;background:#fff;   box-shadow:0 0 3px 1px rgba(255,255,255,.8);"></span>
+    <span style="--dx: 20px;--dur:2.4s;--delay:1.1s;  left:calc(50% + 70px); width:2px;height:2px;background:#00d9b4;box-shadow:0 0 4px 2px rgba(0,217,180,.7);"></span>
+  </div>
   <div class="hero-body">
     <div class="badge">
-      <img src="https://www.figma.com/api/mcp/asset/13a7d31c-36cb-48ce-ab22-1011c73ba08c" alt="" />
+      <img src="https://www.figma.com/api/mcp/asset/57044113-e4d0-458d-8bb3-e8f48042b11e" alt="" />
       ChatGPT MCP Connector
     </div>
-    <h1>Your entire video research<br>workflow, inside <span class="hero-mcp-underline">ChatGPT.<img src="https://www.figma.com/api/mcp/asset/c49eb885-9d6d-4b39-89b9-58c172a0a14c" alt="" /></span></h1>
-    <p class="hero-sub">Connect TokScript to ChatGPT and instantly transcribe, analyze, and download content from TikTok, Instagram Reels, YouTube Shorts, and full-length YouTube videos. No tab switching. Just ask.</p>
+    <h1>Your entire video research workflow, directly inside ChatGPT</h1>
+    <p class="hero-sub">Connect TokScript to ChatGPT and instantly transcribe, analyze, and download content from TikTok, Instagram Reels, YouTube Shorts, and full-length YouTube videos. No tab switching. No copy-pasting. Just ask ChatGPT what you need and get it back in seconds.</p>
     <div class="hero-cta-row">
       <button class="btn-hero-primary">
-        <img src="https://www.figma.com/api/mcp/asset/4745ae53-5188-4c1c-8020-a4193aabba6c" alt="" />
         Connect TokScript to ChatGPT
+        <div class="arrow-wrap">
+          <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 5.5H14M14 5.5L9.5 1M14 5.5L9.5 10" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
       </button>
       <button class="btn-hero-secondary">
-        <img src="https://www.figma.com/api/mcp/asset/b773838d-18e1-414e-a5da-ec218974d09f" alt="" />
+        <img src="https://www.figma.com/api/mcp/asset/c9f7a386-6862-47df-9d23-6f7dc4632e00" alt="" />
         See how it works
       </button>
     </div>
   </div>
-  <div class="hero-bottom-fade"></div>
 </section>
 
-<!-- ② THE PROBLEM -->
-<section id="problem">
-  <div class="prob-inner">
-    <div class="prob-header">
-      <div class="sec-pill">The Problem</div>
-      <h2 class="sec-h2">You're still doing this the hard way.</h2>
-    </div>
-    <div class="prob-steps-outer">
-      <div class="prob-steps">
-        <p class="prob-step">Open TikTok. Find a video. Copy the link.</p>
-        <p class="prob-step hot">Switch to TokScript. Paste it. Wait.</p>
-        <p class="prob-step">Copy the transcript. Open ChatGPT. Paste the transcript. Ask your question.</p>
-        <p class="prob-step hot">Realize you need stats too.</p>
-        <p class="prob-step">Go back to TikTok. Find the stats. Copy them.</p>
-        <p class="prob-step hot">Go back to ChatGPT. Paste them. Repeat.</p>
-      </div>
-      <p class="prob-emphasis">Now multiply that by 20 videos. Or 50.<br><br>Every time you switch tabs, you lose momentum. Every time you paste a transcript manually, you're spending time on work that should take zero effort. And the second you want to compare content across creators or platforms, the whole process falls apart entirely.</p>
-      <p class="prob-resolve">There's a better way to do this now.</p>
-    </div>
-  </div>
-</section>
+<!-- ② PROBLEM + WHAT CHANGES -->
+<section id="problem-what-changes">
+  <div class="pwc-inner">
 
-<!-- ③ WHAT CHANGES -->
-<section id="what-changes">
-  <div class="wc-inner">
-    <div class="wc-header">
-      <div class="sec-pill">What Changes</div>
-      <h2 class="sec-h2">One conversation. Every platform. Every tool.</h2>
-      <p class="sec-sub">Once TokScript is connected to ChatGPT, your AI can pull transcripts, engagement stats, video downloads, creator profiles, and your entire saved library on its own. You just ask in plain English.</p>
-    </div>
-    <div class="wc-cards-outer">
-      <div class="wc-cards-row">
-        <div class="wc-card">
-          <div class="wc-card-icon">🎵</div>
-          <div class="wc-card-title">TikTok in seconds</div>
-          <p class="wc-card-desc">Drop a TikTok link and say "break this down." Transcripts, stats, and insights come back instantly — no tabs required.</p>
+    <div class="pwc-row">
+      <div class="pwc-card-wrap">
+        <img class="pwc-card-img" src="https://www.figma.com/api/mcp/asset/554a267f-5d48-4ce8-b8f2-6f4db981c1fe" alt="" />
+      </div>
+      <div class="pwc-content">
+        <div class="pwc-pill-wrap">
+          <div class="pwc-pill">The Problem</div>
         </div>
-        <div class="wc-card">
-          <div class="wc-card-icon">▶</div>
-          <div class="wc-card-title">YouTube with timestamps</div>
-          <p class="wc-card-desc">Paste a YouTube video and ask for a full transcript with timestamps. ChatGPT handles the entire extraction in the background.</p>
-        </div>
-        <div class="wc-card">
-          <div class="wc-card-icon">📸</div>
-          <div class="wc-card-title">Cross-platform analysis</div>
-          <p class="wc-card-desc">Send an Instagram Reel and ask ChatGPT to compare it against your last 10 posts. Multi-platform research in one message.</p>
-        </div>
+        <h2 class="pwc-h2">You're still doing this the hard way.</h2>
+        <p class="pwc-desc">Copy link. Paste in TokScript. Copy transcript. Paste in ChatGPT. Need stats? Go back. Copy. Paste. Repeat—for every single video.</p>
+        <ul class="pwc-list">
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-x"><img src="https://www.figma.com/api/mcp/asset/90a513e4-e16a-4fde-964e-5fef8739f014" alt="" /></span>
+            50 videos means 50 rounds of copy-paste chaos
+          </li>
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-x"><img src="https://www.figma.com/api/mcp/asset/90a513e4-e16a-4fde-964e-5fef8739f014" alt="" /></span>
+            Every tab switch breaks your focus
+          </li>
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-x"><img src="https://www.figma.com/api/mcp/asset/90a513e4-e16a-4fde-964e-5fef8739f014" alt="" /></span>
+            Manual work that should take zero effort
+          </li>
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-x"><img src="https://www.figma.com/api/mcp/asset/90a513e4-e16a-4fde-964e-5fef8739f014" alt="" /></span>
+            Multi-platform analysis is nearly impossible.
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="wc-payoff">No tabs. No copying. No switching between tools. Your research workflow goes from 15 steps to one message.</div>
+
+    <div class="pwc-row">
+      <div class="pwc-content">
+        <div class="pwc-pill-wrap">
+          <div class="pwc-pill">What Changes When You Connect With TokScript</div>
+        </div>
+        <h2 class="pwc-h2">One conversation. Every platform. Every tool</h2>
+        <p class="pwc-desc">Connect TokScript to ChatGPT and your AI pulls transcripts, stats, downloads, creator profiles, and your saved library—automatically. Just ask in plain English.</p>
+        <ul class="pwc-list">
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-check"><img src="https://www.figma.com/api/mcp/asset/64226fc9-5792-4702-9394-f89e7bb31563" alt="" /></span>
+            Drop a TikTok link: "Break this down".
+          </li>
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-check"><img src="https://www.figma.com/api/mcp/asset/64226fc9-5792-4702-9394-f89e7bb31563" alt="" /></span>
+            Paste a YouTube video: "Full transcript with timestamps".
+          </li>
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-check"><img src="https://www.figma.com/api/mcp/asset/64226fc9-5792-4702-9394-f89e7bb31563" alt="" /></span>
+            Send an Instagram Reel: "Compare this to my last 10 posts".
+          </li>
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-check"><img src="https://www.figma.com/api/mcp/asset/64226fc9-5792-4702-9394-f89e7bb31563" alt="" /></span>
+            You ask. ChatGPT pulls. One message, not fifteen steps.
+          </li>
+        </ul>
+        <button class="pwc-cta-btn">
+          Get Started now
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="pwc-card-wrap">
+        <img class="pwc-card-img" src="https://www.figma.com/api/mcp/asset/2a01fbb4-3e73-4f67-8f80-93ae40967c05" alt="" />
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- ④ TIKTOK -->
-<section class="plat-section mid" id="tiktok">
-  <div class="plat-inner">
-    <div class="plat-header">
-      <div class="plat-pill"><span class="plat-pill-dot dot-tiktok"></span>TikTok</div>
-      <h2 class="sec-h2">TikTok transcripts, stats, downloads, and creator data inside ChatGPT</h2>
-      <p class="sec-sub">TikTok is where trends start, and now you can research all of it without ever leaving ChatGPT.</p>
+<section id="tiktok">
+  <div class="tiktok-logo-bg">
+    <img src="https://www.figma.com/api/mcp/asset/c12d4e49-3cb1-4430-aeba-a54c24d9a4e4" alt="" />
+  </div>
+  <div class="tiktok-header">
+    <div class="tiktok-pill">
+      <img src="https://www.figma.com/api/mcp/asset/f85f5529-e7c3-4d63-8a4f-298d2766561c" alt="" />
+      TikTok
     </div>
-    <div class="plat-features-outer">
-      <div class="plat-features-grid">
-        <div class="plat-feat-card"><div class="plat-feat-label">Transcripts</div><p class="plat-feat-desc">Paste any TikTok link and get the full word-for-word transcript back in seconds. Study hooks, dissect viral scripts, or feed it into ChatGPT for deeper analysis.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Engagement Stats</div><p class="plat-feat-desc">Views, likes, comments, shares, bookmarks, publish date, hashtags, audio details. Compare performance across a creator's entire catalog.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Video Downloads</div><p class="plat-feat-desc">Download any TikTok video in HD with no watermark, directly from your ChatGPT conversation. Cover images and thumbnails too.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Creator Profiles</div><p class="plat-feat-desc">Look up any TikTok creator by username. Get follower count, total likes, bio, verified status, and recent video history. Compare creators side by side.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Collection Imports</div><p class="plat-feat-desc">Import entire TikTok collections and playlists into your conversation — up to 3,000 videos at once. Analyze for patterns, hooks, and content gaps.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Bulk Processing</div><p class="plat-feat-desc">Drop up to 50 TikTok links in a single message. Every transcript, stat, and piece of metadata comes back together so ChatGPT can work with all of it at once.</p></div>
-      </div>
+    <h2 class="tiktok-h2">TikTok transcripts, stats, downloads, and creator data inside ChatGPT</h2>
+    <p class="tiktok-sub">TikTok is where trends start, and now you can research all of it without ever leaving ChatGPT.</p>
+  </div>
+  <div class="tiktok-grid-outer">
+    <div class="tg-card" style="left:11.96px;top:12.96px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/467651c0-4f48-4844-ac26-c7d7332dcbd6" alt="" />
+      <div class="tg-card-title">Transcripts</div>
+      <div class="tg-card-content"><img src="https://www.figma.com/api/mcp/asset/46ee0425-8ccb-4594-8962-90baac771153" alt="" /></div>
+      <div class="tg-card-desc">Full transcripts in seconds, voiceovers, on-screen text, every word.</div>
     </div>
+    <div class="tg-card" style="left:11.96px;top:412.96px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/467651c0-4f48-4844-ac26-c7d7332dcbd6" alt="" />
+      <div class="tg-card-title">Creator Profiles</div>
+      <div class="tg-card-content"><img src="https://www.figma.com/api/mcp/asset/fc7bb6e3-c831-47b8-b8f9-008f16bf89b1" alt="" /></div>
+      <div class="tg-card-desc">Followers, bio, verified status, recent videos—any creator, instant lookup.</div>
+    </div>
+    <div class="tg-card" style="left:371.96px;top:12.96px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/467651c0-4f48-4844-ac26-c7d7332dcbd6" alt="" />
+      <div class="tg-card-title">Engagement Stats</div>
+      <div class="tg-card-content"><img src="https://www.figma.com/api/mcp/asset/31343de4-c0ed-4903-9aa4-2dc5aeede9ed" alt="" /></div>
+      <div class="tg-card-desc">Views, likes, shares, comments, hashtags, one video or an entire catalog.</div>
+    </div>
+    <div class="tg-card" style="left:371.96px;top:412.96px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/467651c0-4f48-4844-ac26-c7d7332dcbd6" alt="" />
+      <div class="tg-card-title">Collection Imports</div>
+      <div class="tg-card-content"><img src="https://www.figma.com/api/mcp/asset/b845bde7-6c4b-4e9e-8813-3a629c8ec110" alt="" /></div>
+      <div class="tg-card-desc">Import up to 3,000 videos at once. Analyze for patterns and trends.</div>
+    </div>
+    <div class="tg-card" style="left:731.96px;top:12.96px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/467651c0-4f48-4844-ac26-c7d7332dcbd6" alt="" />
+      <div class="tg-card-title">Video Downloads</div>
+      <div class="tg-card-content"><img src="https://www.figma.com/api/mcp/asset/7f0dc1f5-9b66-42cf-81d3-1a6c23d495dc" alt="" /></div>
+      <div class="tg-card-desc">HD downloads with no watermark—straight from your conversation, no third-party tools.</div>
+    </div>
+    <div class="tg-card" style="left:731.96px;top:412.96px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/467651c0-4f48-4844-ac26-c7d7332dcbd6" alt="" />
+      <div class="tg-card-title">Bulk Processing</div>
+      <div class="tg-card-content"><img src="https://www.figma.com/api/mcp/asset/a6bfe00c-faa2-4849-b182-a66ec8a25a05" alt="" /></div>
+      <div class="tg-card-desc">Drop 50 links. Get everything back in one response.</div>
+    </div>
+  </div>
+  <div class="tiktok-cta">
+    <p class="tiktok-cta-label">Ready to research TikTok without leaving ChatGPT</p>
+    <button class="tiktok-cta-btn">Start Extracting TikTok Data</button>
   </div>
 </section>
 
 <!-- ⑤ INSTAGRAM REELS -->
-<section class="plat-section dark" id="instagram">
-  <div class="plat-inner">
-    <div class="plat-header">
-      <div class="plat-pill"><span class="plat-pill-dot dot-instagram"></span>Instagram Reels</div>
-      <h2 class="sec-h2">Instagram Reels transcripts, stats, and downloads inside ChatGPT</h2>
-      <p class="sec-sub">Reels are driving Instagram's algorithm right now, and studying what works shouldn't require a dozen open tabs.</p>
+<section id="instagram">
+  <div class="tiktok-logo-bg">
+    <img src="https://www.figma.com/api/mcp/asset/707ec8b8-99fc-47d7-b823-f057eff6c787" alt="" />
+  </div>
+  <div class="tiktok-header">
+    <div class="tiktok-pill">
+      <img src="https://www.figma.com/api/mcp/asset/b91671e7-e22e-4285-b914-368b2944cc9b" alt="" />
+      Instagram Reels
     </div>
-    <div class="plat-features-outer">
-      <div class="plat-features-grid">
-        <div class="plat-feat-card"><div class="plat-feat-label">Transcripts</div><p class="plat-feat-desc">Paste any Instagram Reel link and get a full transcript back in seconds. Analyze hooks, scripts, and storytelling structure without watching the video manually.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Engagement Stats</div><p class="plat-feat-desc">Full engagement data for any Reel: views, likes, comments, shares, and saves. Compare performance of multiple Reels or stack up against competing accounts.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Video Downloads</div><p class="plat-feat-desc">Download Instagram Reels in HD with no watermark directly inside your conversation. Cover images included. No third-party tools required.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Bulk Processing</div><p class="plat-feat-desc">Send ChatGPT a batch of Instagram Reel links and get all transcripts and stats back at once. Perfect for competitive analysis or research for a pitch.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Cross-Platform Analysis</div><p class="plat-feat-desc">Ask ChatGPT to compare an Instagram Reel against a TikTok video from the same creator. See performance differences and identify opportunities.</p></div>
-      </div>
+    <h2 class="tiktok-h2">Instagram Reels transcripts, stats, and downloads inside ChatGPT</h2>
+    <p class="tiktok-sub">Reels are driving Instagram's algorithm right now, and studying what works shouldn't require a dozen open tabs.</p>
+  </div>
+  <div class="tiktok-grid-outer">
+    <div class="tg-card" style="left:11.96px;top:12.96px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/5392d8f8-eb20-404e-aad2-ba62a80b1506" alt="" />
+      <div class="tg-card-title">Transcripts</div>
+      <div class="tg-card-content"><img src="https://www.figma.com/api/mcp/asset/e87dbbc4-8e6c-42a1-b67b-84d38331c9af" alt="" /></div>
+      <div class="tg-card-desc">Full transcript in seconds—spoken content and metadata included.</div>
     </div>
+    <div class="tg-card" style="left:371.96px;top:12.96px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/5392d8f8-eb20-404e-aad2-ba62a80b1506" alt="" />
+      <div class="tg-card-title">Engagement Stats</div>
+      <div class="tg-card-content"><img src="https://www.figma.com/api/mcp/asset/65f7b7fa-e456-4fa9-9284-14805a8faa2c" alt="" /></div>
+      <div class="tg-card-desc">Views, likes, comments, shares, saves. One Reel or compare across creators.</div>
+    </div>
+    <div class="tg-card" style="left:731.96px;top:12.96px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/5392d8f8-eb20-404e-aad2-ba62a80b1506" alt="" />
+      <div class="tg-card-title">Video Downloads</div>
+      <div class="tg-card-content"><img src="https://www.figma.com/api/mcp/asset/a9c91fd9-cf73-4137-89af-9aba6a8d6392" alt="" /></div>
+      <div class="tg-card-desc">HD quality, no watermark, cover images included—straight from your conversation.</div>
+    </div>
+    <div class="tg-card" style="left:11.96px;top:410.96px;width:529px;">
+      <div class="tg-card-title">Bulk Processing</div>
+      <div class="tg-card-content" style="width:504px;"><img src="https://www.figma.com/api/mcp/asset/3f2d5308-62e7-4f7f-9a25-8f3418ebd09d" alt="" /></div>
+      <div class="tg-card-desc">Drop a batch of links. Every transcript, every stat, returned together.</div>
+    </div>
+    <div class="tg-card" style="left:552.96px;top:410.96px;width:529px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/5392d8f8-eb20-404e-aad2-ba62a80b1506" alt="" />
+      <div class="tg-card-title">Cross-Platform Analysis</div>
+      <div class="tg-card-content" style="width:497px;"><img src="https://www.figma.com/api/mcp/asset/b9de14ed-5d82-4f58-aebd-a81390478de1" alt="" /></div>
+      <div class="tg-card-desc">Compare a Reel to a TikTok from the same creator. See what's adapting and what's working.</div>
+    </div>
+  </div>
+  <div class="tiktok-cta">
+    <p class="tiktok-cta-label">Ready to research Reels without leaving ChatGPT</p>
+    <button class="tiktok-cta-btn">Start Extracting Instagram Reels Data</button>
   </div>
 </section>
 
 <!-- ⑥ YOUTUBE SHORTS -->
-<section class="plat-section mid" id="youtube-shorts">
-  <div class="plat-inner">
-    <div class="plat-header">
-      <div class="plat-pill"><span class="plat-pill-dot dot-ytshorts"></span>YouTube Shorts</div>
-      <h2 class="sec-h2">YouTube Shorts transcripts, stats, and analysis inside ChatGPT</h2>
-      <p class="sec-sub">Shorts are YouTube's fastest-growing format, and the creators winning there are the ones studying what already works.</p>
+<section id="youtube-shorts">
+  <div class="tiktok-logo-bg">
+    <img src="https://www.figma.com/api/mcp/asset/b8c57362-7ed1-470c-8abc-e3d0ee051af6" alt="" />
+  </div>
+  <div class="tiktok-header">
+    <div class="tiktok-pill">
+      <img src="https://www.figma.com/api/mcp/asset/5c0b48b6-f7d7-4441-84c4-f8b071ac506a" alt="" />
+      YouTube Shorts
     </div>
-    <div class="plat-features-outer">
-      <div class="plat-features-grid">
-        <div class="plat-feat-card"><div class="plat-feat-label">Transcripts</div><p class="plat-feat-desc">Paste any YouTube Shorts link and get the full transcript in seconds. Break down the hook, analyze script structure, or compare against other Shorts in your niche.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Engagement Stats</div><p class="plat-feat-desc">Views, likes, comments, and all available metadata for any YouTube Short. Rank a creator's Shorts by performance, identify their best hooks, or spot trends over time.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Bulk Processing</div><p class="plat-feat-desc">Send ChatGPT a batch of YouTube Shorts links in one message. All transcripts and stats come back together, ready for comparison and analysis.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Competitive Intelligence</div><p class="plat-feat-desc">Pull Shorts from multiple creators in your niche and build a comparison report. What hooks are working? Where are the gaps you can fill?</p></div>
-      </div>
+    <h2 class="tiktok-h2">YouTube Shorts transcripts, stats, and analysis inside ChatGPT</h2>
+    <p class="tiktok-sub">Shorts are YouTube's fastest-growing format, and the creators winning there are the ones studying what already works.</p>
+  </div>
+  <div class="tiktok-grid-outer">
+    <div class="tg-card" style="left:11.96px;top:9.96px;width:529px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/5c1a2027-6902-4103-a6e8-0a091bf6c057" alt="" />
+      <div class="tg-card-title">Transcripts</div>
+      <div class="tg-card-content" style="width:497px;"><img src="https://www.figma.com/api/mcp/asset/81e617c8-fc31-4757-9405-8fae6a6d6402" alt="" /></div>
+      <div class="tg-card-desc">Full transcript in seconds. Break down hooks, scripts, CTAs—or compare across your niche.</div>
     </div>
+    <div class="tg-card" style="left:552.96px;top:9.96px;width:529px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/5c1a2027-6902-4103-a6e8-0a091bf6c057" alt="" />
+      <div class="tg-card-title">Engagement Stats</div>
+      <div class="tg-card-content" style="width:497px;"><img src="https://www.figma.com/api/mcp/asset/244db9a0-8580-408c-8060-90fa5116d27b" alt="" /></div>
+      <div class="tg-card-desc">Views, likes, comments, metadata. Rank by performance or spot trends over time.</div>
+    </div>
+    <div class="tg-card" style="left:11.96px;top:410.96px;width:529px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/5c1a2027-6902-4103-a6e8-0a091bf6c057" alt="" />
+      <div class="tg-card-title">Bulk Processing</div>
+      <div class="tg-card-content" style="width:504px;"><img src="https://www.figma.com/api/mcp/asset/e8f4f0d0-a8e1-414b-994c-b42e9743b9a8" alt="" /></div>
+      <div class="tg-card-desc">Drop a batch of links. Every transcript and stat returned together, ready for analysis.</div>
+    </div>
+    <div class="tg-card" style="left:552.96px;top:410.96px;width:529px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/5c1a2027-6902-4103-a6e8-0a091bf6c057" alt="" />
+      <div class="tg-card-title">Competitive Intelligence</div>
+      <div class="tg-card-content" style="width:497px;"><img src="https://www.figma.com/api/mcp/asset/cf882984-07b1-4983-8264-6ca1e027771e" alt="" /></div>
+      <div class="tg-card-desc">Pull Shorts from multiple creators. Compare hooks, topics, engagement—find the gaps to fill.</div>
+    </div>
+  </div>
+  <div class="tiktok-cta">
+    <p class="tiktok-cta-label">Ready to research YouTube Shorts without leaving ChatGPT</p>
+    <button class="tiktok-cta-btn">Start Extracting YouTube Shorts Data</button>
   </div>
 </section>
 
 <!-- ⑦ YOUTUBE LONG-FORM -->
-<section class="plat-section dark" id="youtube">
-  <div class="plat-inner">
-    <div class="plat-header">
-      <div class="plat-pill"><span class="plat-pill-dot dot-youtube"></span>YouTube</div>
-      <h2 class="sec-h2">Full-length YouTube video transcripts and analysis inside ChatGPT</h2>
-      <p class="sec-sub">Tutorials, podcasts, interviews, educational content, product reviews. Pull the full transcript of any YouTube video into ChatGPT and work with it instantly.</p>
+<section id="youtube">
+  <div class="tiktok-logo-bg">
+    <img src="https://www.figma.com/api/mcp/asset/aa76cede-247b-4098-847c-0fd7e1a602ba" alt="" />
+  </div>
+  <div class="tiktok-header">
+    <div class="tiktok-pill">
+      <img src="https://www.figma.com/api/mcp/asset/ef0da6fb-9aba-4632-876b-916cbfa8ae20" alt="" />
+      YouTube Longs
     </div>
-    <div class="plat-features-outer">
-      <div class="plat-features-grid">
-        <div class="plat-feat-card"><div class="plat-feat-label">Full Transcripts</div><p class="plat-feat-desc">Paste any YouTube link and get the complete word-for-word transcript. 10-minute video? 45-minute podcast? Hour-long tutorial? All back in seconds.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Timestamp Support</div><p class="plat-feat-desc">Transcripts come with timing data so ChatGPT can reference specific moments. Ask "what did they say at the 12-minute mark?" and get an exact answer.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Content Repurposing</div><p class="plat-feat-desc">Paste a long-form video and ask ChatGPT to turn it into a Twitter thread, extract the 5 best quotes, or build a newsletter. One video becomes a week of content.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Research at Scale</div><p class="plat-feat-desc">Send ChatGPT 10 YouTube links, ask for a summary from each, and get a synthesized research brief in minutes. Podcasts, tutorials, talks — all in one conversation.</p></div>
-        <div class="plat-feat-card"><div class="plat-feat-label">Podcast Analysis</div><p class="plat-feat-desc">Paste a podcast or interview link and ask ChatGPT to pull key insights, the most quotable moments, or summarize the guest's main arguments.</p></div>
-      </div>
+    <h2 class="tiktok-h2">Full-length YouTube video transcripts and analysis inside ChatGPT</h2>
+    <p class="tiktok-sub">Long-form is where the depth lives. Tutorials, podcasts, interviews—now fully searchable.</p>
+  </div>
+  <div class="tiktok-grid-outer">
+    <div class="tg-card" style="left:11.96px;top:12.96px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/c8320139-50c6-44a2-a6f9-165db94661ce" alt="" />
+      <div class="tg-card-title">Full Transcripts</div>
+      <div class="tg-card-content"><img src="https://www.figma.com/api/mcp/asset/f32f18cc-7cd7-4181-bd47-594992b63c89" alt="" /></div>
+      <div class="tg-card-desc">Paste any YouTube link. 10 minutes or 2 hours—full transcript back in seconds.</div>
     </div>
+    <div class="tg-card" style="left:371.96px;top:12.96px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/c8320139-50c6-44a2-a6f9-165db94661ce" alt="" />
+      <div class="tg-card-title">Timestamp Support</div>
+      <div class="tg-card-content"><img src="https://www.figma.com/api/mcp/asset/e9f402f1-7ed4-40c2-be2b-76c94f771ccc" alt="" /></div>
+      <div class="tg-card-desc">Transcripts include timing data. Ask about the 12-minute mark, get an exact answer.</div>
+    </div>
+    <div class="tg-card" style="left:731.96px;top:12.96px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/c8320139-50c6-44a2-a6f9-165db94661ce" alt="" />
+      <div class="tg-card-title">Content Repurposing</div>
+      <div class="tg-card-content"><img src="https://www.figma.com/api/mcp/asset/981be783-4bc3-4332-99d9-ed35723e6cfe" alt="" /></div>
+      <div class="tg-card-desc">Turn one video into a Twitter thread, newsletter, quote list, or checklist—one conversation.</div>
+    </div>
+    <div class="tg-card" style="left:11.96px;top:410.96px;width:529px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/c8320139-50c6-44a2-a6f9-165db94661ce" alt="" />
+      <div class="tg-card-title">Research at Scale</div>
+      <div class="tg-card-content" style="width:504px;"><img src="https://www.figma.com/api/mcp/asset/c49515f5-c318-447c-b8fd-2d5e9c558a09" alt="" /></div>
+      <div class="tg-card-desc">Drop a batch of links. Every transcript, every stat, returned together.</div>
+    </div>
+    <div class="tg-card" style="left:552.96px;top:410.96px;width:529px;">
+      <img class="tg-card-bg" src="https://www.figma.com/api/mcp/asset/c8320139-50c6-44a2-a6f9-165db94661ce" alt="" />
+      <div class="tg-card-title">Podcast and Interview Analysis</div>
+      <div class="tg-card-content" style="width:496px;"><img src="https://www.figma.com/api/mcp/asset/2b70da6d-5ada-4a3a-b410-03026d2c05fc" alt="" /></div>
+      <div class="tg-card-desc">Pull key insights, quotable moments, or guest arguments from any episode.</div>
+    </div>
+  </div>
+  <div class="tiktok-cta">
+    <p class="tiktok-cta-label">Ready to research YouTube without leaving ChatGPT</p>
+    <button class="tiktok-cta-btn">Start Extracting YouTube Data</button>
   </div>
 </section>
 
-<!-- ⑧ HOW IT WORKS -->
+<!-- ⑧ TOOLS -->
+<section id="tools">
+  <div class="tools-inner">
+    <div class="tools-header-block">
+      <img class="tools-header-bg" src="https://www.figma.com/api/mcp/asset/4b4a8b9d-2113-4a2a-aaf8-f45a920bf6cf" alt="" />
+      <div class="tools-header-content">
+        <div class="tools-pill">Tools</div>
+        <h2 class="tools-h2">14 Tools Available</h2>
+        <p class="tools-sub">Every tool your agent needs to transcribe content, download videos, and analyze creator libraries.</p>
+      </div>
+    </div>
+    <table class="tools-table">
+      <thead>
+        <tr>
+          <th style="width:44px;"></th>
+          <th>Tools</th>
+          <th>Description</th>
+          <th class="t-check">Included</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#0a3d2a"/><svg x="7" y="7" width="14" height="14" viewBox="0 0 24 24"><path fill="#34d399" d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></svg></td><td class="t-name">get_tiktok_transcript</td><td class="t-desc">Extract transcript and captions from a single TikTok video URL</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#0a3d2a"/><rect x="7.5" y="7.5" width="13" height="13" rx="3.5" stroke="#34d399" stroke-width="1.5"/><circle cx="14" cy="14" r="3" stroke="#34d399" stroke-width="1.5"/><circle cx="17.8" cy="10.2" r=".8" fill="#34d399"/></svg></td><td class="t-name">get_instagram_transcript</td><td class="t-desc">Extract transcript and captions from a single Instagram video or Reel URL</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#0a3d2a"/><rect x="7" y="9" width="14" height="10" rx="2.5" stroke="#34d399" stroke-width="1.5"/><path d="M12 11.8l4.5 2.2-4.5 2.2v-4.4z" fill="#34d399"/></svg></td><td class="t-name">get_youtube_transcript</td><td class="t-desc">Extract transcript and captions from a single YouTube video URL</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#0a3d2a"/><path d="M8 10h12M8 14h10M8 18h7" stroke="#34d399" stroke-width="1.5" stroke-linecap="round"/></svg></td><td class="t-name">get_bulk_transcripts</td><td class="t-desc">Extract transcripts from multiple individual video URLs in a single call</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#0a3d2a"/><svg x="7" y="7" width="14" height="14" viewBox="0 0 24 24"><path fill="#34d399" d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></svg></td><td class="t-name">get_tiktok_collection</td><td class="t-desc">Process all videos from a TikTok collection or playlist URL</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#3d1f08"/><path d="M14 8v9M10.5 14l3.5 3.5 3.5-3.5M8 20h12" stroke="#fb923c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="t-name">download_video</td><td class="t-desc">Download a single TikTok or Instagram video</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#3d1f08"/><path d="M14 8v9M10.5 14l3.5 3.5 3.5-3.5M8 20h12" stroke="#fb923c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="t-name">download_videos_bulk</td><td class="t-desc">Download multiple TikTok or Instagram videos in one call</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#3d1f08"/><rect x="7" y="9" width="14" height="10" rx="2" stroke="#fb923c" stroke-width="1.5"/><circle cx="11" cy="13" r="1.5" stroke="#fb923c" stroke-width="1.2"/><path d="M7.5 17l3.5-3 3 2.5 2-2 3.5 3" stroke="#fb923c" stroke-width="1.2" stroke-linejoin="round"/></svg></td><td class="t-name">download_cover_image</td><td class="t-desc">Download the cover or thumbnail image for a single video</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#3d1f08"/><rect x="7" y="9" width="14" height="10" rx="2" stroke="#fb923c" stroke-width="1.5"/><circle cx="11" cy="13" r="1.5" stroke="#fb923c" stroke-width="1.2"/><path d="M7.5 17l3.5-3 3 2.5 2-2 3.5 3" stroke="#fb923c" stroke-width="1.2" stroke-linejoin="round"/></svg></td><td class="t-name">download_cover_images_bulk</td><td class="t-desc">Download cover or thumbnail images for multiple videos at once</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#2a1040"/><svg x="7" y="7" width="14" height="14" viewBox="0 0 24 24"><path fill="#a78bfa" d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></svg></td><td class="t-name">get_tiktok_user</td><td class="t-desc">Get TikTok user profile info including followers, following, and likes</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#2a1040"/><svg x="7" y="7" width="14" height="14" viewBox="0 0 24 24"><path fill="#a78bfa" d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></svg></td><td class="t-name">get_tiktok_user_videos</td><td class="t-desc">Retrieve all videos from a TikTok user's public profile</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#0a1f40"/><path d="M8 19v-4M12 19V11M16 19v-6M20 19V8" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round"/></svg></td><td class="t-name">get_library_stats</td><td class="t-desc">Get an overview of your TokScript library: total videos and breakdown by platform</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#0a1f40"/><rect x="8.5" y="8" width="2.5" height="12" rx="1" stroke="#60a5fa" stroke-width="1.2"/><rect x="12.75" y="8" width="2.5" height="12" rx="1" stroke="#60a5fa" stroke-width="1.2"/><rect x="17" y="8" width="2.5" height="12" rx="1" stroke="#60a5fa" stroke-width="1.2"/></svg></td><td class="t-name">get_user_library</td><td class="t-desc">List videos and transcripts stored in your TokScript library</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#0a1f40"/><rect x="7" y="8" width="14" height="11" rx="2" stroke="#60a5fa" stroke-width="1.5"/><path d="M12 11.8l4 2.2-4 2.2v-4.4z" fill="#60a5fa"/><path d="M10 21h8" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round"/></svg></td><td class="t-name">get_stored_video</td><td class="t-desc">Get full stored data for a specific video from your TokScript library, including transcript</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ⑨ USE CASES -->
+<section id="use-cases">
+  <div class="tools-inner">
+    <div class="tools-header-block">
+      <img class="tools-header-bg" src="https://www.figma.com/api/mcp/asset/4b4a8b9d-2113-4a2a-aaf8-f45a920bf6cf" alt="" />
+      <div class="tools-header-content">
+        <div class="tools-pill">Use Cases</div>
+        <h2 class="tools-h2">What You Can Build With It</h2>
+        <p class="tools-sub">Real workflows ChatGPT handles the moment TokScript is connected — from research to repurposing to competitive analysis.</p>
+      </div>
+    </div>
+    <table class="tools-table">
+      <thead>
+        <tr>
+          <th style="width:44px;"></th>
+          <th>Use Case</th>
+          <th>What ChatGPT Does</th>
+          <th class="t-check">Supported</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#0a3d2a"/><path d="M9 14l2.5 2.5L19 10" stroke="#34d399" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="t-name">Competitor Research</td><td class="t-desc">Drop links from rival creators. ChatGPT pulls transcripts, engagement stats, and surfaces what's working in their content.</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#0a3d2a"/><path d="M8 10h12M8 14h10M8 18h7" stroke="#34d399" stroke-width="1.5" stroke-linecap="round"/></svg></td><td class="t-name">Content Repurposing</td><td class="t-desc">Paste a video URL, ask ChatGPT to turn the transcript into a tweet thread, newsletter, or LinkedIn post. Done in one message.</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#0a3d2a"/><rect x="7" y="9" width="14" height="10" rx="2.5" stroke="#34d399" stroke-width="1.5"/><path d="M12 11.8l4.5 2.2-4.5 2.2v-4.4z" fill="#34d399"/></svg></td><td class="t-name">Viral Hook Analysis</td><td class="t-desc">Feed ChatGPT 20 top-performing videos. It reads every hook and tells you exactly what pattern is driving views in your niche.</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#0a3d2a"/><path d="M9 8h10M9 12h7M9 16h9" stroke="#34d399" stroke-width="1.5" stroke-linecap="round"/><circle cx="7" cy="8" r="1" fill="#34d399"/><circle cx="7" cy="12" r="1" fill="#34d399"/><circle cx="7" cy="16" r="1" fill="#34d399"/></svg></td><td class="t-name">Script Writing</td><td class="t-desc">Give ChatGPT a transcript from a video that performed well. It reverse-engineers the structure and writes you a new script in the same style.</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#2a1040"/><circle cx="14" cy="12" r="4" stroke="#a78bfa" stroke-width="1.5"/><path d="M8 20c0-2.21 2.69-4 6-4s6 1.79 6 4" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></svg></td><td class="t-name">Creator Profiling</td><td class="t-desc">Pull a creator's full video library and stats. ChatGPT builds a detailed profile — posting cadence, top topics, engagement benchmarks.</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#2a1040"/><path d="M8 19v-4M12 19V11M16 19v-6M20 19V8" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></svg></td><td class="t-name">Trend Reporting</td><td class="t-desc">Ask ChatGPT to scan a batch of recent videos across accounts and summarize what topics, formats, and styles are gaining traction right now.</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#0a1f40"/><path d="M9 10l5 4-5 4V10z" fill="#60a5fa"/><rect x="8" y="8" width="12" height="12" rx="2.5" stroke="#60a5fa" stroke-width="1.5"/></svg></td><td class="t-name">Podcast Summarisation</td><td class="t-desc">Paste a long-form YouTube podcast link. ChatGPT returns a structured summary — key takeaways, timestamps, and the best quotes to share.</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#0a1f40"/><path d="M10 8h8M10 12h6M10 16h7" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round"/><path d="M8 8v10" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round"/></svg></td><td class="t-name">Bulk Transcript Archive</td><td class="t-desc">Drop 50 URLs at once. TokScript fetches every transcript; ChatGPT organises them into a searchable knowledge base inside the conversation.</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#3d1f08"/><path d="M8 14h12M14 9l5 5-5 5" stroke="#fb923c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="t-name">Video Download &amp; Storage</td><td class="t-desc">Ask ChatGPT to download a batch of videos with cover images in one go. Everything is saved and ready to use without leaving the conversation.</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+        <tr><td class="t-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="7" fill="#3d1f08"/><path d="M10 9l4 5-4 5M14 9l4 5-4 5" stroke="#fb923c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="t-name">Engagement Benchmarking</td><td class="t-desc">Pull stats across a creator's last 30 videos. ChatGPT calculates average engagement, spots outliers, and tells you which content format wins.</td><td class="t-check"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(0,217,180,0.12)" stroke="rgba(0,217,180,0.3)" stroke-width="1"/><path d="M6.5 10l2.5 2.5 4.5-5" stroke="#00D9B4" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ⑩ HOW IT WORKS -->
 <section id="how-it-works">
-  <img class="hiw-bg-texture" src="https://www.figma.com/api/mcp/asset/2b163638-2152-4c3b-ae07-9f6c3c50979e" alt="" />
-  <div class="hiw-inner">
-    <div class="hiw-header-block">
-      <img class="hiw-header-bg" src="https://www.figma.com/api/mcp/asset/5d25df35-2e39-4f61-9c25-4735056082a2" alt="" />
-      <div class="hiw-header-content">
-        <div class="hiw-pill">How It Works</div>
-        <h2 class="hiw-h2">Connected in 30 seconds. Useful immediately.</h2>
-        <p class="hiw-sub">Add TokScript to ChatGPT in under a minute. Copy your MCP URL, paste it into ChatGPT's tools panel, sign in — and start researching.</p>
+  <div class="hiw2-bg">
+    <img src="https://www.figma.com/api/mcp/asset/442080d3-b576-4f40-b700-688e14cd6efb" alt="" />
+  </div>
+  <div class="hiw2-inner">
+    <div class="hiw2-header">
+      <div class="tools-pill">How it works</div>
+      <h2 class="hiw2-h2">How TokScript MCP Works With ChatGPT</h2>
+      <p class="hiw2-sub">Connected in 30 seconds. Useful immediately</p>
+    </div>
+    <div class="hiw2-card">
+      <div class="hiw2-steps">
+        <div class="hiw2-step active" data-step="0">
+          <div class="hiw2-step-label">STEP 1</div>
+          <div class="hiw2-step-title">Open ChatGPT</div>
+          <div class="hiw2-step-desc">Go to chatgpt.com and start a new conversation, or open the ChatGPT desktop app.</div>
+        </div>
+        <div class="hiw2-divider"></div>
+        <div class="hiw2-step" data-step="1">
+          <div class="hiw2-step-label">STEP 2</div>
+          <div class="hiw2-step-title">Click the Tools Icon</div>
+          <div class="hiw2-step-desc">In the message input bar, click the tools or plug icon and select "Add tools" or "Connect more tools."</div>
+        </div>
+        <div class="hiw2-divider"></div>
+        <div class="hiw2-step" data-step="2">
+          <div class="hiw2-step-label">STEP 3</div>
+          <div class="hiw2-step-title">Paste Connection Link</div>
+          <div class="hiw2-step-desc">Select "Add a custom MCP" and paste the following URL: <span class="hiw2-url">https://api.tokscript.com/mcp</span></div>
+        </div>
+        <div class="hiw2-divider"></div>
+        <div class="hiw2-step" data-step="3">
+          <div class="hiw2-step-label">STEP 4</div>
+          <div class="hiw2-step-title">Authorize &amp; Connect</div>
+          <div class="hiw2-step-desc">Follow the redirect to TokScript, sign in with Google or email, and click "Allow" to finish.</div>
+        </div>
+      </div>
+      <div class="hiw2-video-wrap">
+        <div class="hiw2-video-outer">
+          <div class="hiw2-video-shadow"></div>
+          <div class="hiw2-video-frame">
+            <div class="hiw2-video-placeholder">
+              <img src="https://www.figma.com/api/mcp/asset/a78c6fa9-f46b-49d3-9faa-1f44b0bbb607" alt="" />
+            </div>
+            <div class="hiw2-video-screen-wrap">
+              <img src="https://www.figma.com/api/mcp/asset/fbbee66d-e680-449f-8865-eddd9b745b17" alt="How to Connect TokScript to ChatGPT in 30 Seconds" />
+            </div>
+            <div class="hiw2-play">
+              <img src="https://www.figma.com/api/mcp/asset/fab2c761-fe49-4f58-8ed5-6d793edebce0" alt="Play" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="hiw-cards-outer">
-      <div class="hiw-cards-row">
-        <div class="hiw-card">
-          <img class="hiw-card-bg-img" src="https://www.figma.com/api/mcp/asset/dfebd223-205f-4f36-aaea-4dd19a30f48e" alt="" />
-          <p class="hiw-step-label">Step 01</p>
-          <h3 class="hiw-card-title">Copy the URL above</h3>
-          <div class="hiw-card-img-wrap"><img src="https://www.figma.com/api/mcp/asset/d565668a-d5ae-4424-9ba6-5ae0076864f3" alt="" /></div>
-          <p class="hiw-card-desc">Hit the copy button. One URL is all it takes to link TokScript to ChatGPT.</p>
-        </div>
-        <div class="hiw-card">
-          <img class="hiw-card-bg-img" src="https://www.figma.com/api/mcp/asset/dfebd223-205f-4f36-aaea-4dd19a30f48e" alt="" />
-          <p class="hiw-step-label">Step 02</p>
-          <h3 class="hiw-card-title">Click the tools icon</h3>
-          <div class="hiw-card-img-wrap"><img src="https://www.figma.com/api/mcp/asset/4ca71d5b-3437-42af-8ff3-fa7fd8ed67d7" alt="" /></div>
-          <p class="hiw-card-desc">Open ChatGPT, click the plug icon in the message bar, add a custom MCP tool, then paste the URL.</p>
-        </div>
-        <div class="hiw-card">
-          <img class="hiw-card-bg-img" src="https://www.figma.com/api/mcp/asset/dfebd223-205f-4f36-aaea-4dd19a30f48e" alt="" />
-          <p class="hiw-step-label">Step 03</p>
-          <h3 class="hiw-card-title">Log in. Done.</h3>
-          <div class="hiw-card-img-wrap"><img src="https://www.figma.com/api/mcp/asset/298b8764-d629-431c-9f1d-4282805945dd" alt="" /></div>
-          <p class="hiw-card-desc">Sign in with your TokScript account. Your entire library is now inside ChatGPT.</p>
-        </div>
-      </div>
+    <div class="hiw2-verify">
+      <p class="hiw2-verify-title">How to verify it works</p>
+      <p class="hiw2-verify-desc">Start a new conversation in ChatGPT and paste any TikTok, Instagram, or YouTube link. Ask ChatGPT to transcribe it. If you receive a transcript and engagement stats, your connection is active.</p>
     </div>
-    <div class="hiw-cta">
-      <p class="hiw-cta-text">Don't have an account?</p>
-      <a href="https://tokscript.com/pricing" class="hiw-cta-btn">Start Free Today</a>
+    <div class="hiw2-cta">
+      <button class="tiktok-cta-btn" style="width:146px;font-size:14px;">Connect Now</button>
+      <button class="hiw2-btn-secondary">Full setup guide with screenshots</button>
     </div>
   </div>
 </section>
@@ -575,44 +1185,82 @@
 
 <!-- ⑩ PRICING -->
 <section id="pricing">
-  <div class="pricing-inner">
-    <div class="pricing-header">
-      <div class="sec-pill">Pricing</div>
-      <h2 class="sec-h2">Free to connect. Free to start.</h2>
-      <p class="sec-sub">Upgrade when you need more.</p>
+  <div class="pr-bg">
+    <img src="https://www.figma.com/api/mcp/asset/768d3d87-7e54-4359-bdea-6bb4e4f53fa5" alt="" />
+  </div>
+  <div class="pr-inner">
+    <div class="pr-header">
+      <div class="tools-pill">Pricing</div>
+      <h2 class="pr-h2">Simple, Transparent Pricing</h2>
+      <p class="pr-sub">Pick a plan that fits your workflow. No hidden fees, no surprises — just fast, accurate transcripts whenever you need them.</p>
     </div>
-    <div class="pricing-grid">
-      <div class="pricing-card free">
-        <div class="pricing-plan-name">Free Plan</div>
-        <div>
-          <div class="pricing-amount">$0</div>
-          <div class="pricing-alt">No credit card required. No time limit.</div>
+    <div class="pr-outer">
+      <div class="pr-cards">
+        <div class="pr-card">
+          <p class="pr-plan-name">Free Plan</p>
+          <div class="pr-price-row">
+            <span class="pr-amount">$0</span>
+            <span class="pr-period">forever</span>
+          </div>
+          <p class="pr-tagline">For testing the basics.</p>
+          <div class="pr-divider"></div>
+          <p class="pr-section-label">Including</p>
+          <ul class="pr-features">
+            <li><span class="pr-star">✦</span>5 transcripts per day</li>
+            <li><span class="pr-star">✦</span>TikTok, Reels &amp; Shorts</li>
+            <li><span class="pr-star">✦</span>Basic Chrome Extension</li>
+          </ul>
+          <p class="pr-section-label pr-not-label">Not Included</p>
+          <ul class="pr-features pr-excluded">
+            <li><span class="pr-cross">✕</span>AI Agents</li>
+            <li><span class="pr-cross">✕</span>Bulk Import</li>
+          </ul>
+          <div class="pr-spacer"></div>
+          <button class="pr-btn pr-btn-ghost">Select Plan</button>
         </div>
-        <div class="pricing-divider"></div>
-        <div class="pricing-features">
-          <div class="pricing-feat"><span class="pricing-check">✓</span> 5 transcriptions per day through ChatGPT</div>
-          <div class="pricing-feat"><span class="pricing-check">✓</span> TikTok, Instagram Reels, YouTube Shorts &amp; YouTube</div>
-          <div class="pricing-feat"><span class="pricing-check">✓</span> No credit card required</div>
+        <div class="pr-card pr-card-featured">
+          <div class="pr-badge">Recommended · Saves $81</div>
+          <p class="pr-plan-name">Annual Plan</p>
+          <div class="pr-price-row">
+            <span class="pr-amount">$39</span>
+            <span class="pr-period">/year</span>
+          </div>
+          <p class="pr-sub-price">Just $3.25 / month</p>
+          <p class="pr-tagline">Serious creators wanting the best value.</p>
+          <div class="pr-divider"></div>
+          <p class="pr-section-label">Including</p>
+          <ul class="pr-features">
+            <li><span class="pr-star">✦</span>Viral Hook Generator</li>
+            <li><span class="pr-star">✦</span>Viral Script Writer</li>
+            <li><span class="pr-star">✦</span>Virality Explainer</li>
+            <li><span class="pr-star">✦</span>Unlimited transcripts</li>
+            <li><span class="pr-star">✦</span>Bulk import (50 videos)</li>
+            <li><span class="pr-star">✦</span>All platforms supported</li>
+            <li><span class="pr-star">✦</span>HD downloads (no watermark)</li>
+          </ul>
+          <div class="pr-spacer"></div>
+          <button class="pr-btn pr-btn-white">Select Plan</button>
         </div>
-        <a href="https://tokscript.com/pricing" class="pricing-cta-btn free">Start Free</a>
-      </div>
-      <div class="pricing-card pro">
-        <div class="pricing-plan-name pro">Pro Plan</div>
-        <div>
-          <div class="pricing-amount">$39<span class="pricing-period">/year</span></div>
-          <div class="pricing-alt">or $10/month</div>
+        <div class="pr-card">
+          <p class="pr-plan-name">Monthly Plan</p>
+          <div class="pr-price-row">
+            <span class="pr-amount">$10</span>
+            <span class="pr-period">/month</span>
+          </div>
+          <p class="pr-sub-price">$120 billed per year</p>
+          <p class="pr-tagline">Full power with flexible billing.</p>
+          <div class="pr-divider"></div>
+          <p class="pr-section-label">Including</p>
+          <ul class="pr-features">
+            <li><span class="pr-star">✦</span>All 3 AI Agents (unlimited)</li>
+            <li><span class="pr-star">✦</span>Unlimited transcripts</li>
+            <li><span class="pr-star">✦</span>Bulk import (50 videos)</li>
+            <li><span class="pr-star">✦</span>All platforms supported</li>
+            <li><span class="pr-star">✦</span>HD downloads (no watermark)</li>
+          </ul>
+          <div class="pr-spacer"></div>
+          <button class="pr-btn pr-btn-ghost">Select Plan</button>
         </div>
-        <div class="pricing-divider"></div>
-        <div class="pricing-features">
-          <div class="pricing-feat"><span class="pricing-check">✓</span> Unlimited transcriptions across every platform</div>
-          <div class="pricing-feat"><span class="pricing-check">✓</span> Bulk processing — up to 50 videos per message</div>
-          <div class="pricing-feat"><span class="pricing-check">✓</span> HD video &amp; image downloads (no watermark)</div>
-          <div class="pricing-feat"><span class="pricing-check">✓</span> Full library access and search</div>
-          <div class="pricing-feat"><span class="pricing-check">✓</span> Creator profile lookups</div>
-          <div class="pricing-feat"><span class="pricing-check">✓</span> Collection &amp; playlist imports (up to 3,000 videos)</div>
-          <div class="pricing-feat"><span class="pricing-check">✓</span> Priority support</div>
-        </div>
-        <a href="https://tokscript.com/pricing" class="pricing-cta-btn pro">Start Free</a>
       </div>
     </div>
   </div>
@@ -627,15 +1275,14 @@
     </div>
     <div class="faq-list">
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What platforms does TokScript support inside ChatGPT? <span class="faq-icon">+</span></button><div class="faq-a">TokScript works with four platforms through ChatGPT: TikTok, Instagram Reels, YouTube Shorts, and full-length YouTube videos. You can transcribe, pull stats, and analyze content from any of them in the same conversation.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I connect TokScript to ChatGPT? <span class="faq-icon">+</span></button><div class="faq-a">Open ChatGPT, click the tools icon, and search for TokScript or add it as an MCP tool using this connection link: <a href="https://api.tokscript.com/mcp">https://api.tokscript.com/mcp</a>. Sign in with your TokScript account and you're connected in about 30 seconds.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I connect TokScript to ChatGPT? <span class="faq-icon">+</span></button><div class="faq-a">Open ChatGPT, click the tools icon in the message bar, select "Add a custom MCP," and paste this connection link: <a href="https://api.tokscript.com/mcp">https://api.tokscript.com/mcp</a>. Sign in with your TokScript account and you're connected. The whole thing takes about 30 seconds.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do I need a paid TokScript account? <span class="faq-icon">+</span></button><div class="faq-a">No. The free plan gives you 5 transcriptions per day through ChatGPT. That includes all four platforms. If you need unlimited access, bulk processing, and video downloads, the Pro plan is $39/year.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I transcribe full-length YouTube videos, not just Shorts? <span class="faq-icon">+</span></button><div class="faq-a">Yes. TokScript supports both YouTube Shorts and full-length YouTube videos of any duration. Paste a 10-minute tutorial, a 45-minute podcast, or an hour-long conference talk and get the complete transcript back in seconds.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does this work with ChatGPT's free plan? <span class="faq-icon">+</span></button><div class="faq-a">You can use TokScript with any ChatGPT plan that supports MCP connectors. You also need a TokScript account (the free tier works) and the connector set up. Check ChatGPT's current plan features to confirm MCP support is included.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How many videos can I process at once? <span class="faq-icon">+</span></button><div class="faq-a">With bulk transcription, you can send up to 50 video links in a single message. For TikTok collection imports, you can bring in up to 3,000 videos from a single collection or playlist.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I download videos from all platforms? <span class="faq-icon">+</span></button><div class="faq-a">Video downloads are currently available for TikTok and Instagram content. YouTube videos cannot be downloaded due to platform restrictions. Transcription and stats work across all four platforms.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I mix platforms in the same conversation? <span class="faq-icon">+</span></button><div class="faq-a">Yes. Drop a TikTok link, an Instagram Reel, a YouTube Short, and a full YouTube video into the same conversation. ChatGPT pulls data from all of them through TokScript and can compare content across all four platforms simultaneously.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does this work on ChatGPT's mobile app? <span class="faq-icon">+</span></button><div class="faq-a">MCP connectors are currently supported on ChatGPT's web and desktop interfaces. Mobile support depends on OpenAI's rollout of MCP features to the mobile app. We'll update this page as mobile support becomes available.</div></div>
-      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What is MCP? <span class="faq-icon">+</span></button><div class="faq-a">MCP stands for Model Context Protocol. It's the technology that lets ChatGPT connect directly to external tools like TokScript. You don't need to understand MCP to use it — just add the connection link and you're set.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I mix platforms in the same conversation? <span class="faq-icon">+</span></button><div class="faq-a">Yes. Drop a TikTok link, an Instagram Reel, a YouTube Short, and a full YouTube video into the same conversation. ChatGPT pulls data from all of them through TokScript. Ask it to compare content across platforms or build reports that span all four.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Does this work on ChatGPT Web and the ChatGPT app? <span class="faq-icon">+</span></button><div class="faq-a">Yes. The TokScript connector works on ChatGPT's web interface at chatgpt.com and the ChatGPT desktop and mobile apps. Same connection link, same features, same experience.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What is MCP? <span class="faq-icon">+</span></button><div class="faq-a">MCP stands for Model Context Protocol. It's the technology that lets ChatGPT connect directly to external tools like TokScript. You don't need to understand MCP to use it — just paste the connection link and you're set.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">I already use TokScript. Will my saved library be accessible? <span class="faq-icon">+</span></button><div class="faq-a">Yes. Every video you've ever scanned on TokScript is searchable through ChatGPT once you connect. Your entire library, all your collections, all your saved transcripts — it all syncs automatically.</div></div>
       <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">I need help getting set up. Where do I go? <span class="faq-icon">+</span></button><div class="faq-a">We have a full documentation center at <a href="https://feedback.tokscript.com/help/collections/claude-and-chatgpt-integration-mcp">feedback.tokscript.com/help</a>. If that doesn't cover it, email <a href="mailto:support@tokscript.com">support@tokscript.com</a> and we'll help you directly.</div></div>
     </div>
@@ -679,11 +1326,11 @@
     <div class="ft-nav">
       <div class="ft-nav-col">
         <span class="ft-nav-head">Product</span>
-        <div class="ft-nav-links"><a href="#">Features</a><a href="#">Pricing</a><a href="#">API</a><a href="index.html">Integrations</a><a href="#">Legal</a></div>
+        <div class="ft-nav-links"><a href="#">Features</a><a href="/pricing">Pricing</a><a href="#">API</a><a href="/mcp">Integrations</a><a href="#">Legal</a></div>
       </div>
       <div class="ft-nav-col">
         <span class="ft-nav-head">MCP</span>
-        <div class="ft-nav-links"><a href="index.html">Overview</a><a href="claude.html">Claude</a><a href="chatgpt.html">ChatGPT</a></div>
+        <div class="ft-nav-links"><a href="/mcp">Overview</a><a href="/claude">Claude</a><a href="/chatgpt">ChatGPT</a></div>
       </div>
       <div class="ft-nav-col">
         <span class="ft-nav-head">Company</span>
@@ -702,12 +1349,19 @@
       <span class="ft-copyright">© 2025 TokScript. All rights reserved.</span>
     </div>
     <div class="ft-disclaimer">
-      <p><strong style="color:#9ca3af;">LEGAL DISCLAIMER:</strong> <span style="color:#555;">Tokscript is not affiliated with, endorsed by, or sponsored by TikTok, TikTok USDS Joint Venture LLC, ByteDance, Instagram, Meta, YouTube, or Google. All trademarks belong to their respective owners.</span></p>
+      <p><strong style="color:#9ca3af;">LEGAL DISCLAIMER:</strong> <span style="color:#555;">Tokscript is not affiliated with, endorsed by, or sponsored by TikTok, TikTok USDS Joint Venture LLC, ByteDance, Instagram, Meta, YouTube, Google, or OpenAI. All trademarks belong to their respective owners.</span></p>
     </div>
   </div>
 </footer>
 
 <script>
+  document.querySelectorAll('.hiw2-step').forEach(step => {
+    step.addEventListener('click', () => {
+      document.querySelectorAll('.hiw2-step').forEach(s => s.classList.remove('active'));
+      step.classList.add('active');
+    });
+  });
+
   function toggleMobileNav() {
     document.getElementById('navHamburger').classList.toggle('open');
     document.getElementById('mobileNav').classList.toggle('open');
@@ -717,13 +1371,6 @@
     const isOpen = btn.classList.contains('open');
     document.querySelectorAll('.faq-q.open').forEach(q => { q.classList.remove('open'); q.nextElementSibling.classList.remove('open'); });
     if (!isOpen) { btn.classList.add('open'); btn.nextElementSibling.classList.add('open'); }
-  }
-  function copyUrl() {
-    const btn = document.getElementById('urlCopy');
-    navigator.clipboard.writeText('https://api.tokscript.com/mcp').catch(() => {});
-    btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M2.5 8L5.5 11L12.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Copied!';
-    btn.classList.add('ok');
-    setTimeout(() => { btn.innerHTML = '<span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;"><img src="https://www.figma.com/api/mcp/asset/07184b29-b259-4524-a9ff-5945239d4623" alt="" style="width:15px;height:15px;object-fit:contain;display:block;" /></span> Copy'; btn.classList.remove('ok'); }, 2000);
   }
   function copyCtaUrl(btn) {
     navigator.clipboard.writeText('https://api.tokscript.com/mcp').catch(() => {});
