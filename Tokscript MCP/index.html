@@ -60,6 +60,32 @@
       box-shadow: 0 0 8px rgba(0,217,180,.8), 0 0 16px rgba(0,217,180,.4);
     }
     .nav-actions { display: flex; align-items: center; gap: 10px; }
+
+    /* ── Nav Dropdown ── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+    .nav-dropdown > a::before {
+      content: ''; display: inline-block; width: 0; height: 0;
+      border-left: 4px solid transparent; border-right: 4px solid transparent;
+      border-top: 4px solid rgba(255,255,255,.6); transition: transform .2s;
+      margin-left: 2px; order: 2;
+    }
+    .nav-dropdown:hover > a::before { transform: rotate(180deg); border-top-color: #fff; }
+    .nav-dropdown-menu {
+      display: none; position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%); padding-top: 14px;
+      background: rgba(18,18,18,.96); backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.1); border-radius: 12px;
+      padding: 6px; min-width: 140px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.5);
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: block; padding: 9px 14px; border-radius: 8px;
+      font-size: 13px; color: rgba(255,255,255,.8); white-space: nowrap;
+      transition: background .15s, color .15s;
+    }
+    .nav-dropdown-menu a:hover { background: rgba(255,255,255,.07); color: #fff; }
     .btn-ghost { height: 38px; padding: 0 18px; border: 1px solid rgba(255,255,255,.2); border-radius: 14px; background: transparent; color: var(--white); font-size: 14px; font-weight: 500; transition: border-color .2s, background .2s; }
     .btn-ghost:hover { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.05); }
     .btn-solid { height: 36px; padding: 0 20px; background: var(--white); border: none; border-radius: 14px; color: #0d0d0d; font-size: 14px; font-weight: 600; transition: opacity .2s; }
@@ -1499,7 +1525,13 @@
     <a href="#">Home</a>
     <a href="#">Features</a>
     <a href="#">Pricing</a>
-    <a href="#" class="active">MCP</a>
+    <div class="nav-dropdown">
+      <a href="#" class="active">MCP</a>
+      <div class="nav-dropdown-menu">
+        <a href="claude.html">Claude</a>
+        <a href="chatgpt.html">ChatGPT</a>
+      </div>
+    </div>
     <a href="#">FAQs</a>
     <a href="#">Affiliates</a>
   </div>
@@ -1518,6 +1550,8 @@
   <a href="#">Features</a>
   <a href="#">Pricing</a>
   <a href="#" class="active">MCP</a>
+  <a href="claude.html" style="padding-left:20px;font-size:13px;opacity:.75;">↳ Claude</a>
+  <a href="chatgpt.html" style="padding-left:20px;font-size:13px;opacity:.75;">↳ ChatGPT</a>
   <a href="#">FAQs</a>
   <a href="#">Affiliates</a>
   <div class="mobile-nav-actions">
