@@ -481,9 +481,6 @@
       .wc-cards-row { grid-template-columns: 1fr; }
       .plat-features-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
-      .who-cards-outer { height: auto; display: flex; flex-direction: column; gap: 12px; padding: 12px; }
-      .who-card { position: relative !important; left: 0 !important; top: 0 !important; width: 100% !important; height: 340px !important; border-radius: 16px; }
-      .who-card-img-lg { width: calc(100% - 30px) !important; }
       .ctap-deco-left, .ctap-deco-right { display: none; }
       .ctap-content { padding: 60px 32px 56px; }
       .ctap-title { font-size: clamp(36px, 7vw, 64px); }
@@ -537,12 +534,12 @@
       #problem-what-changes { padding: 60px 20px; }
       .pwc-inner { gap: 72px; }
       .pwc-row { flex-direction: column !important; gap: 36px; align-items: stretch; }
-      .pwc-card-wrap { width: 100%; height: auto; aspect-ratio: 614 / 500; flex-shrink: unset; }
+      .pwc-card-wrap { width: 100%; height: auto; aspect-ratio: 614 / 500; flex-shrink: unset; backdrop-filter: none; }
       .pwc-h2 { font-size: clamp(26px, 5vw, 36px); }
       .pwc-desc { font-size: 16px; }
       .pwc-list-item { font-size: 16px; }
 
-      /* TikTok / Instagram / YouTube grid → vertical stack */
+      /* TikTok / Instagram / YouTube grid → vertical flex stack */
       .tiktok-grid-outer {
         height: auto;
         display: flex;
@@ -552,44 +549,86 @@
         backdrop-filter: none;
         background: #141414;
       }
+      /* Convert each card to a vertical flow layout */
       .tg-card {
         position: relative !important;
-        left: 0 !important;
-        top: 0 !important;
-        width: 100% !important;
-        height: auto !important;
-        min-height: 340px;
+        left: 0 !important; top: 0 !important;
+        width: 100% !important; height: auto !important;
         backdrop-filter: none;
         background: #1a1a1a;
-        padding-bottom: 60px;
-      }
-      /* stretch the card bg image to fill full width */
-      .tg-card-bg {
-        position: absolute;
-        left: 0;
-        transform: none;
-        width: 100%;
-        height: 220px;
-        object-fit: cover;
-      }
-      /* content image area */
-      .tg-card-content {
-        position: absolute;
-        left: 15px;
-        right: 15px;
-        top: 46px;
-        height: 210px;
+        display: flex;
+        flex-direction: column;
         overflow: hidden;
       }
-      /* description sits naturally below content */
+      /* hide the decorative gradient bg — not needed in flow layout */
+      .tg-card-bg { display: none; }
+      /* title becomes first in flow */
+      .tg-card-title {
+        position: static;
+        padding: 16px 16px 10px;
+        text-align: center;
+        font-size: 14px;
+      }
+      /* screenshot fills full width */
+      .tg-card-content {
+        position: static;
+        left: 0; right: 0; top: 0;
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+      }
+      /* description sits cleanly below the image */
       .tg-card-desc {
-        position: absolute;
-        left: 20px;
-        right: 20px;
-        bottom: 16px;
+        position: static;
+        left: 0; right: 0; bottom: 0;
+        padding: 14px 20px 18px;
+        text-align: center;
       }
       .tiktok-header { padding-top: 120px; width: 100%; }
       .tiktok-h2 { font-size: clamp(22px, 5vw, 36px); }
+
+      /* Who section cards → same flow treatment */
+      .who-cards-outer {
+        height: auto;
+        display: flex; flex-direction: column;
+        gap: 12px; padding: 12px;
+        backdrop-filter: none;
+        background: #141414;
+      }
+      .who-card {
+        position: relative !important;
+        left: 0 !important; top: 0 !important;
+        width: 100% !important; height: auto !important;
+        display: flex; flex-direction: column;
+        overflow: hidden;
+        backdrop-filter: none;
+      }
+      .who-card-grid-bg { display: none; }
+      .who-card-title {
+        position: static;
+        padding: 16px 16px 10px;
+        text-align: center;
+      }
+      .who-card-img {
+        position: static;
+        left: 0;
+        width: calc(100% - 30px);
+        margin: 0 15px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .who-card-img-sm { width: calc(100% - 30px); height: 200px; top: 0; }
+      .who-card-img-lg { width: calc(100% - 30px); height: 200px; top: 0; }
+      .who-card-desc {
+        position: static;
+        left: 0; right: 0; bottom: 0;
+        padding: 14px 20px 18px;
+        text-align: center;
+      }
+
+      /* Pricing — remove backdrop-filter that renders grey */
+      .pr-outer { backdrop-filter: none; background: #141414; }
+      .pr-card { backdrop-filter: none; background: #1e1e1e; }
 
       /* How It Works */
       .hiw2-card { flex-direction: column; }
@@ -629,10 +668,6 @@
       h1 { font-size: clamp(26px, 8vw, 40px); }
       .hero-sub { font-size: 14px; }
 
-      /* Tiktok grid cards taller on narrow screens */
-      .tg-card { height: 320px; }
-      .tg-card-content { height: 228px; }
-
       /* Section padding */
       #problem-what-changes { padding: 48px 16px; }
       #tiktok, #instagram, #youtube-shorts, #youtube { padding: 0 16px 60px; }
@@ -641,11 +676,6 @@
       #pricing { padding: 48px 16px; }
       #faq { padding: 48px 16px; }
       #cta-oneplan { padding: 60px 16px; }
-
-      /* Who cards */
-      .who-card { height: 300px !important; }
-      .who-card-img-sm { height: 228px !important; }
-      .who-card-img-lg { height: 228px !important; }
 
       /* Platform features → single col */
       .plat-features-grid { grid-template-columns: 1fr; }
