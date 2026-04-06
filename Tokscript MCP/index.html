@@ -149,25 +149,29 @@
     }
     .platform-icon-insta { left: 40px; }
     .platform-icon-youtube { left: 80px; transform: rotate(8.35deg); }
-    /* App card */
+    /* App card — exact Figma measurements: outer 690×212px, inner 672×193.75px */
     .hero-app-card-wrap {
       position: relative; width: 690px; max-width: calc(100% - 32px);
-      padding: 1px; border-radius: 25px;
-      background: linear-gradient(90deg, #91f6ff 0%, #c1ffff 28%, #fff 37%, #fff 57%, #c2ffff 62%, #91f6ff 100%);
+      border-radius: 24px;
+      background: linear-gradient(90deg, #91f6ff 0%, #c1ffff 27.938%, #fff 36.985%, #fff 56.626%, #c2ffff 61.823%, #91f6ff 100%);
+      padding: 9px;
     }
     .hero-app-card {
-      border-radius: 24px;
+      border-radius: 16px;
       background: linear-gradient(to bottom, #112625 0%, #161616 90%);
+      border: 1px solid rgba(0,184,178,0.28);
       overflow: hidden;
+      width: 100%;
     }
+    /* Tabs row: 41px tall, 4 equal tabs of 153.5px each */
     .app-tabs {
-      display: flex; align-items: stretch;
+      display: flex; height: 41px;
       border-bottom: 1px solid rgba(0,184,178,.18);
-      height: 41px;
     }
     .app-tab {
-      flex: 1; display: flex; align-items: center; justify-content: center;
-      gap: 6px; height: 100%; font-size: 14px; color: #d4d4d4;
+      width: 153.5px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; height: 100%; font-size: 14px; color: #d4d4d4; font-weight: 400;
       position: relative; white-space: nowrap;
     }
     .app-tab.active { color: #fff; font-weight: 600; }
@@ -175,13 +179,15 @@
       content: ''; position: absolute; bottom: 0; left: 0; right: 0;
       height: 2px; background: #95f6ff; border-radius: 6px 6px 0 0;
     }
-    .app-tab-icon { width: 16px; height: 16px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .app-tab-icon { width: 16px; height: 16px; flex-shrink: 0; }
     .app-tab-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
-    .app-tab-sep { width: 1px; background: rgba(0,0,0,.06); flex-shrink: 0; }
+    /* Text area: left:24px, top:53px (41px tabs + 12px gap), line-height 22.75px */
     .app-text-area {
-      padding: 16px 25px 0;
+      padding: 12px 24px 0;
       font-size: 14px; color: #d4d4d4; line-height: 22.75px; text-align: left;
     }
+    .app-text-area p { margin: 0; }
+    /* Bottom bar: height 56px */
     .app-bottom-bar {
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 20px; height: 56px;
@@ -191,15 +197,15 @@
       font-size: 14px; color: #d4d4d4; opacity: .6;
     }
     .app-retranslate img { width: 16px; height: 16px; display: block; }
-    .app-retranslate .chevron { width: 14px; height: 14px; }
+    .app-retranslate .chevron { width: 14px; height: 14px; display: block; }
     .app-scan-btn {
       display: flex; align-items: center; gap: 8px;
       background: #00b8b2; border: none; border-radius: 14px;
-      height: 32px; padding: 0 14px;
+      height: 32px; padding: 0 16px;
       color: #fff; font-size: 12px; font-weight: 500; font-family: var(--font);
       cursor: pointer; white-space: nowrap;
     }
-    .app-scan-btn img { width: 13px; height: 13px; display: block; }
+    .app-scan-btn img { width: 12.5px; height: 12.5px; display: block; }
     .hero-bottom-fade {
       position: absolute; left: 0; right: 0; bottom: 0; height: 200px;
       z-index: 3; pointer-events: none;
@@ -1510,55 +1516,52 @@
 
   <!-- Full-bleed background (teal atmospheric glow + beam) -->
   <div class="hero-bg-full">
-    <img src="https://www.figma.com/api/mcp/asset/1f5eab1b-90e7-4587-93cc-d5fa8ea42e7a" alt="" />
+    <img src="https://www.figma.com/api/mcp/asset/23ad80fc-9e67-4efc-9f2a-a6a88f09fe3d" alt="" />
   </div>
 
   <!-- Centred content -->
   <div class="hero-body">
     <!-- Badge -->
     <div class="badge">
-      <img src="https://www.figma.com/api/mcp/asset/ee7f0695-f060-41e5-b371-7cc465c5462b" alt="" />
+      <img src="https://www.figma.com/api/mcp/asset/1dbabe4b-35c0-453f-aee6-0f5d201ebdaf" alt="" />
       AI Powered
     </div>
 
     <h1>TikTok Transcript Generator</h1>
     <p class="hero-sub">Turn speech into text for any TikTok, Reels, and Shorts video</p>
 
-    <!-- Platform icons (TikTok / Instagram / YouTube) -->
+    <!-- Platform icons (TikTok / Instagram / YouTube) — fanned with rotation -->
     <div class="hero-platforms">
       <div class="platform-icon platform-icon-tiktok">
-        <img src="https://www.figma.com/api/mcp/asset/da72176a-4686-4720-b3fe-3b7917f63235" alt="TikTok" />
+        <img src="https://www.figma.com/api/mcp/asset/5f494ae9-58e6-4f15-8385-0f6821bc6100" alt="TikTok" />
       </div>
       <div class="platform-icon platform-icon-insta">
-        <img src="https://www.figma.com/api/mcp/asset/b0ef27f1-405f-4de9-9868-13a045c6503f" alt="Instagram" />
+        <img src="https://www.figma.com/api/mcp/asset/45636d15-257c-4c86-b42c-3caddf8f144e" alt="Instagram" />
       </div>
       <div class="platform-icon platform-icon-youtube">
-        <img src="https://www.figma.com/api/mcp/asset/af6fb251-53a8-40a8-a4dc-c311eb884d8e" alt="YouTube" />
+        <img src="https://www.figma.com/api/mcp/asset/e1f97b82-94e5-4b4f-aca3-a8623513e7ab" alt="YouTube" />
       </div>
     </div>
 
-    <!-- App UI card -->
+    <!-- App UI card — exact Figma replica -->
     <div class="hero-app-card-wrap">
       <div class="hero-app-card">
-        <!-- Tabs -->
+        <!-- Tabs: 4 × 153.5px -->
         <div class="app-tabs">
           <div class="app-tab active">
-            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/0c3042ad-d4ff-4603-a166-6d43de4bb9a3" alt="" /></div>
+            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/a0c6ccbb-147f-4b7c-a447-5e1900b957a4" alt="" /></div>
             Transcripts
           </div>
-          <div class="app-tab-sep"></div>
           <div class="app-tab">
-            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/17cb8017-2b1a-4bc3-bd9a-e7ba6a978c1a" alt="" /></div>
+            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/a16588e9-e2ba-4c70-b925-46822961f1bb" alt="" /></div>
             Videos
           </div>
-          <div class="app-tab-sep"></div>
           <div class="app-tab">
-            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/a9067b08-4a1c-44eb-9ead-c60892017a7b" alt="" /></div>
+            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/4ea476e6-8673-4ed8-804a-8a4662cbbc37" alt="" /></div>
             Collections
           </div>
-          <div class="app-tab-sep"></div>
           <div class="app-tab">
-            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/a18f3ae8-212e-4e4f-b74d-0c7ea331a3b9" alt="" /></div>
+            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/bbee42ed-2eb9-428d-b351-db2238ecd37a" alt="" /></div>
             Profiles
           </div>
         </div>
@@ -1570,12 +1573,12 @@
         <!-- Bottom bar -->
         <div class="app-bottom-bar">
           <div class="app-retranslate">
-            <img src="https://www.figma.com/api/mcp/asset/2d789bd3-77c5-47ef-99d8-f1f8dfd74126" alt="" />
+            <img src="https://www.figma.com/api/mcp/asset/38133704-f242-473d-9b0e-5e5a2d829bcc" alt="" />
             Retranslate
-            <img class="chevron" src="https://www.figma.com/api/mcp/asset/98b02f50-330d-4e5b-8021-14abcb780f6c" alt="" />
+            <img class="chevron" src="https://www.figma.com/api/mcp/asset/6ddff8d7-da2e-4f3f-84bf-3f45db7f05d7" alt="" />
           </div>
           <button class="app-scan-btn">
-            <img src="https://www.figma.com/api/mcp/asset/9ea13453-e6fb-4ef6-9dac-8610545a5f9b" alt="" />
+            <img src="https://www.figma.com/api/mcp/asset/85795818-5084-4d35-897f-0b0086335e40" alt="" />
             Scan Videos
           </button>
         </div>
