@@ -109,18 +109,11 @@
     }
     /* Flare — Figma 224:372: bright point at BOTTOM, glow upward. Bottom must equal video card top. */
     .hero-flare {
-      position: absolute; left: 50%; top: 112px;
-      transform: translateX(-50%);
+      position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
       width: 650px; height: 360px;
       pointer-events: none; z-index: 1;
-      background-image: url("data:image/svg+xml,<svg viewBox='0 0 1280 720' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='1'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(5.1346e-15 -36 64 1.935e-13 640 360)'><stop stop-color='rgba(211,255,248,1)' offset='0'/><stop stop-color='rgba(159,246,231,1)' offset='0.055288'/><stop stop-color='rgba(106,236,214,1)' offset='0.11058'/><stop stop-color='rgba(79,231,205,1)' offset='0.13822'/><stop stop-color='rgba(53,227,197,1)' offset='0.16587'/><stop stop-color='rgba(26,222,188,1)' offset='0.19351'/><stop stop-color='rgba(13,219,184,1)' offset='0.20733'/><stop stop-color='rgba(0,217,180,1)' offset='0.22115'/><stop stop-color='rgba(0,255,247,1)' offset='0.48958'/><stop stop-color='rgba(1,195,197,1)' offset='0.61719'/><stop stop-color='rgba(1,136,147,1)' offset='0.74479'/><stop stop-color='rgba(1,106,122,1)' offset='0.80859'/><stop stop-color='rgba(1,76,97,1)' offset='0.8724'/><stop stop-color='rgba(2,47,72,1)' offset='0.9362'/><stop stop-color='rgba(2,17,47,1)' offset='1'/></radialGradient></defs></svg>");
-      -webkit-mask-image: url("assets/fad32eca-6a99-401c-aa2a-a8eff9b92cc4.svg"), url("assets/e0fea53e-4ec7-4c51-ada4-ab57a39855c5.png");
-      mask-image: url("assets/fad32eca-6a99-401c-aa2a-a8eff9b92cc4.svg"), url("assets/e0fea53e-4ec7-4c51-ada4-ab57a39855c5.png");
-      -webkit-mask-position: 0px 0px, 0px 0px;
-      mask-position: 0px 0px, 0px 0px;
-      -webkit-mask-size: 100% 100%, 100% 100%;
-      mask-size: 100% 100%, 100% 100%;
     }
+    .hero-flare img { width: 100%; height: 100%; display: block; object-fit: cover; }
     /* Floating AI logos */
     .hero-claude-logo {
       position: absolute; left: 75px; top: 92px;
@@ -1574,7 +1567,7 @@
   <img class="hero-chatgpt-logo" src="assets/243ddba0-c279-40c5-8308-904e80c37a08.png" alt="ChatGPT" />
 
   <!-- Flare — Figma 224:372: bright point at bottom, glow shines upward, bottom sits on top of video card -->
-  <div class="hero-flare"></div>
+  <div class="hero-flare"><img src="assets/3bda2b4c-14e2-478e-9737-3c6a9b613895.png" alt="" /></div>
 
   <!-- Main content -->
   <div class="hero-body">
