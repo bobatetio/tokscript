@@ -188,34 +188,32 @@
 
     /* ── PLATFORM TAB BAR ── */
     #platform-tabs {
-      background: #0d0d0d; padding: 0 20px;
-      display: flex; justify-content: center;
+      background: #0d0d0d; padding: 16px 20px;
+      display: flex; justify-content: center; align-items: center;
       position: sticky; top: 68px; z-index: 200;
       border-bottom: 1px solid rgba(255,255,255,.07);
       isolation: isolate;
     }
     .plat-tab-list {
-      display: flex; align-items: stretch; gap: 0;
-      max-width: 1100px; width: 100%;
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px; border-radius: 79px;
+      border: 1.04px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(20.8px); -webkit-backdrop-filter: blur(20.8px);
+      background: radial-gradient(ellipse at bottom right, rgba(255,255,255,0.09) 0%, rgba(128,128,128,0.045) 50%, transparent 100%);
     }
     .plat-tab {
-      flex: 1; display: flex; align-items: center; justify-content: center; gap: 9px;
-      padding: 18px 12px; background: none; border: none; cursor: pointer;
-      font-family: var(--font); font-size: 14px; font-weight: 500;
-      color: rgba(255,255,255,.45); transition: color .2s;
-      position: relative; white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 8px;
+      height: 36px; padding: 0 18px; border-radius: 64px;
+      border: 1.04px solid transparent; background: transparent; cursor: pointer;
+      font-family: var(--font); font-size: 12.8px; font-weight: 600;
+      color: rgba(255,255,255,0.48); white-space: nowrap;
+      transition: color .2s, background .2s, border-color .2s;
     }
-    .plat-tab img { width: 18px; height: 18px; display: block; flex-shrink: 0; opacity: .5; transition: opacity .2s; }
+    .plat-tab img { width: 16px; height: 16px; display: block; flex-shrink: 0; opacity: .5; transition: opacity .2s; }
     .plat-tab:hover { color: rgba(255,255,255,.8); }
     .plat-tab:hover img { opacity: .8; }
-    .plat-tab.active { color: #fff; }
+    .plat-tab.active { border-color: #12d8b6; background: linear-gradient(135deg, rgba(18,226,219,1) 0%, rgba(14,169,164,0.75) 25%, rgba(9,113,109,0.5) 50%, rgba(5,56,55,0.25) 75%, transparent 100%); color: #00f7ef; }
     .plat-tab.active img { opacity: 1; }
-    .plat-tab.active::after {
-      content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px;
-      border-radius: 2px 2px 0 0;
-      background: linear-gradient(90deg, transparent, #00D9B4, transparent);
-      box-shadow: 0 0 8px rgba(0,217,180,.8);
-    }
     .plat-panel { display: none; }
     .plat-panel.active { display: block; }
 
@@ -586,11 +584,11 @@
       .hero-float-icon { display: none; }
       .hero-flare { display: none; }
       .hero-play-btn { display: none; }
-      #platform-tabs { padding: 0; }
-      .plat-tab-list { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; flex-wrap: nowrap; }
-      .plat-tab-list::-webkit-scrollbar { display: none; }
-      .plat-tab { font-size: 12px; padding: 14px 16px; gap: 6px; flex: none; min-width: max-content; }
-      .plat-tab img { width: 15px; height: 15px; }
+      #platform-tabs { padding: 12px 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      #platform-tabs::-webkit-scrollbar { display: none; }
+      .plat-tab-list { flex-wrap: nowrap; }
+      .plat-tab { font-size: 11.5px; padding: 0 14px; height: 32px; gap: 6px; }
+      .plat-tab img { width: 14px; height: 14px; }
 
       #problem-what-changes { padding: 60px 20px; }
       .pwc-inner { gap: 72px; }
