@@ -586,8 +586,11 @@
       .hero-float-icon { display: none; }
       .hero-flare { display: none; }
       .hero-play-btn { display: none; }
-      .plat-tab { font-size: 12px; padding: 14px 8px; gap: 6px; }
-      .plat-tab img { width: 14px; height: 14px; }
+      #platform-tabs { padding: 0; }
+      .plat-tab-list { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; flex-wrap: nowrap; }
+      .plat-tab-list::-webkit-scrollbar { display: none; }
+      .plat-tab { font-size: 12px; padding: 14px 16px; gap: 6px; flex: none; min-width: max-content; }
+      .plat-tab img { width: 15px; height: 15px; }
 
       #problem-what-changes { padding: 60px 20px; }
       .pwc-inner { gap: 72px; }
@@ -656,6 +659,11 @@
       .sec-h2 { font-size: clamp(22px, 7vw, 36px); }
       .hiw2-h2, .who-h2, .tiktok-h2 { font-size: clamp(22px, 7vw, 34px); }
       .pwc-h2 { font-size: clamp(22px, 7vw, 34px); }
+
+      /* Platform tabs — icon only, equal width */
+      .plat-tab { flex: 1; min-width: unset; padding: 12px 8px; gap: 0; justify-content: center; }
+      .plat-tab-label { display: none; }
+      .plat-tab img { width: 18px; height: 18px; }
 
       .hero-body { top: 92px; }
       .badge { font-size: 10px; }
@@ -780,19 +788,19 @@
   <div class="plat-tab-list">
     <button class="plat-tab active" data-tab="tiktok">
       <img src="https://www.figma.com/api/mcp/asset/f85f5529-e7c3-4d63-8a4f-298d2766561c" alt="" />
-      TikTok
+      <span class="plat-tab-label">TikTok</span>
     </button>
     <button class="plat-tab" data-tab="instagram">
       <img src="https://www.figma.com/api/mcp/asset/b91671e7-e22e-4285-b914-368b2944cc9b" alt="" />
-      Instagram Reels
+      <span class="plat-tab-label">Instagram Reels</span>
     </button>
     <button class="plat-tab" data-tab="youtube-shorts">
       <img src="https://www.figma.com/api/mcp/asset/5c0b48b6-f7d7-4441-84c4-f8b071ac506a" alt="" />
-      YouTube Shorts
+      <span class="plat-tab-label">YouTube Shorts</span>
     </button>
     <button class="plat-tab" data-tab="youtube">
       <img src="https://www.figma.com/api/mcp/asset/ef0da6fb-9aba-4632-876b-916cbfa8ae20" alt="" />
-      YouTube
+      <span class="plat-tab-label">YouTube</span>
     </button>
   </div>
 </div>
