@@ -113,8 +113,14 @@
       transform: translateX(-50%);
       width: 650px; height: 360px;
       pointer-events: none; z-index: 1;
+      background-image: url("data:image/svg+xml,<svg viewBox='0 0 1280 720' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='1'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(5.1346e-15 -36 64 1.935e-13 640 360)'><stop stop-color='rgba(211,255,248,1)' offset='0'/><stop stop-color='rgba(159,246,231,1)' offset='0.055288'/><stop stop-color='rgba(106,236,214,1)' offset='0.11058'/><stop stop-color='rgba(79,231,205,1)' offset='0.13822'/><stop stop-color='rgba(53,227,197,1)' offset='0.16587'/><stop stop-color='rgba(26,222,188,1)' offset='0.19351'/><stop stop-color='rgba(13,219,184,1)' offset='0.20733'/><stop stop-color='rgba(0,217,180,1)' offset='0.22115'/><stop stop-color='rgba(0,255,247,1)' offset='0.48958'/><stop stop-color='rgba(1,195,197,1)' offset='0.61719'/><stop stop-color='rgba(1,136,147,1)' offset='0.74479'/><stop stop-color='rgba(1,106,122,1)' offset='0.80859'/><stop stop-color='rgba(1,76,97,1)' offset='0.8724'/><stop stop-color='rgba(2,47,72,1)' offset='0.9362'/><stop stop-color='rgba(2,17,47,1)' offset='1'/></radialGradient></defs></svg>");
+      -webkit-mask-image: url("assets/83ddd6cf-1cb3-40ab-b437-33c5d1c727a7.svg"), url("assets/e67e2518-8ea8-4779-849c-18f9e8a34ffc.png");
+      mask-image: url("assets/83ddd6cf-1cb3-40ab-b437-33c5d1c727a7.svg"), url("assets/e67e2518-8ea8-4779-849c-18f9e8a34ffc.png");
+      -webkit-mask-position: 0px 0px, 0px 0px;
+      mask-position: 0px 0px, 0px 0px;
+      -webkit-mask-size: 100% 100%, 100% 100%;
+      mask-size: 100% 100%, 100% 100%;
     }
-    .hero-flare img { width: 100%; height: 100%; display: block; object-fit: cover; }
     /* Floating AI logos */
     .hero-claude-logo {
       position: absolute; left: 75px; top: 92px;
@@ -1568,9 +1574,7 @@
   <img class="hero-chatgpt-logo" src="assets/a90e54e5-68c6-482c-8b8c-517484c4dc46.png" alt="ChatGPT" />
 
   <!-- Flare — Figma 224:372: bright point at bottom, glow shines upward, bottom sits on top of video card -->
-  <div class="hero-flare">
-    <img src="https://www.figma.com/api/mcp/asset/13e28e53-838d-44e8-adb7-910cbe6902cc" alt="" />
-  </div>
+  <div class="hero-flare"></div>
 
   <!-- Main content -->
   <div class="hero-body">
@@ -2176,13 +2180,13 @@
             <div class="ba-card ba-before">
               <img class="ba-card-bg" src="assets/9aba4aef-6fea-460e-99e8-071cfe46f697.png" alt="" />
               <span class="ba-card-label">Before</span>
-              <img class="ba-card-img" src="assets/9aba4aef-6fea-460e-99e8-071cfe46f697.png" alt="Before" />
+              <img class="ba-card-img" src="assets/d68bf869-2b9c-480c-ab86-dee21d840082.png" alt="Before" />
               <p class="ba-card-desc">Open 10 tabs, watch videos, take notes by hand, try to spot patterns across creators in your niche.</p>
             </div>
             <div class="ba-card ba-after">
               <img class="ba-card-bg" src="assets/9aba4aef-6fea-460e-99e8-071cfe46f697.png" alt="" />
               <span class="ba-card-label">After</span>
-              <img class="ba-card-img" src="assets/9aba4aef-6fea-460e-99e8-071cfe46f697.png" alt="After" />
+              <img class="ba-card-img" src="assets/bdb63f45-3476-463b-9dbe-cb6277d68344.png" alt="After" />
               <p class="ba-card-desc">"Research the top 5 creators in my niche and tell me what they have in common." Done in under 30 seconds.</p>
             </div>
           </div>
@@ -2195,13 +2199,13 @@
             <div class="ba-card ba-before">
               <img class="ba-card-bg" src="assets/9aba4aef-6fea-460e-99e8-071cfe46f697.png" alt="" />
               <span class="ba-card-label">Before</span>
-              <img class="ba-card-img" src="https://www.figma.com/api/mcp/asset/e1af7437-a85d-4281-a6c5-bf87bb34e720" alt="Before" />
+              <img class="ba-card-img" src="assets/9b7c2879-0cd2-4da2-8268-272e3ab3fa45.png" alt="Before" />
               <p class="ba-card-desc">Try to remember what made your last video work, guess at a hook, write something, delete it, start over.</p>
             </div>
             <div class="ba-card ba-after">
               <img class="ba-card-bg" src="assets/9aba4aef-6fea-460e-99e8-071cfe46f697.png" alt="" />
               <span class="ba-card-label">After</span>
-              <img class="ba-card-img" src="https://www.figma.com/api/mcp/asset/0d6bcb7d-4da4-4985-afd4-ef2076d1d359" alt="After" />
+              <img class="ba-card-img" src="assets/09a17d1f-4d13-4bb0-849d-506574e1bd07.png" alt="After" />
               <p class="ba-card-desc">Pull your top 5 scripts, generate 20 hooks, pick the best one, and have a full script written in one conversation.</p>
             </div>
           </div>
@@ -2214,13 +2218,13 @@
             <div class="ba-card ba-before">
               <img class="ba-card-bg" src="assets/9aba4aef-6fea-460e-99e8-071cfe46f697.png" alt="" />
               <span class="ba-card-label">Before</span>
-              <img class="ba-card-img" src="https://www.figma.com/api/mcp/asset/170382c5-71c2-4066-94c6-84851b6378a8" alt="Before" />
+              <img class="ba-card-img" src="assets/ff0e6b87-092c-4217-95bb-afc2a643347e.png" alt="Before" />
               <p class="ba-card-desc">Spend hours writing briefs with no real data, guessing at structures that might work based on intuition alone.</p>
             </div>
             <div class="ba-card ba-after">
               <img class="ba-card-bg" src="assets/9aba4aef-6fea-460e-99e8-071cfe46f697.png" alt="" />
               <span class="ba-card-label">After</span>
-              <img class="ba-card-img" src="https://www.figma.com/api/mcp/asset/0e95f449-37bd-4a85-b834-b150231ab057" alt="After" />
+              <img class="ba-card-img" src="assets/12eee23c-35e5-47a8-8eb0-b58ee43bf7b8.png" alt="After" />
               <p class="ba-card-desc">Analyze top-performing content in your niche and get a proven brief structure ready in 10 minutes.</p>
             </div>
           </div>
