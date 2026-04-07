@@ -86,7 +86,7 @@
     .mobile-nav-actions .btn-ghost, .mobile-nav-actions .btn-solid { flex: 1; }
 
     /* ── HERO ── */
-    #hero { height: 100vh; position: relative; overflow: hidden; }
+    #hero { height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
     .hero-bg {
       position: absolute; left: 0; right: 0; top: 0;
       pointer-events: none; z-index: 0;
@@ -103,8 +103,8 @@
       object-fit: cover; display: block;
     }
     .hero-body {
-      position: absolute; left: 50%; top: calc(50vh - 80px);
-      transform: translate(-50%, -50%);
+      position: relative;
+      margin-bottom: 36px;
       width: 941px; max-width: calc(100% - 48px);
       display: flex; flex-direction: column; align-items: center;
       text-align: center; z-index: 3;
@@ -131,10 +131,8 @@
     }
     .hero-url-btn:hover { opacity: .86; }
     .hero-video {
-      position: absolute;
-      left: 50%; transform: translateX(-50%);
+      position: relative;
       width: min(calc(100vw - 240px), 1080px);
-      top: 523px;
       aspect-ratio: 1080 / 607.5;
       background: linear-gradient(135deg, #0d1f1d 0%, #0a1714 100%);
       border: 2px solid #00d9b4; border-radius: 14px; overflow: hidden;
@@ -149,7 +147,7 @@
       z-index: 2; pointer-events: none;
     }
     .hero-play-btn {
-      position: absolute; left: 50%; top: 827px;
+      position: absolute; left: 50%; top: 50%;
       transform: translate(-50%, -50%);
       width: 72px; height: 72px; border-radius: 50%;
       background: rgba(255,255,255,.15); backdrop-filter: blur(8px);
@@ -171,6 +169,11 @@
     .float-c { animation: float-c 6.5s ease-in-out infinite; }
     .float-d { animation: float-d 9s ease-in-out infinite; }
 
+    .hero-content-wrap {
+      position: relative; z-index: 3;
+      display: flex; flex-direction: column; align-items: center;
+      width: 100%; padding-top: 64px;
+    }
     .hero-sparkles {
       position: absolute; left: 0; right: 0; bottom: 0; height: 260px;
       pointer-events: none; z-index: 3; overflow: hidden;
@@ -568,9 +571,6 @@
       .hero-flare { display: none; }
       .hero-body {
         width: calc(100% - 40px);
-        left: 50%;
-        top: 92px;
-        transform: translateX(-50%);
         align-items: center;
         text-align: center;
       }
@@ -578,7 +578,7 @@
       h1 { font-size: clamp(28px, 7vw, 48px); letter-spacing: -1px; line-height: 1.15; }
       .hero-sub { font-size: 15px; line-height: 1.7; }
       .hero-url-bar { width: 100%; max-width: 360px; }
-      .hero-video { width: calc(100% - 40px); top: auto; bottom: -20px; }
+      .hero-video { width: calc(100% - 40px); }
       .hero-video-gradient { height: 140px; }
       .hero-float-icon { display: none; }
       .hero-flare { display: none; }
@@ -751,6 +751,7 @@
   <div class="hero-float-icon float-d" style="left:20px;top:450px;width:106px;height:113px;">
     <img src="https://www.figma.com/api/mcp/asset/e82369e8-780a-4b06-9cbc-ab767d9cede7" alt="YouTube Shorts" />
   </div>
+  <div class="hero-content-wrap">
   <div class="hero-body">
     <div class="badge">
       <img src="https://www.figma.com/api/mcp/asset/57044113-e4d0-458d-8bb3-e8f48042b11e" alt="" />
@@ -768,10 +769,12 @@
   </div>
   <div class="hero-video">
     <img src="https://www.figma.com/api/mcp/asset/d60cdad1-a0fd-45ae-9d55-6172cfc96776" alt="TokScript inside ChatGPT" />
-  </div>
-  <button class="hero-play-btn" aria-label="Play demo">
+    <button class="hero-play-btn" aria-label="Play demo">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
   </button>
+    <button class="hero-play-btn" aria-label="Play demo"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></button>
+  </div>
+  </div>
   <div class="hero-video-gradient"></div>
 </section>
 

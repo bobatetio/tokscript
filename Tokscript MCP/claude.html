@@ -86,7 +86,7 @@
     .mobile-nav-actions .btn-ghost, .mobile-nav-actions .btn-solid { flex: 1; }
 
     /* ── HERO ── */
-    #hero { height: 100vh; position: relative; overflow: hidden; }
+    #hero { height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
     .hero-bg {
       position: absolute; left: 0; right: 0; top: 0;
       pointer-events: none; z-index: 0;
@@ -102,8 +102,8 @@
     }
     .hero-flare-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .hero-body {
-      position: absolute; left: 50%; top: calc(50vh - 80px);
-      transform: translate(-50%, -50%);
+      position: relative;
+      margin-bottom: 36px;
       width: 941px; max-width: calc(100% - 48px);
       display: flex; flex-direction: column; align-items: center;
       text-align: center; z-index: 3;
@@ -130,10 +130,8 @@
     }
     .hero-url-btn:hover { opacity: .86; }
     .hero-video {
-      position: absolute;
-      left: 50%; transform: translateX(-50%);
+      position: relative;
       width: min(calc(100vw - 240px), 1080px);
-      top: 523px;
       aspect-ratio: 1080 / 607.5;
       background: linear-gradient(135deg, #1a1a1a 0%, #0f1a14 100%);
       border: 2px solid #d97757; border-radius: 14px; overflow: hidden;
@@ -148,7 +146,7 @@
       z-index: 2; pointer-events: none;
     }
     .hero-play-btn {
-      position: absolute; left: 50%; top: 827px;
+      position: absolute; left: 50%; top: 50%;
       transform: translate(-50%, -50%);
       width: 72px; height: 72px; border-radius: 50%;
       background: rgba(255,255,255,.15); backdrop-filter: blur(8px);
@@ -172,6 +170,11 @@
     .float-d { animation: float-d 9s ease-in-out infinite; }
 
     /* Sparkles rising from the flare */
+    .hero-content-wrap {
+      position: relative; z-index: 3;
+      display: flex; flex-direction: column; align-items: center;
+      width: 100%; padding-top: 64px;
+    }
     .hero-sparkles {
       position: absolute; left: 0; right: 0; bottom: 0; height: 260px;
       pointer-events: none; z-index: 3; overflow: hidden;
@@ -539,7 +542,7 @@
       .hero-body { padding-top: 0; }
       .hero-ai-logo { display: none; }
       .hero-flare { display: none; }
-      .hero-video { width: calc(100% - 40px); top: auto; bottom: -20px; }
+      .hero-video { width: calc(100% - 40px); }
       .hero-video-gradient { height: 140px; }
       .hero-play-btn { display: none; }
       .hero-sparkles { display: none; }
@@ -861,6 +864,7 @@
     <img src="https://www.figma.com/api/mcp/asset/e82369e8-780a-4b06-9cbc-ab767d9cede7" alt="YouTube Shorts" />
   </div>
   <!-- Centred content -->
+  <div class="hero-content-wrap">
   <div class="hero-body">
     <div class="badge">
       <img src="https://www.figma.com/api/mcp/asset/57044113-e4d0-458d-8bb3-e8f48042b11e" alt="" />
@@ -879,6 +883,7 @@
   <!-- Video mockup -->
   <div class="hero-video">
     <img src="https://www.figma.com/api/mcp/asset/1d2a1afd-77ae-464a-9e74-b0ff3c1216f9" alt="TokScript inside Claude" />
+    <button class="hero-play-btn" aria-label="Play demo"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></button>
   </div>
   <!-- Play button sits outside the video so it's not clipped by overflow:hidden and renders at the correct viewport position -->
   <button class="hero-play-btn" aria-label="Play demo">
