@@ -60,6 +60,32 @@
       box-shadow: 0 0 8px rgba(0,217,180,.8), 0 0 16px rgba(0,217,180,.4);
     }
     .nav-actions { display: flex; align-items: center; gap: 10px; }
+
+    /* ── Nav Dropdown ── */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { display: flex; align-items: center; gap: 5px; cursor: pointer; }
+    .nav-dropdown > a::before {
+      content: ''; display: inline-block; width: 0; height: 0;
+      border-left: 4px solid transparent; border-right: 4px solid transparent;
+      border-top: 4px solid rgba(255,255,255,.6); transition: transform .2s;
+      margin-left: 2px; order: 2;
+    }
+    .nav-dropdown:hover > a::before { transform: rotate(180deg); border-top-color: #fff; }
+    .nav-dropdown-menu {
+      display: none; position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%); padding-top: 14px;
+      background: rgba(18,18,18,.96); backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.1); border-radius: 12px;
+      padding: 6px; min-width: 140px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.5);
+    }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+    .nav-dropdown-menu a {
+      display: block; padding: 9px 14px; border-radius: 8px;
+      font-size: 13px; color: rgba(255,255,255,.8); white-space: nowrap;
+      transition: background .15s, color .15s;
+    }
+    .nav-dropdown-menu a:hover { background: rgba(255,255,255,.07); color: #fff; }
     .btn-ghost { height: 38px; padding: 0 18px; border: 1px solid rgba(255,255,255,.2); border-radius: 14px; background: transparent; color: var(--white); font-size: 14px; font-weight: 500; transition: border-color .2s, background .2s; }
     .btn-ghost:hover { border-color: rgba(255,255,255,.4); background: rgba(255,255,255,.05); }
     .btn-solid { height: 36px; padding: 0 20px; background: var(--white); border: none; border-radius: 14px; color: #0d0d0d; font-size: 14px; font-weight: 600; transition: opacity .2s; }
@@ -75,152 +101,106 @@
     .sec-sub { color: var(--muted); max-width: 520px; font-size: 1rem; }
 
     /* ── HERO ── */
-    #hero { height: 100vh; position: relative; overflow: hidden; scroll-snap-align: start; }
+    #hero {
+      height: 100vh; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      scroll-snap-align: start;
+    }
+    .hero-bg-full {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    }
+    .hero-bg-full img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .hero-body {
       position: relative; z-index: 2;
-      display: flex; flex-direction: column; align-items: center; text-align: center;
-      padding-top: 12px; width: 100%;
-    }
-    /* Flare — Figma 224:372: bright point at BOTTOM, glow upward. Bottom must equal video card top. */
-    .hero-flare {
-      position: absolute; left: 50%; top: 112px;
-      transform: translateX(-50%);
-      width: 650px; height: 360px;
-      pointer-events: none; z-index: 1;
-    }
-    .hero-flare img { width: 100%; height: 100%; display: block; object-fit: cover; }
-    /* Floating AI logos */
-    .hero-claude-logo {
-      position: absolute; left: 75px; top: 92px;
-      width: 106px; height: 106px;
-      pointer-events: none; z-index: 4;
-    }
-    .hero-chatgpt-logo {
-      position: absolute; right: 48px; top: 116px;
-      width: 133px; height: 135px;
-      pointer-events: none; z-index: 4;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; width: 941px; max-width: calc(100% - 48px);
+      margin-top: -40px;
     }
     .badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: #202223; border-radius: 50px;
+      background: #fff; border-radius: 50px;
       height: 35px; padding: 0 16px 0 10px;
-      font-size: 10.9px; font-weight: 500;
-      color: #fff; margin-bottom: 10px; position: relative; z-index: 1;
+      font-size: 10.9px; font-weight: 500; color: #232323; margin-bottom: 17px;
     }
     .badge img { width: 17px; height: 17px; }
     h1 {
-      font-size: 58px; font-weight: 700; letter-spacing: -1.8px; line-height: 64px;
-      margin-bottom: 12px; position: relative; z-index: 1; color: #fff;
+      font-size: 64px; font-weight: 700; letter-spacing: -2px; line-height: 1.1;
+      margin-bottom: 0; color: #fff;
     }
-    .hero-sub { font-size: 17px; color: rgba(255,255,255,.8); max-width: 889px; margin: 0 auto 8px; position: relative; z-index: 1; line-height: 32px; font-weight: 400; }
-    /* URL bar */
-    .url-bar {
-      display: flex; align-items: center;
-      width: 507px; height: 48px;
-      background: #0d0d0d; border: 2px solid #e1dbdb; border-radius: 16px;
-      padding: 0 4px 0 16px; position: relative; z-index: 2;
+    .hero-sub {
+      font-size: 17px; color: rgba(255,255,255,.7); max-width: 700px;
+      margin: 8px auto 20px; line-height: 32px; font-weight: 400;
     }
-    .url-bar-text { flex: 1; font-size: 14px; color: #d4d4d4; font-weight: 400; white-space: nowrap; overflow: hidden; text-align: left; }
-    .url-bar-copy {
-      display: flex; align-items: center; gap: 6px;
-      height: 36px; padding: 0 16px;
-      background: #fff; border: none; border-radius: 14px;
-      color: #06091a; font-size: 14px; font-weight: 500; cursor: pointer; flex-shrink: 0;
-      font-family: var(--font); transition: opacity .2s;
+    /* Platform icons */
+    .hero-platforms {
+      position: relative; width: 142px; height: 60px; margin-bottom: 16px; flex-shrink: 0;
     }
-    .url-bar-copy:hover { opacity: .85; }
-    .url-bar-copy.ok { color: #00b694; }
-    /* Video preview card — top must equal flare bottom (112+360=472) */
-    .hero-video {
-      position: absolute; left: 50%; top: 472px;
-      transform: translateX(-50%);
-      width: calc(100% - 360px); max-width: 1080px;
-      aspect-ratio: 1080/607.5;
-      border: 2px solid #00d9b4; border-radius: 14px; overflow: hidden;
-      background: #1a1a1a;
-      box-shadow: 0 0 40px rgba(0,217,180,.06);
-      z-index: 2;
+    .hero-platforms svg {
+      position: absolute; overflow: visible;
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
     }
-    .hero-video-bg {
-      position: absolute; left: 50%; transform: translateX(-50%);
-      top: -25.75px; bottom: 21.75px;
-      aspect-ratio: 2160/1215; pointer-events: none;
+    .hero-platforms svg:not(.plat-active):hover { transform: translateY(-2px) scale(1.04); filter: brightness(1.08); }
+    /* App card — exact Figma measurements: outer 690×212px, inner 672×193.75px */
+    .hero-app-card-wrap {
+      position: relative; width: 690px; max-width: calc(100% - 32px);
+      border-radius: 24px;
+      background: linear-gradient(90deg, #91f6ff 0%, #c1ffff 27.938%, #fff 36.985%, #fff 56.626%, #c2ffff 61.823%, #91f6ff 100%);
+      padding: 9px;
     }
-    .hero-video-bg img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; max-width: none; pointer-events: none;
+    .hero-app-card {
+      border-radius: 16px;
+      background: linear-gradient(to bottom, #112625 0%, #161616 90%);
+      border: 1px solid rgba(0,184,178,0.28);
+      overflow: hidden;
+      width: 100%;
     }
-    .hero-video-glow {
-      position: absolute; inset: -14px -1px 12px -1px;
-      background: radial-gradient(ellipse 76.226px 77.068px at 539px 544.95px, rgba(0,217,180,.05) 0%, rgba(0,217,180,0) 65%);
+    /* Tabs row: 41px tall, 4 equal tabs of 153.5px each */
+    .app-tabs {
+      display: flex; height: 41px;
+      border-bottom: 1px solid rgba(0,184,178,.18);
     }
-    .hero-video-fade {
-      position: absolute; left: 0; right: 0; bottom: 0; height: 40%;
-      background: linear-gradient(to bottom, transparent 0%, rgba(13,13,13,.98) 100%);
-    }
-    .hero-play-btn {
-      /* Vertically centered on the video card: video starts at top:472px, height = width × 0.5625 */
-      position: absolute;
-      left: 50%;
-      top: calc(472px + min(100% - 360px, 1080px) * 0.28125);
-      transform: translate(-50%, -50%);
-      width: 72px; height: 72px;
-      background: #fff; border: none; border-radius: 50%; padding: 0; cursor: pointer;
-      z-index: 6;
+    .app-tab {
+      width: 153.5px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      gap: 8px; height: 100%; font-size: 14px; color: #d4d4d4; font-weight: 400;
+      position: relative; white-space: nowrap;
     }
-    .hero-play-btn:hover {
-      transform: translate(-50%, -50%) scale(1.12);
-      box-shadow: 0 0 0 12px rgba(255,255,255,0.12), 0 6px 32px rgba(0,0,0,0.5);
-      background: #f0f0f0;
+    .app-tab.active { color: #fff; font-weight: 600; }
+    .app-tab.active::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: #95f6ff; border-radius: 6px 6px 0 0;
     }
-    .hero-play-btn:active {
-      transform: translate(-50%, -50%) scale(1.04);
+    .app-tab-icon { width: 16px; height: 16px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .app-tab-icon svg { width: 16px; height: 16px; display: block; }
+    /* Text area: left:24px, top:53px (41px tabs + 12px gap), line-height 22.75px */
+    .app-text-area {
+      padding: 12px 24px 0;
+      font-size: 14px; color: #d4d4d4; line-height: 22.75px; text-align: left;
     }
-    .hero-play-btn::after {
-      content: '';
-      display: block;
-      width: 0; height: 0;
-      border-style: solid;
-      border-width: 11px 0 11px 20px;
-      border-color: transparent transparent transparent #0d0d0d;
-      margin-left: 4px;
+    .app-text-area p { margin: 0; }
+    /* Bottom bar: height 56px */
+    .app-bottom-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 20px; height: 56px;
     }
-    /* Sparkles */
-    @keyframes sparkle-rise {
-      0%   { transform: translate(0, 0) scale(1);   opacity: 0; }
-      15%  { opacity: 1; }
-      80%  { opacity: .6; }
-      100% { transform: translate(var(--dx), -140px) scale(0); opacity: 0; }
+    .app-retranslate {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 14px; color: #d4d4d4; opacity: .6;
     }
-    .hero-sparkles {
-      position: absolute; left: 50%; top: 412px;
-      transform: translateX(-50%);
-      width: 500px; height: 0;
-      pointer-events: none; z-index: 1;
+    .app-retranslate img { width: 16px; height: 16px; display: block; }
+    .app-retranslate .chevron { width: 14px; height: 14px; display: block; }
+    .app-scan-btn {
+      display: flex; align-items: center; gap: 8px;
+      background: #00b8b2; border: none; border-radius: 14px;
+      height: 32px; padding: 0 16px;
+      color: #fff; font-size: 12px; font-weight: 500; font-family: var(--font);
+      cursor: pointer; white-space: nowrap;
     }
-    .hero-sparkles span {
-      position: absolute;
-      border-radius: 50%;
-      animation: sparkle-rise var(--dur) ease-out var(--delay) infinite;
-      opacity: 0;
-    }
-    /* Cross/star shape via box-shadow */
-    .hero-sparkles span::before,
-    .hero-sparkles span::after {
-      content: '';
-      position: absolute;
-      background: inherit;
-      border-radius: 2px;
-    }
-    .hero-sparkles span::before { width: 100%; height: 30%; top: 35%; left: 0; }
-    .hero-sparkles span::after  { width: 30%; height: 100%; top: 0; left: 35%; }
-
-    /* Fade hero bottom into next section */
+    .app-scan-btn img { width: 12.5px; height: 12.5px; display: block; }
     .hero-bottom-fade {
-      position: absolute; left: 0; right: 0; bottom: 0; height: 290px; z-index: 3; pointer-events: none;
+      position: absolute; left: 0; right: 0; bottom: 0; height: 200px;
+      z-index: 3; pointer-events: none;
       background: linear-gradient(to bottom, transparent 0%, #0d0d0d 80%);
     }
     .terminal-copy.ok { color: #00D9B4; }
@@ -1208,19 +1188,13 @@
       .nav-hamburger { display: flex; }
 
       /* Hero */
-      #hero { height: auto; min-height: 100svh; overflow: visible; display: flex; flex-direction: column; align-items: center; padding-bottom: 48px; }
-      .hero-body { padding-top: 84px; z-index: 5; width: 100%; }
+      #hero { height: auto; min-height: 100svh; padding-bottom: 60px; }
+      .hero-body { margin-top: 0; padding-top: 100px; width: calc(100% - 32px); max-width: 100%; }
       h1 { font-size: clamp(28px, 7vw, 48px); letter-spacing: -1px; line-height: 1.15; }
       .hero-sub { font-size: 15px; max-width: 90%; }
-      .hero-claude-logo { display: none; }
-      .hero-chatgpt-logo { display: none; }
-      .hero-flare { position: relative; left: auto; top: auto; transform: none; width: 100%; height: 120px; order: 2; margin: -70px 0 0; z-index: 3; }
-      .hero-flare img { object-fit: contain; object-position: center bottom; }
-      .hero-sparkles { display: none; }
-      .hero-body { order: 1; }
-      .hero-video { position: relative; left: auto; top: auto; transform: none; width: calc(100% - 40px); margin: 0 auto; order: 3; z-index: 2; }
-      .hero-play-btn { display: none; }
-      .url-bar { width: min(507px, calc(100vw - 40px)); }
+      .hero-app-card-wrap { width: calc(100% - 0px); }
+      .app-tab { font-size: 12px; gap: 4px; }
+      .app-tab-icon { width: 13px; height: 13px; }
 
       /* HIW */
       .hiw-inner { gap: 24px; }
@@ -1309,17 +1283,13 @@
       section { padding: 64px 16px; }
 
       /* Hero */
-      #hero { height: auto; min-height: 100svh; overflow: visible; display: flex; flex-direction: column; align-items: center; padding-bottom: 48px; }
-      .hero-body { padding-top: 84px; z-index: 5; width: 100%; }
+      #hero { height: auto; min-height: 100svh; padding-bottom: 60px; }
+      .hero-body { margin-top: 0; padding-top: 90px; width: calc(100% - 32px); max-width: 100%; }
       h1 { font-size: clamp(26px, 8vw, 36px); line-height: 1.15; }
       .hero-sub { font-size: 14px; }
-      .hero-flare { position: relative; left: auto; top: auto; transform: none; width: 100%; height: 120px; order: 2; margin: -70px 0 0; z-index: 3; }
-      .hero-flare img { object-fit: contain; object-position: center bottom; }
-      .hero-sparkles { display: none; }
-      .hero-body { order: 1; }
-      .hero-video { position: relative; left: auto; top: auto; transform: none; width: calc(100vw - 32px); margin: 0 auto; order: 3; z-index: 2; }
-      .hero-play-btn { display: none; }
-      .url-bar { width: calc(100vw - 32px); }
+      .hero-app-card-wrap { width: calc(100% - 0px); }
+      .app-tab { font-size: 11px; gap: 3px; }
+      .app-tab-icon { width: 12px; height: 12px; }
 
       /* HIW */
       .hiw-inner { gap: 20px; }
@@ -1359,7 +1329,6 @@
     @media (max-width: 480px) {
       /* Tightest mobile */
       h1 { font-size: clamp(22px, 8vw, 30px); }
-      .hero-play-btn { display: none; }
       /* Workflows: hide image panel on very small screens */
       .wf-images { display: none; }
       .wf-panel { border-radius: 16px; }
@@ -1496,11 +1465,17 @@
     <img src="assets/b197aaec-b3bb-49b3-adc9-ed601d580933.png" alt="TokScript" style="height:28.5px;width:138px;object-fit:contain;" />
   </div>
   <div class="nav-links">
-    <a href="#">Home</a>
+    <a href="index.html" class="active">Home</a>
     <a href="#">Features</a>
     <a href="#">Pricing</a>
-    <a href="#" class="active">MCP</a>
     <a href="#">FAQs</a>
+    <div class="nav-dropdown">
+      <a href="mcp.html">MCP</a>
+      <div class="nav-dropdown-menu">
+        <a href="claude.html">Claude</a>
+        <a href="chatgpt.html">ChatGPT</a>
+      </div>
+    </div>
     <a href="#">Affiliates</a>
   </div>
   <div class="nav-actions">
@@ -1514,11 +1489,13 @@
 
 <!-- Mobile Nav Overlay -->
 <div class="mobile-nav" id="mobileNav">
-  <a href="#">Home</a>
+  <a href="index.html" class="active">Home</a>
   <a href="#">Features</a>
   <a href="#">Pricing</a>
-  <a href="#" class="active">MCP</a>
   <a href="#">FAQs</a>
+  <a href="mcp.html">MCP</a>
+  <a href="claude.html" style="padding-left:20px;font-size:13px;opacity:.75;">↳ Claude</a>
+  <a href="chatgpt.html" style="padding-left:20px;font-size:13px;opacity:.75;">↳ ChatGPT</a>
   <a href="#">Affiliates</a>
   <div class="mobile-nav-actions">
     <button class="btn-ghost">Log in</button>
@@ -1529,73 +1506,157 @@
 <!-- ① HERO -->
 <section id="hero">
 
-  <!-- Floating AI logos -->
-  <img class="hero-claude-logo"  src="assets/a90e54e5-68c6-482c-8b8c-517484c4dc46.png" alt="Claude" />
-  <img class="hero-chatgpt-logo" src="assets/bd96f231-499f-4ab8-bc38-acb407cb025c.png" alt="ChatGPT" />
-
-  <!-- Flare — Figma 224:372: bright point at bottom, glow shines upward, bottom sits on top of video card -->
-  <div class="hero-flare">
-    <img src="https://www.figma.com/api/mcp/asset/13e28e53-838d-44e8-adb7-910cbe6902cc" alt="" />
+  <!-- Full-bleed background (teal atmospheric glow + beam) -->
+  <div class="hero-bg-full">
+    <img src="https://www.figma.com/api/mcp/asset/23ad80fc-9e67-4efc-9f2a-a6a88f09fe3d" alt="" />
   </div>
 
-  <!-- Main content -->
+  <!-- Centred content -->
   <div class="hero-body">
+    <!-- Badge -->
     <div class="badge">
-      <img src="https://www.figma.com/api/mcp/asset/24116ba1-34a2-4ed8-a936-7a322c55f912" alt="" />
-      New Feature
+      <img src="https://www.figma.com/api/mcp/asset/1dbabe4b-35c0-453f-aee6-0f5d201ebdaf" alt="" />
+      AI Powered
     </div>
-    <h1>Tokscript now works inside<br>Claude and ChatGPT</h1>
-    <p class="hero-sub">Ask your AI to pull transcripts, generate hooks, analyze virality, and research creators from any TikTok, Instagram Reel, or YouTube Short. Directly in conversation.</p>
-    <div class="url-bar">
-      <span class="url-bar-text">api.tokscript.com/mcp</span>
-      <button class="url-bar-copy" id="urlCopy" onclick="copyUrl()">
-        <span style="display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;flex-shrink:0;">
-          <img src="https://www.figma.com/api/mcp/asset/07184b29-b259-4524-a9ff-5945239d4623" alt="" style="width:15px;height:15px;object-fit:contain;display:block;" />
-        </span>
-        Copy
-      </button>
+
+    <h1>TikTok Transcript Generator</h1>
+    <p class="hero-sub">Turn speech into text for any TikTok, Reels, and Shorts video</p>
+
+    <!-- Platform icons (TikTok / Instagram / YouTube) — exact Figma SVG export -->
+    <div class="hero-platforms">
+      <!-- TikTok: left:0, top:0, rotate -8.35deg — active, on top -->
+      <svg class="plat-active" style="left:0;top:0;z-index:2;" width="66" height="60" viewBox="0 0 66 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_di_49_29389)">
+          <rect y="6.06836" width="41.8041" height="41.8041" rx="11.1478" transform="rotate(-8.34665 0 6.06836)" fill="#151B1B"/>
+          <rect x="0.790494" y="6.65657" width="40.4106" height="40.4106" rx="10.451" transform="rotate(-8.34665 0.790494 6.65657)" stroke="#A0F8FF" stroke-width="1.39347"/>
+          <path d="M29.3385 19.9836L29.7566 22.384C29.3301 22.416 28.7686 22.4157 28.1273 22.2998C27.2899 22.1483 26.6353 21.8558 26.1983 21.6171L27.0433 26.4685L27.0309 26.4551C27.0539 26.5502 27.0745 26.6476 27.0917 26.7464C27.5114 29.1557 25.8932 31.4582 23.4838 31.8779C21.0744 32.2976 18.773 30.6777 18.3534 28.2685C17.9338 25.8592 19.5518 23.5558 21.9612 23.1361C22.1971 23.095 22.4319 23.0734 22.6644 23.0705L23.0764 25.4361C22.8457 25.3964 22.6051 25.3952 22.362 25.4376C21.2214 25.6362 20.4544 26.726 20.6533 27.8679C20.8522 29.0097 21.9425 29.776 23.0831 29.5773C24.2237 29.3787 24.9906 28.288 24.7919 27.147C24.7844 27.1043 24.7761 27.0617 24.766 27.0194L23.1239 17.5918L25.5217 17.1741C25.566 17.3756 25.6097 17.5791 25.6539 17.7806C25.7396 18.1777 25.949 18.5368 26.2521 18.8079C26.6077 19.1268 27.1125 19.4812 27.7759 19.719C28.3972 19.9411 28.9517 19.9859 29.3388 19.9854L29.3385 19.9836Z" fill="#FF004F"/>
+          <path d="M28.173 18.1806L28.5911 20.5809C28.1646 20.613 27.6031 20.6126 26.9618 20.4967C26.1244 20.3452 25.4698 20.0527 25.0329 19.814L25.8779 24.6655L25.8654 24.652C25.8884 24.7471 25.9091 24.8445 25.9263 24.9433C26.3459 27.3526 24.7278 29.6551 22.3184 30.0748C19.9089 30.4945 17.6076 28.8746 17.1879 26.4654C16.7683 24.0561 18.3863 21.7527 20.7957 21.333C21.0317 21.2919 21.2664 21.2703 21.4989 21.2674L21.911 23.633C21.6802 23.5934 21.4397 23.5921 21.1966 23.6345C20.056 23.8331 19.2889 24.923 19.4878 26.0648C19.6867 27.2066 20.777 27.9729 21.9176 27.7742C23.0582 27.5756 23.8251 26.4849 23.6264 25.3439C23.6189 25.3012 23.6106 25.2586 23.6005 25.2163L21.9581 15.7869L24.3559 15.3692C24.4002 15.5708 24.4439 15.7742 24.4882 15.9757C24.5738 16.3728 24.7832 16.7319 25.0864 17.003C25.4419 17.322 25.9467 17.6763 26.6101 17.9141C27.2312 18.1354 27.786 18.181 28.173 18.1806Z" fill="#00F7EF"/>
+          <path d="M28.882 19.1364L29.3 21.5367C28.8735 21.5688 28.312 21.5684 27.6707 21.4525C26.8334 21.3011 26.1788 21.0085 25.7418 20.7699L26.5868 25.6213L26.5744 25.6079C26.5974 25.703 26.618 25.8003 26.6352 25.8992C27.0548 28.3084 25.4367 30.611 23.0273 31.0307C20.6179 31.4503 18.3165 29.8305 17.8969 27.4212C17.4772 25.012 19.0952 22.7085 21.5046 22.2889C21.7406 22.2478 21.9753 22.2261 22.2079 22.2233L22.6199 24.5889C22.3892 24.5492 22.1486 24.548 21.9055 24.5903C20.7649 24.789 19.9979 25.8788 20.1967 27.0206C20.3956 28.1625 21.486 28.9288 22.6266 28.7301C23.7672 28.5314 24.534 27.4407 24.3353 26.2998C24.3279 26.257 24.3195 26.2144 24.3094 26.1722L22.6673 16.7445L25.0652 16.3269C25.1094 16.5284 25.1531 16.7319 25.1974 16.9334C25.2831 17.3305 25.4924 17.6896 25.7956 17.9607C26.1511 18.2796 26.656 18.634 27.3194 18.8717C27.9405 19.093 28.4952 19.1386 28.8823 19.1382L28.882 19.1364Z" fill="white"/>
+        </g>
+        <defs>
+          <filter id="filter0_di_49_29389" x="0" y="0" width="66.9383" height="61.3644" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="13.9347" dy="8.36082"/>
+            <feGaussianBlur stdDeviation="2.78694"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.49 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_49_29389"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_49_29389" result="shape"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"/>
+            <feBlend mode="normal" in2="shape" result="effect2_innerShadow_49_29389"/>
+          </filter>
+        </defs>
+      </svg>
+      <!-- Instagram: left:40px, top:3px, no rotation -->
+      <svg style="left:40px;top:3px;z-index:1;" width="62" height="56" viewBox="0 0 62 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_di_49_29382)">
+          <rect width="41.8041" height="41.8041" rx="11.1478" fill="#1E1E1F"/>
+          <rect x="0.696735" y="0.696735" width="40.4106" height="40.4106" rx="10.451" stroke="#323232" stroke-width="1.39347"/>
+          <g opacity="0.8">
+            <path d="M24.7122 12.8522H16.7298C14.5245 12.8522 12.7305 14.6468 12.7305 16.8527V24.1576C12.7305 26.3635 14.5245 28.1581 16.7298 28.1581H24.7122C26.9174 28.1581 28.7115 26.3635 28.7115 24.1576V16.8527C28.7115 14.6468 26.9174 12.8522 24.7122 12.8522ZM14.1413 16.8527C14.1413 15.4252 15.3027 14.2635 16.7298 14.2635H24.7122C26.1393 14.2635 27.3007 15.4252 27.3007 16.8527V24.1576C27.3007 25.5851 26.1393 26.7469 24.7122 26.7469H16.7298C15.3027 26.7469 14.1413 25.5851 14.1413 24.1576V16.8527Z" fill="white"/>
+            <path d="M20.7186 24.2211C22.7693 24.2211 24.4386 22.5522 24.4386 20.4999C24.4386 18.4477 22.7702 16.7788 20.7186 16.7788C18.667 16.7788 16.9985 18.4477 16.9985 20.4999C16.9985 22.5522 18.667 24.2211 20.7186 24.2211ZM20.7186 18.1909C21.992 18.1909 23.0278 19.227 23.0278 20.5008C23.0278 21.7747 21.992 22.8107 20.7186 22.8107C19.4451 22.8107 18.4094 21.7747 18.4094 20.5008C18.4094 19.227 19.4451 18.1909 20.7186 18.1909Z" fill="white"/>
+            <path d="M24.7849 17.3849C25.3371 17.3849 25.7872 16.9355 25.7872 16.3823C25.7872 15.829 25.338 15.3796 24.7849 15.3796C24.2318 15.3796 23.7826 15.829 23.7826 16.3823C23.7826 16.9355 24.2318 17.3849 24.7849 17.3849Z" fill="white"/>
+          </g>
+        </g>
+        <defs>
+          <filter id="filter0_di_49_29382" x="0" y="0" width="61.3126" height="55.7388" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="13.9347" dy="8.36082"/>
+            <feGaussianBlur stdDeviation="2.78694"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_49_29382"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_49_29382" result="shape"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.44 0"/>
+            <feBlend mode="normal" in2="shape" result="effect2_innerShadow_49_29382"/>
+          </filter>
+        </defs>
+      </svg>
+      <!-- YouTube: left:76px, top:0, rotate +8.35deg -->
+      <svg style="left:76px;top:0;z-index:1;" width="66" height="60" viewBox="0 0 66 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_di_49_29376)">
+          <rect x="6.0708" width="41.8041" height="41.8041" rx="11.1478" transform="rotate(8.35 6.0708 0)" fill="#1E1E1F"/>
+          <rect x="6.65897" y="0.790529" width="40.4106" height="40.4106" rx="10.451" transform="rotate(8.35 6.65897 0.790529)" stroke="#323232" stroke-width="1.39347"/>
+          <g opacity="0.8">
+            <path d="M28.0927 30.6104C27.7077 30.5928 27.3189 30.5398 26.9475 30.4813C24.0497 30.0294 21.1519 29.5774 18.2549 29.1264C17.343 28.9851 16.3544 28.8016 15.7396 28.1126C15.0471 27.3346 15.0579 26.1735 15.1529 25.1361C15.2818 23.7143 15.4937 22.3007 15.7853 20.9032C15.9454 20.1357 16.1389 19.3542 16.5806 18.7054C16.8979 18.2396 17.3672 17.8494 17.9149 17.691C18.5517 17.507 19.1657 17.6525 19.8053 17.7507C21.3364 17.9862 22.8674 18.2227 24.3985 18.4582C25.9903 18.7032 27.5829 18.9491 29.1748 19.1941C29.9268 19.3107 30.7318 19.451 31.2779 19.9812C31.9832 20.6651 32.0329 21.7661 31.9823 22.7472C31.8897 24.5543 31.6137 26.3523 31.1593 28.1033C30.9715 28.8253 30.728 29.5817 30.1585 30.0633C29.5942 30.5412 28.8512 30.6438 28.0937 30.6096L28.0927 30.6104Z" fill="white"/>
+            <path d="M26.161 24.5449L22.2285 21.381L21.4551 26.3697L26.161 24.5449Z" fill="#080C34"/>
+          </g>
+        </g>
+        <defs>
+          <filter id="filter0_di_49_29376" x="0" y="0" width="66.9403" height="61.3664" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="13.9347" dy="8.36082"/>
+            <feGaussianBlur stdDeviation="2.78694"/>
+            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.49 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_49_29376"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_49_29376" result="shape"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.44 0"/>
+            <feBlend mode="normal" in2="shape" result="effect2_innerShadow_49_29376"/>
+          </filter>
+        </defs>
+      </svg>
     </div>
-  </div>
 
-  <!-- Video card — Figma 257:502 -->
-  <div class="hero-video">
-    <div class="hero-video-glow"></div>
-    <div class="hero-video-bg">
-      <img src="assets/6ad9a0c8-2e48-44df-b8cc-8eef9a3decdc.png" alt="" />
+    <!-- App UI card — exact Figma replica -->
+    <div class="hero-app-card-wrap">
+      <div class="hero-app-card">
+        <!-- Tabs: 4 × 153.5px -->
+        <div class="app-tabs">
+          <div class="app-tab active">
+            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/c788ce9e-d990-4bda-8565-ed6cc1c68735" alt="" /></div>
+            Transcripts
+          </div>
+          <div class="app-tab">
+            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/2e69f778-bcc6-469c-8c75-8ae2c5b4d850" alt="" /></div>
+            Videos
+          </div>
+          <div class="app-tab">
+            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/ef641b97-0150-4e42-9be9-0b47f1c13e0b" alt="" /></div>
+            Collections
+          </div>
+          <div class="app-tab">
+            <div class="app-tab-icon">
+              <img src="https://www.figma.com/api/mcp/asset/0082dd66-2933-4ae3-8046-d9bd7a99d054" alt="" />
+              <img class="icon-badge" src="https://www.figma.com/api/mcp/asset/25603946-35d8-4d60-a230-a34b59c35f25" alt="" />
+            </div>
+            Profiles
+          </div>
+        </div>
+        <!-- Text area -->
+        <div class="app-text-area">
+          <p>Paste up to 50 video links from TikTok, Instagram, YouTube, and more.</p>
+          <p>We'll extract, transcribe, and save them to your library.</p>
+        </div>
+        <!-- Bottom bar -->
+        <div class="app-bottom-bar">
+          <div class="app-retranslate">
+            <img src="https://www.figma.com/api/mcp/asset/38133704-f242-473d-9b0e-5e5a2d829bcc" alt="" />
+            Retranslate
+            <img class="chevron" src="https://www.figma.com/api/mcp/asset/6ddff8d7-da2e-4f3f-84bf-3f45db7f05d7" alt="" />
+          </div>
+          <button class="app-scan-btn">
+            <img src="https://www.figma.com/api/mcp/asset/85795818-5084-4d35-897f-0b0086335e40" alt="" />
+            Scan Videos
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="hero-video-fade"></div>
-  </div>
-
-  <!-- Play button — sits above the video card, independently positioned in #hero -->
-  <button class="hero-play-btn" aria-label="Play video" onclick="openVideoModal()"></button>
-
-  <!-- Fade into next section -->
-  <!-- Sparkles rising from flare -->
-  <div class="hero-sparkles">
-    <span style="--dx:-60px;--dur:2.8s;--delay:0s;   left:230px; width:2px; height:2px; background:#fff;    box-shadow:0 0 4px 2px rgba(0,217,180,.9);"></span>
-    <span style="--dx: 40px;--dur:3.2s;--delay:.5s;  left:270px; width:2px; height:2px; background:#00d9b4; box-shadow:0 0 4px 2px rgba(0,217,180,.8);"></span>
-    <span style="--dx:-20px;--dur:2.5s;--delay:1s;   left:250px; width:2px; height:2px; background:#fff;    box-shadow:0 0 4px 2px rgba(255,255,255,.5);"></span>
-    <span style="--dx: 70px;--dur:3.6s;--delay:.2s;  left:220px; width:3px; height:3px; background:#00d9b4; box-shadow:0 0 5px 2px rgba(0,217,180,.6);"></span>
-    <span style="--dx:-80px;--dur:2.9s;--delay:1.4s; left:290px; width:2px; height:2px; background:#fff;    box-shadow:0 0 3px 1px rgba(255,255,255,.7);"></span>
-    <span style="--dx: 30px;--dur:3.1s;--delay:.8s;  left:240px; width:2px; height:2px; background:#00d9b4; box-shadow:0 0 5px 2px rgba(0,217,180,.7);"></span>
-    <span style="--dx:-50px;--dur:2.6s;--delay:2s;   left:260px; width:2px; height:2px; background:#fff;    box-shadow:0 0 4px 2px rgba(0,217,180,.5);"></span>
-    <span style="--dx: 90px;--dur:3.4s;--delay:.3s;  left:200px; width:2px; height:2px; background:#00d9b4; box-shadow:0 0 4px 2px rgba(0,217,180,.9);"></span>
-    <span style="--dx:-30px;--dur:2.7s;--delay:1.7s; left:310px; width:2px; height:2px; background:#fff;    box-shadow:0 0 4px 2px rgba(255,255,255,.4);"></span>
-    <span style="--dx: 55px;--dur:3.0s;--delay:2.3s; left:245px; width:2px; height:2px; background:#00d9b4; box-shadow:0 0 5px 2px rgba(0,217,180,.8);"></span>
-    <span style="--dx:-70px;--dur:3.3s;--delay:.6s;  left:275px; width:2px; height:2px; background:#fff;    box-shadow:0 0 3px 1px rgba(255,255,255,.6);"></span>
-    <span style="--dx: 20px;--dur:2.4s;--delay:1.2s; left:235px; width:3px; height:3px; background:#00d9b4; box-shadow:0 0 6px 3px rgba(0,217,180,.5);"></span>
-    <span style="--dx:-45px;--dur:3.5s;--delay:.4s;  left:320px; width:2px; height:2px; background:#fff;    box-shadow:0 0 4px 2px rgba(255,255,255,.7);"></span>
-    <span style="--dx: 65px;--dur:2.6s;--delay:1.9s; left:180px; width:2px; height:2px; background:#00d9b4; box-shadow:0 0 4px 2px rgba(0,217,180,.8);"></span>
-    <span style="--dx:-15px;--dur:3.0s;--delay:2.6s; left:255px; width:2px; height:2px; background:#fff;    box-shadow:0 0 3px 1px rgba(255,255,255,.5);"></span>
-    <span style="--dx: 50px;--dur:2.8s;--delay:.9s;  left:215px; width:2px; height:2px; background:#00d9b4; box-shadow:0 0 5px 2px rgba(0,217,180,.7);"></span>
-    <span style="--dx:-90px;--dur:3.2s;--delay:1.5s; left:285px; width:2px; height:2px; background:#fff;    box-shadow:0 0 4px 2px rgba(0,217,180,.6);"></span>
-    <span style="--dx: 35px;--dur:2.7s;--delay:2.1s; left:300px; width:2px; height:2px; background:#00d9b4; box-shadow:0 0 4px 2px rgba(0,217,180,.9);"></span>
-    <span style="--dx:-55px;--dur:3.4s;--delay:.1s;  left:195px; width:2px; height:2px; background:#fff;    box-shadow:0 0 3px 1px rgba(255,255,255,.6);"></span>
-    <span style="--dx: 80px;--dur:2.9s;--delay:1.1s; left:265px; width:3px; height:3px; background:#00d9b4; box-shadow:0 0 6px 3px rgba(0,217,180,.6);"></span>
-    <span style="--dx:-35px;--dur:3.1s;--delay:2.8s; left:225px; width:2px; height:2px; background:#fff;    box-shadow:0 0 4px 2px rgba(255,255,255,.5);"></span>
-    <span style="--dx: 10px;--dur:2.5s;--delay:1.6s; left:340px; width:2px; height:2px; background:#00d9b4; box-shadow:0 0 4px 2px rgba(0,217,180,.7);"></span>
-    <span style="--dx:-75px;--dur:3.6s;--delay:.7s;  left:170px; width:2px; height:2px; background:#fff;    box-shadow:0 0 3px 1px rgba(255,255,255,.8);"></span>
-    <span style="--dx: 45px;--dur:2.3s;--delay:2.4s; left:280px; width:2px; height:2px; background:#00d9b4; box-shadow:0 0 5px 2px rgba(0,217,180,.5);"></span>
   </div>
 
   <div class="hero-bottom-fade"></div>
@@ -1694,7 +1755,7 @@
         <img class="who-card-grid-bg" src="assets/95585511-ee59-4a96-be78-15489996dfac.png" alt="" />
         <p class="who-card-title">Brand Marketers</p>
         <div class="who-card-img who-card-img-sm">
-          <img src="assets/09a885b8-c853-417a-ac20-8ef750a5c337.png" alt="" />
+          <img src="assets/95585511-ee59-4a96-be78-15489996dfac.png" alt="" />
         </div>
         <p class="who-card-desc">Competitive intelligence through precise transcript and messaging analysis.</p>
       </div>
@@ -1704,7 +1765,7 @@
         <img class="who-card-grid-bg" src="assets/95585511-ee59-4a96-be78-15489996dfac.png" alt="" />
         <p class="who-card-title">Researchers</p>
         <div class="who-card-img who-card-img-sm">
-          <img src="assets/e572b311-55e6-411e-accd-dcef966e7729.png" alt="" />
+          <img src="assets/95585511-ee59-4a96-be78-15489996dfac.png" alt="" />
         </div>
         <p class="who-card-desc">Large-scale data extraction to identify patterns and emerging tropes.</p>
       </div>
@@ -1714,7 +1775,7 @@
         <img class="who-card-grid-bg" src="assets/95585511-ee59-4a96-be78-15489996dfac.png" alt="" />
         <p class="who-card-title">UGC Marketplaces</p>
         <div class="who-card-img who-card-img-sm">
-          <img src="assets/7c6eebbe-a07b-4363-8d50-ec18449413b8.png" alt="" />
+          <img src="assets/95585511-ee59-4a96-be78-15489996dfac.png" alt="" />
         </div>
         <p class="who-card-desc">Provide your creator network with high-performing templates from real-time data.</p>
       </div>
@@ -1724,7 +1785,7 @@
         <img class="who-card-grid-bg" src="assets/95585511-ee59-4a96-be78-15489996dfac.png" alt="" />
         <p class="who-card-title">Solo Creator</p>
         <div class="who-card-img who-card-img-lg">
-          <img src="assets/c2671e11-3ad1-4527-b102-9560e8766060.png" alt="" />
+          <img src="assets/95585511-ee59-4a96-be78-15489996dfac.png" alt="" />
         </div>
         <p class="who-card-desc">Instant conversion from viral trends to structured, actionable scripts.</p>
       </div>
@@ -1734,7 +1795,7 @@
         <img class="who-card-grid-bg" src="assets/95585511-ee59-4a96-be78-15489996dfac.png" alt="" />
         <p class="who-card-title">Agencies</p>
         <div class="who-card-img who-card-img-lg">
-          <img src="assets/e8dd934b-8ebd-4539-a730-6ee9aa8f63d6.png" alt="" />
+          <img src="assets/95585511-ee59-4a96-be78-15489996dfac.png" alt="" />
         </div>
         <p class="who-card-desc">Automating high-performing script templates for creator rosters.</p>
       </div>
@@ -1786,7 +1847,7 @@
               <img class="setup-video-thumb" src="assets/cf54cfbe-e140-493c-85a5-4c88ff93f106.png" alt="" />
               <div class="setup-video-overlay"></div>
               <div class="setup-play-btn">
-                <img src="assets/8f311dee-e259-4425-a9a1-c7ec3d35b811.svg" alt="" />
+                <img src="assets/cf54cfbe-e140-493c-85a5-4c88ff93f106.png" alt="" />
               </div>
             </div>
           </div>
@@ -1869,7 +1930,7 @@
             <span class="fs-card-uses">11.3k uses</span>
             <div class="fs-card-icons">
               <img src="assets/800cbf67-616d-41e8-8d7d-679abeebf7d3.svg" alt="" />
-              <img src="assets/b9715006-e212-4571-810a-ffba212e4232.svg" alt="" />
+              <img src="assets/800cbf67-616d-41e8-8d7d-679abeebf7d3.svg" alt="" />
             </div>
           </div>
         </div>
@@ -1888,10 +1949,10 @@
             <img src="assets/e3f5acb7-f27c-4061-b8f5-5ccf6017ed89.svg" alt="" /> Copy
           </button>
           <button class="fs-btn" style="flex:1;">
-            <img src="assets/a36ffe4f-4d6f-414b-8a98-b7b15b569dd7.svg" alt="" /> Download Skill
+            <img src="assets/e3f5acb7-f27c-4061-b8f5-5ccf6017ed89.svg" alt="" /> Download Skill
           </button>
           <button class="fs-btn">
-            <img src="assets/e3c8e86d-b5c5-42f5-bd9c-debfedec3507.svg" alt="" /> Download
+            <img src="assets/a36ffe4f-4d6f-414b-8a98-b7b15b569dd7.svg" alt="" /> Download
           </button>
         </div>
       </div>
@@ -1910,7 +1971,7 @@
             <span class="fs-card-uses">8.4k uses</span>
             <div class="fs-card-icons">
               <img src="assets/800cbf67-616d-41e8-8d7d-679abeebf7d3.svg" alt="" />
-              <img src="assets/b9715006-e212-4571-810a-ffba212e4232.svg" alt="" />
+              <img src="assets/800cbf67-616d-41e8-8d7d-679abeebf7d3.svg" alt="" />
             </div>
           </div>
         </div>
@@ -1930,10 +1991,10 @@
             <img src="assets/e3f5acb7-f27c-4061-b8f5-5ccf6017ed89.svg" alt="" /> Copy
           </button>
           <button class="fs-btn" style="flex:1;">
-            <img src="assets/a36ffe4f-4d6f-414b-8a98-b7b15b569dd7.svg" alt="" /> Download Skill
+            <img src="assets/e3f5acb7-f27c-4061-b8f5-5ccf6017ed89.svg" alt="" /> Download Skill
           </button>
           <button class="fs-btn">
-            <img src="assets/e3c8e86d-b5c5-42f5-bd9c-debfedec3507.svg" alt="" /> Download
+            <img src="assets/a36ffe4f-4d6f-414b-8a98-b7b15b569dd7.svg" alt="" /> Download
           </button>
         </div>
       </div>
@@ -1952,7 +2013,7 @@
             <span class="fs-card-uses">6.9k uses</span>
             <div class="fs-card-icons">
               <img src="assets/800cbf67-616d-41e8-8d7d-679abeebf7d3.svg" alt="" />
-              <img src="assets/b9715006-e212-4571-810a-ffba212e4232.svg" alt="" />
+              <img src="assets/800cbf67-616d-41e8-8d7d-679abeebf7d3.svg" alt="" />
             </div>
           </div>
         </div>
@@ -1972,10 +2033,10 @@
             <img src="assets/e3f5acb7-f27c-4061-b8f5-5ccf6017ed89.svg" alt="" /> Copy
           </button>
           <button class="fs-btn" style="flex:1;">
-            <img src="assets/a36ffe4f-4d6f-414b-8a98-b7b15b569dd7.svg" alt="" /> Download Skill
+            <img src="assets/e3f5acb7-f27c-4061-b8f5-5ccf6017ed89.svg" alt="" /> Download Skill
           </button>
           <button class="fs-btn">
-            <img src="assets/e3c8e86d-b5c5-42f5-bd9c-debfedec3507.svg" alt="" /> Download
+            <img src="assets/a36ffe4f-4d6f-414b-8a98-b7b15b569dd7.svg" alt="" /> Download
           </button>
         </div>
       </div>
@@ -1994,7 +2055,7 @@
             <span class="fs-card-uses">6.2k uses</span>
             <div class="fs-card-icons">
               <img src="assets/800cbf67-616d-41e8-8d7d-679abeebf7d3.svg" alt="" />
-              <img src="assets/b9715006-e212-4571-810a-ffba212e4232.svg" alt="" />
+              <img src="assets/800cbf67-616d-41e8-8d7d-679abeebf7d3.svg" alt="" />
             </div>
           </div>
         </div>
@@ -2014,10 +2075,10 @@
             <img src="assets/e3f5acb7-f27c-4061-b8f5-5ccf6017ed89.svg" alt="" /> Copy
           </button>
           <button class="fs-btn" style="flex:1;">
-            <img src="assets/a36ffe4f-4d6f-414b-8a98-b7b15b569dd7.svg" alt="" /> Download Skill
+            <img src="assets/e3f5acb7-f27c-4061-b8f5-5ccf6017ed89.svg" alt="" /> Download Skill
           </button>
           <button class="fs-btn">
-            <img src="assets/e3c8e86d-b5c5-42f5-bd9c-debfedec3507.svg" alt="" /> Download
+            <img src="assets/a36ffe4f-4d6f-414b-8a98-b7b15b569dd7.svg" alt="" /> Download
           </button>
         </div>
       </div>
@@ -2036,7 +2097,7 @@
             <span class="fs-card-uses">5.5k uses</span>
             <div class="fs-card-icons">
               <img src="assets/800cbf67-616d-41e8-8d7d-679abeebf7d3.svg" alt="" />
-              <img src="assets/b9715006-e212-4571-810a-ffba212e4232.svg" alt="" />
+              <img src="assets/800cbf67-616d-41e8-8d7d-679abeebf7d3.svg" alt="" />
             </div>
           </div>
         </div>
@@ -2056,10 +2117,10 @@
             <img src="assets/e3f5acb7-f27c-4061-b8f5-5ccf6017ed89.svg" alt="" /> Copy
           </button>
           <button class="fs-btn" style="flex:1;">
-            <img src="assets/a36ffe4f-4d6f-414b-8a98-b7b15b569dd7.svg" alt="" /> Download Skill
+            <img src="assets/e3f5acb7-f27c-4061-b8f5-5ccf6017ed89.svg" alt="" /> Download Skill
           </button>
           <button class="fs-btn">
-            <img src="assets/e3c8e86d-b5c5-42f5-bd9c-debfedec3507.svg" alt="" /> Download
+            <img src="assets/a36ffe4f-4d6f-414b-8a98-b7b15b569dd7.svg" alt="" /> Download
           </button>
         </div>
       </div>
@@ -2078,7 +2139,7 @@
             <span class="fs-card-uses">5.0k uses</span>
             <div class="fs-card-icons">
               <img src="assets/800cbf67-616d-41e8-8d7d-679abeebf7d3.svg" alt="" />
-              <img src="assets/0463943c-f167-433e-9a7a-1ab90e7f2dc3.svg" alt="" />
+              <img src="assets/800cbf67-616d-41e8-8d7d-679abeebf7d3.svg" alt="" />
             </div>
           </div>
         </div>
@@ -2098,10 +2159,10 @@
             <img src="assets/e3f5acb7-f27c-4061-b8f5-5ccf6017ed89.svg" alt="" /> Copy
           </button>
           <button class="fs-btn" style="flex:1;">
-            <img src="assets/a36ffe4f-4d6f-414b-8a98-b7b15b569dd7.svg" alt="" /> Download Skill
+            <img src="assets/e3f5acb7-f27c-4061-b8f5-5ccf6017ed89.svg" alt="" /> Download Skill
           </button>
           <button class="fs-btn">
-            <img src="assets/e3c8e86d-b5c5-42f5-bd9c-debfedec3507.svg" alt="" /> Download
+            <img src="assets/a36ffe4f-4d6f-414b-8a98-b7b15b569dd7.svg" alt="" /> Download
           </button>
         </div>
       </div>
@@ -2123,7 +2184,7 @@
     <div class="ba-header-block">
       <div class="ba-header-bg">
         <img class="ba-header-bg-l2" src="assets/3a2ab149-a0fd-4594-8b2b-0b45f4248fdb.png" alt="" />
-        <img class="ba-header-bg-l1" src="assets/f5d5877b-0c63-4500-8891-2ab2c5ddeee6.png" alt="" />
+        <img class="ba-header-bg-l1" src="assets/3a2ab149-a0fd-4594-8b2b-0b45f4248fdb.png" alt="" />
       </div>
       <div class="ba-header-content">
         <div class="ba-pill">Before &amp; After</div>
@@ -2143,13 +2204,13 @@
             <div class="ba-card ba-before">
               <img class="ba-card-bg" src="assets/9aba4aef-6fea-460e-99e8-071cfe46f697.png" alt="" />
               <span class="ba-card-label">Before</span>
-              <img class="ba-card-img" src="assets/6e7f36bd-1579-428d-996e-abb8e0457233.png" alt="Before" />
+              <img class="ba-card-img" src="assets/9aba4aef-6fea-460e-99e8-071cfe46f697.png" alt="Before" />
               <p class="ba-card-desc">Open 10 tabs, watch videos, take notes by hand, try to spot patterns across creators in your niche.</p>
             </div>
             <div class="ba-card ba-after">
               <img class="ba-card-bg" src="assets/9aba4aef-6fea-460e-99e8-071cfe46f697.png" alt="" />
               <span class="ba-card-label">After</span>
-              <img class="ba-card-img" src="assets/e875b9c3-6c94-47c2-bd1c-04bbbd52e568.png" alt="After" />
+              <img class="ba-card-img" src="assets/9aba4aef-6fea-460e-99e8-071cfe46f697.png" alt="After" />
               <p class="ba-card-desc">"Research the top 5 creators in my niche and tell me what they have in common." Done in under 30 seconds.</p>
             </div>
           </div>
@@ -2519,8 +2580,8 @@
   <div class="ctap-outer">
 
     <img class="ctap-bg" src="assets/47e21646-b87b-421b-a89d-1f456aab3895.png" alt="" />
-    <img class="ctap-deco-left" src="assets/bf4dba07-46ea-443e-907b-6e1b0f963696.png" alt="" />
-    <img class="ctap-deco-right" src="assets/39e53ed1-6fba-477a-84b1-87d4edc9eb7e.png" alt="" />
+    <img class="ctap-deco-left" src="assets/47e21646-b87b-421b-a89d-1f456aab3895.png" alt="" />
+    <img class="ctap-deco-right" src="assets/47e21646-b87b-421b-a89d-1f456aab3895.png" alt="" />
 
     <div class="ctap-content">
       <h2 class="ctap-title">One Plan.&nbsp;<br>Unlimited Intelligence.</h2>
@@ -2596,13 +2657,13 @@
           <img src="assets/807318b9-14ed-4d3f-b421-c6a60333ace1.svg" alt="X" style="width:20px;height:20px;object-fit:contain;" />
         </a>
         <a href="#">
-          <img src="assets/e7685dfb-7af5-4d9a-b482-40ac99e4a6f6.svg" alt="Facebook" style="width:20px;height:20px;object-fit:contain;" />
+          <img src="assets/807318b9-14ed-4d3f-b421-c6a60333ace1.svg" alt="Facebook" style="width:20px;height:20px;object-fit:contain;" />
         </a>
         <a href="#">
-          <img src="assets/c6799280-3916-4071-97fa-a3454ba4316f.svg" alt="LinkedIn" style="width:20px;height:20px;object-fit:contain;" />
+          <img src="assets/e7685dfb-7af5-4d9a-b482-40ac99e4a6f6.svg" alt="LinkedIn" style="width:20px;height:20px;object-fit:contain;" />
         </a>
         <a href="#">
-          <img src="assets/70871fb0-ec4d-477e-bd39-73cb6a949400.svg" alt="Instagram" style="width:20px;height:20px;object-fit:contain;" />
+          <img src="assets/c6799280-3916-4071-97fa-a3454ba4316f.svg" alt="Instagram" style="width:20px;height:20px;object-fit:contain;" />
         </a>
       </div>
       <span class="ft-copyright">© 2025 TokScript. All rights reserved.</span>
