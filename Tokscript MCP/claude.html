@@ -93,12 +93,16 @@
     }
     .hero-bg img { width: 100%; height: auto; display: block; }
     .hero-flare {
-      position: absolute; bottom: -0.5px; left: 0; right: 0;
-      aspect-ratio: 2880/1596; pointer-events: none; z-index: 1;
+      position: absolute; top: 523px; left: 50%; transform: translate(-50%, -100%);
+      width: 1440px; pointer-events: none; z-index: 1;
     }
-    .hero-flare img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-flare-inner {
+      position: absolute; bottom: 0; left: 25.97%; right: 25.97%;
+      aspect-ratio: 2880/1596;
+    }
+    .hero-flare-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .hero-body {
-      position: absolute; left: 50%; top: calc(50% + 19px);
+      position: absolute; left: 50%; top: calc(50vh - 80px);
       transform: translate(-50%, -50%);
       width: 941px; max-width: calc(100% - 48px);
       display: flex; flex-direction: column; align-items: center;
@@ -112,23 +116,43 @@
     .badge img { width: 17px; height: 17px; }
     h1 { font-size: 58px; font-weight: 700; letter-spacing: -1.8px; line-height: 64px; margin-bottom: 0; color: #fff; }
     .hero-sub { font-size: 17px; color: rgba(255,255,255,.8); max-width: 785px; margin: 7px auto 30px; line-height: 32px; font-weight: 400; }
-    .hero-cta-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
-    .btn-hero-primary {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 13.7px 27.5px; background: #00b8b2; border: none; border-radius: 14px;
-      color: #fff; font-size: 14px; font-weight: 500; font-family: var(--font);
-      cursor: pointer; transition: opacity .2s; white-space: nowrap; text-decoration: none;
+    .hero-url-bar {
+      width: 383px; max-width: calc(100vw - 40px); height: 48px;
+      background: #0d0d0d; border: 2px solid #e1dbdb; border-radius: 16px;
+      display: flex; align-items: center; padding: 0 4px 0 14px;
     }
-    .btn-hero-primary:hover { opacity: .88; }
-    .btn-hero-primary .arrow-wrap { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 20.594px; height: 20.594px; }
-    .btn-hero-secondary {
-      display: inline-flex; align-items: center; gap: 8.6px;
-      height: 48px; padding: 0 27.5px 0 10.3px; background: #fff; border: none; border-radius: 14px;
-      color: rgba(10,21,25,.7); font-size: 14px; font-weight: 400; font-family: var(--font);
-      cursor: pointer; transition: opacity .2s; white-space: nowrap; text-decoration: none;
+    .hero-url-text { flex: 1; font-size: 14px; color: #d4d4d4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .hero-url-btn {
+      flex-shrink: 0; width: 86px; height: 36px; background: #fff; color: #06091a;
+      font-size: 14px; font-weight: 500; border: none; border-radius: 14px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
+      font-family: var(--font); transition: opacity .2s;
     }
-    .btn-hero-secondary:hover { opacity: .88; }
-    .btn-hero-secondary img { width: 34.3px; height: 34.3px; display: block; flex-shrink: 0; }
+    .hero-url-btn:hover { opacity: .86; }
+    .hero-video {
+      position: absolute; left: 192px; right: 168px; top: 523px;
+      aspect-ratio: 1080 / 607.5; background: #1a1a1a;
+      border: 2px solid #d97757; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,217,180,.06); z-index: 2;
+    }
+    .hero-video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-video-gradient {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      height: 50vh;
+      background: linear-gradient(to bottom, rgba(13,13,13,0) 0%, rgba(13,13,13,0.6) 40%, #0d0d0d 75%, #0d0d0d 100%);
+      z-index: 4; pointer-events: none;
+    }
+    .hero-play-btn {
+      position: absolute; left: calc(50% + 12px); top: calc(261.5px + 50vh);
+      transform: translate(-50%, -50%);
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(255,255,255,.15); backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255,255,255,.3);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 5; transition: background .2s;
+    }
+    .hero-play-btn:hover { background: rgba(255,255,255,.25); }
+    .hero-play-btn svg { margin-left: 4px; }
     .hero-float-icon { position: absolute; z-index: 4; pointer-events: none; }
     .hero-float-icon img { width: 100%; height: 100%; display: block; }
 
@@ -207,6 +231,39 @@
     }
     .sec-h2 { font-size: 40px; font-weight: 800; letter-spacing: -1.4px; line-height: 1.12; color: #fff; text-align: center; }
     .sec-sub { font-size: 16px; color: rgba(255,255,255,.6); line-height: 1.7; text-align: center; max-width: 680px; }
+
+    /* ── PLATFORM TAB BAR ── */
+    #platform-tabs {
+      background: #0d0d0d; padding: 0 20px;
+      display: flex; justify-content: center;
+      position: sticky; top: 68px; z-index: 200;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      isolation: isolate;
+    }
+    .plat-tab-list {
+      display: flex; align-items: stretch; gap: 0;
+      max-width: 1100px; width: 100%;
+    }
+    .plat-tab {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 18px 12px; background: none; border: none; cursor: pointer;
+      font-family: var(--font); font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,.45); transition: color .2s;
+      position: relative; white-space: nowrap;
+    }
+    .plat-tab img { width: 18px; height: 18px; display: block; flex-shrink: 0; opacity: .5; transition: opacity .2s; }
+    .plat-tab:hover { color: rgba(255,255,255,.8); }
+    .plat-tab:hover img { opacity: .8; }
+    .plat-tab.active { color: #fff; }
+    .plat-tab.active img { opacity: 1; }
+    .plat-tab.active::after {
+      content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px;
+      border-radius: 2px 2px 0 0;
+      background: linear-gradient(90deg, transparent, #00D9B4, transparent);
+      box-shadow: 0 0 8px rgba(0,217,180,.8);
+    }
+    .plat-panel { display: none; }
+    .plat-panel.active { display: block; }
 
     /* ── TIKTOK SECTION ── */
     #tiktok, #instagram, #youtube-shorts, #youtube { background: #0d0d0d; padding: 0 20px 80px; display: flex; flex-direction: column; align-items: center; gap: 23px; position: relative; overflow: hidden; }
@@ -474,8 +531,9 @@
       .url-bar { width: min(507px, calc(100vw - 40px)); }
       .hero-body { padding-top: 84px; }
       .hero-ai-logo { display: none; }
-      .hero-flare { position: relative; left: auto; top: auto; transform: none; width: 100%; height: 120px; }
-      .hero-video { position: relative; left: auto; top: auto; transform: none; width: calc(100% - 40px); margin: -50px auto 0; }
+      .hero-flare { display: none; }
+      .hero-video { left: 20px; right: 20px; top: auto; bottom: -80px; }
+      .hero-video-gradient { top: auto; bottom: -80px; height: 200px; }
       .hero-play-btn { display: none; }
       .hero-sparkles { display: none; }
       .wc-cards-row { grid-template-columns: 1fr; }
@@ -527,8 +585,7 @@
       .hero-float-icon { display: none; }
       h1 { font-size: clamp(28px, 7vw, 48px); letter-spacing: -1px; line-height: 1.15; }
       .hero-sub { font-size: 15px; line-height: 1.7; }
-      .btn-hero-primary, .btn-hero-secondary { width: 100%; justify-content: center; }
-      .hero-cta-row { flex-direction: column; width: 100%; max-width: 360px; margin: 0 auto; }
+      .hero-url-bar { width: 100%; max-width: 360px; }
 
       /* Problem/What Changes */
       #problem-what-changes { padding: 60px 20px; }
@@ -689,14 +746,15 @@
       .pwc-h2 { font-size: clamp(22px, 7vw, 34px); }
 
       /* Hero */
-      .hero-body { top: 52%; }
-      .badge { font-size: 10px; }
+      .hero-body { top: 50%; }
       h1 { font-size: clamp(26px, 8vw, 40px); }
       .hero-sub { font-size: 14px; }
 
       /* Section padding */
       #problem-what-changes { padding: 48px 16px; }
       #tiktok, #instagram, #youtube-shorts, #youtube { padding: 0 16px 60px; }
+      .plat-tab { font-size: 12px; padding: 14px 8px; gap: 6px; }
+      .plat-tab img { width: 14px; height: 14px; }
       #how-it-works { padding: 60px 16px; }
       #who { padding: 60px 16px; }
       #pricing { padding: 48px 16px; }
@@ -775,37 +833,24 @@
   <div class="hero-bg">
     <img src="https://www.figma.com/api/mcp/asset/f2f687af-7dcd-42c2-bfcf-1d5e0d247afa" alt="" />
   </div>
-  <!-- Flare pinned to bottom -->
+  <!-- Flare — bottom edge flush with video top -->
   <div class="hero-flare">
-    <img src="https://www.figma.com/api/mcp/asset/0ca345ed-5eca-4910-a2a3-cbe88f37675e" alt="" />
+    <div class="hero-flare-inner">
+      <img src="https://www.figma.com/api/mcp/asset/104e36da-0384-4e1b-abf6-2901930313b6" alt="" />
+    </div>
   </div>
   <!-- Floating platform icons -->
   <div class="hero-float-icon float-a" style="left:calc(50% - 530.23px);top:161px;width:106px;height:106px;">
-    <img src="https://www.figma.com/api/mcp/asset/6109abca-c6bb-4eba-8618-294022d4b475" alt="TikTok" />
+    <img src="https://www.figma.com/api/mcp/asset/abd08660-2851-4e83-a0b5-28149e3a8815" alt="TikTok" />
   </div>
-  <div class="hero-float-icon float-b" style="right:111.75px;top:179px;width:114px;height:116px;">
-    <img src="https://www.figma.com/api/mcp/asset/26aa3bf5-c1f4-423b-91b7-2d0ff46b9ccf" alt="YouTube" />
+  <div class="hero-float-icon float-b" style="right:111.75px;top:129px;width:114px;height:116px;">
+    <img src="https://www.figma.com/api/mcp/asset/0eb21cc6-985f-4a7a-a1c0-22d6a27cc517" alt="YouTube" />
   </div>
-  <div class="hero-float-icon float-c" style="right:175.26px;top:592.51px;width:113.5px;height:115px;">
-    <img src="https://www.figma.com/api/mcp/asset/9d40e866-9b7b-4d34-b773-7482b58dc351" alt="Instagram" />
+  <div class="hero-float-icon float-c" style="right:20px;top:450px;width:114px;height:115px;">
+    <img src="https://www.figma.com/api/mcp/asset/3f81206a-5d9e-451b-a6ee-2a9cbc280241" alt="Instagram" />
   </div>
-  <div class="hero-float-icon float-d" style="left:195.37px;top:629.51px;width:112px;height:113px;">
-    <img src="https://www.figma.com/api/mcp/asset/9aa232fa-1a5c-458b-9034-09e59b99296e" alt="" />
-  </div>
-  <!-- Sparkles rising from the flare -->
-  <div class="hero-sparkles">
-    <span style="--dx:-40px;--dur:3.2s;--delay:0s;    left:calc(50% - 60px); width:2px;height:2px;background:#fff;   box-shadow:0 0 4px 2px rgba(0,217,180,.9);"></span>
-    <span style="--dx: 55px;--dur:2.8s;--delay:.6s;   left:calc(50% + 20px); width:2px;height:2px;background:#00d9b4;box-shadow:0 0 4px 2px rgba(0,217,180,.8);"></span>
-    <span style="--dx:-25px;--dur:3.6s;--delay:1.2s;  left:calc(50% - 10px); width:3px;height:3px;background:#fff;   box-shadow:0 0 5px 2px rgba(255,255,255,.6);"></span>
-    <span style="--dx: 70px;--dur:2.5s;--delay:.3s;   left:calc(50% + 50px); width:2px;height:2px;background:#00d9b4;box-shadow:0 0 4px 2px rgba(0,217,180,.7);"></span>
-    <span style="--dx:-70px;--dur:3.0s;--delay:1.8s;  left:calc(50% - 80px); width:2px;height:2px;background:#fff;   box-shadow:0 0 3px 1px rgba(255,255,255,.7);"></span>
-    <span style="--dx: 30px;--dur:3.4s;--delay:.9s;   left:calc(50% - 40px); width:2px;height:2px;background:#00d9b4;box-shadow:0 0 5px 2px rgba(0,217,180,.6);"></span>
-    <span style="--dx:-55px;--dur:2.6s;--delay:2.2s;  left:calc(50% + 60px); width:2px;height:2px;background:#fff;   box-shadow:0 0 4px 2px rgba(0,217,180,.5);"></span>
-    <span style="--dx: 45px;--dur:3.8s;--delay:.4s;   left:calc(50% - 25px); width:3px;height:3px;background:#00d9b4;box-shadow:0 0 6px 3px rgba(0,217,180,.8);"></span>
-    <span style="--dx:-30px;--dur:2.9s;--delay:1.5s;  left:calc(50% + 35px); width:2px;height:2px;background:#fff;   box-shadow:0 0 4px 2px rgba(255,255,255,.5);"></span>
-    <span style="--dx: 60px;--dur:3.1s;--delay:2.7s;  left:calc(50% - 55px); width:2px;height:2px;background:#00d9b4;box-shadow:0 0 4px 2px rgba(0,217,180,.9);"></span>
-    <span style="--dx:-80px;--dur:3.5s;--delay:.7s;   left:calc(50% + 10px); width:2px;height:2px;background:#fff;   box-shadow:0 0 3px 1px rgba(255,255,255,.8);"></span>
-    <span style="--dx: 20px;--dur:2.4s;--delay:1.1s;  left:calc(50% + 70px); width:2px;height:2px;background:#00d9b4;box-shadow:0 0 4px 2px rgba(0,217,180,.7);"></span>
+  <div class="hero-float-icon float-d" style="left:20px;top:450px;width:106px;height:113px;">
+    <img src="https://www.figma.com/api/mcp/asset/e82369e8-780a-4b06-9cbc-ab767d9cede7" alt="YouTube Shorts" />
   </div>
   <!-- Centred content -->
   <div class="hero-body">
@@ -814,101 +859,50 @@
       Claude MCP Connector
     </div>
     <h1>Your entire video research workflow, directly inside Claude</h1>
-    <p class="hero-sub">Connect TokScript to Claude and instantly transcribe, analyze, and download content from TikTok, Instagram Reels, YouTube Shorts, and full-length YouTube videos. No tab switching. No copy-pasting. Just ask Claude what you need and get it back in seconds.</p>
-    <div class="hero-cta-row">
-      <button class="btn-hero-primary">
-        Connect TokScript to Claude
-        <div class="arrow-wrap">
-          <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 5.5H14M14 5.5L9.5 1M14 5.5L9.5 10" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-      </button>
-      <button class="btn-hero-secondary">
-        <img src="https://www.figma.com/api/mcp/asset/c9f7a386-6862-47df-9d23-6f7dc4632e00" alt="" />
-        See how it works
+    <p class="hero-sub">Connect TokScript to Claude and instantly transcribe, analyze, and download content from TikTok, Instagram Reels, YouTube Shorts, and full-length YouTube videos. No tab switching.</p>
+    <div class="hero-url-bar">
+      <span class="hero-url-text">https://api.tokscript.com/mcp</span>
+      <button onclick="copyHeroUrl(this)" class="hero-url-btn">
+        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy
       </button>
     </div>
   </div>
-</section>
-
-<!-- ② PROBLEM + WHAT CHANGES (Figma 139:76) -->
-<section id="problem-what-changes">
-  <div class="pwc-inner">
-
-    <!-- Row 1: Image left, content right — The Problem -->
-    <div class="pwc-row">
-      <div class="pwc-card-wrap">
-        <img class="pwc-card-img" src="https://www.figma.com/api/mcp/asset/554a267f-5d48-4ce8-b8f2-6f4db981c1fe" alt="" />
-      </div>
-      <div class="pwc-content">
-        <div class="pwc-pill-wrap">
-          <div class="pwc-pill">The Problem</div>
-        </div>
-        <h2 class="pwc-h2">You're still doing this the hard way.</h2>
-        <p class="pwc-desc">Copy link. Paste in TokScript. Copy transcript. Paste in Claude. Need stats? Go back. Copy. Paste. Repeat—for every single video.</p>
-        <ul class="pwc-list">
-          <li class="pwc-list-item">
-            <span class="pwc-bullet pwc-bullet-x"><img src="https://www.figma.com/api/mcp/asset/90a513e4-e16a-4fde-964e-5fef8739f014" alt="" /></span>
-            50 videos means 50 rounds of copy-paste chaos
-          </li>
-          <li class="pwc-list-item">
-            <span class="pwc-bullet pwc-bullet-x"><img src="https://www.figma.com/api/mcp/asset/90a513e4-e16a-4fde-964e-5fef8739f014" alt="" /></span>
-            Every tab switch breaks your focus
-          </li>
-          <li class="pwc-list-item">
-            <span class="pwc-bullet pwc-bullet-x"><img src="https://www.figma.com/api/mcp/asset/90a513e4-e16a-4fde-964e-5fef8739f014" alt="" /></span>
-            Manual work that should take zero effort
-          </li>
-          <li class="pwc-list-item">
-            <span class="pwc-bullet pwc-bullet-x"><img src="https://www.figma.com/api/mcp/asset/90a513e4-e16a-4fde-964e-5fef8739f014" alt="" /></span>
-            Multi-platform analysis is nearly impossible.
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Row 2: Content left, image right — What Changes -->
-    <div class="pwc-row">
-      <div class="pwc-content">
-        <div class="pwc-pill-wrap">
-          <div class="pwc-pill">What Changes When You Connect With TokScript</div>
-        </div>
-        <h2 class="pwc-h2">One conversation. Every platform. Every tool</h2>
-        <p class="pwc-desc">Connect TokScript to Claude and your AI pulls transcripts, stats, downloads, creator profiles, and your saved library—automatically. Just ask in plain English.</p>
-        <ul class="pwc-list">
-          <li class="pwc-list-item">
-            <span class="pwc-bullet pwc-bullet-check"><img src="https://www.figma.com/api/mcp/asset/64226fc9-5792-4702-9394-f89e7bb31563" alt="" /></span>
-            Drop a TikTok link: "Break this down".
-          </li>
-          <li class="pwc-list-item">
-            <span class="pwc-bullet pwc-bullet-check"><img src="https://www.figma.com/api/mcp/asset/64226fc9-5792-4702-9394-f89e7bb31563" alt="" /></span>
-            Paste a YouTube video: "Full transcript with timestamps".
-          </li>
-          <li class="pwc-list-item">
-            <span class="pwc-bullet pwc-bullet-check"><img src="https://www.figma.com/api/mcp/asset/64226fc9-5792-4702-9394-f89e7bb31563" alt="" /></span>
-            Send an Instagram Reel: "Compare this to my last 10 posts".
-          </li>
-          <li class="pwc-list-item">
-            <span class="pwc-bullet pwc-bullet-check"><img src="https://www.figma.com/api/mcp/asset/64226fc9-5792-4702-9394-f89e7bb31563" alt="" /></span>
-            You ask. Claude pulls. One message, not fifteen steps.
-          </li>
-        </ul>
-        <button class="pwc-cta-btn">
-          Get Started now
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-      <div class="pwc-card-wrap">
-        <img class="pwc-card-img" src="https://www.figma.com/api/mcp/asset/2a01fbb4-3e73-4f67-8f80-93ae40967c05" alt="" />
-      </div>
-    </div>
-
+  <!-- Video mockup -->
+  <div class="hero-video">
+    <img src="https://www.figma.com/api/mcp/asset/1d2a1afd-77ae-464a-9e74-b0ff3c1216f9" alt="TokScript inside Claude" />
   </div>
+  <!-- Play button sits outside the video so it's not clipped by overflow:hidden and renders at the correct viewport position -->
+  <button class="hero-play-btn" aria-label="Play demo">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+  </button>
+  <div class="hero-video-gradient"></div>
 </section>
 
-<!-- ④ TIKTOK -->
-<!-- ④ TIKTOK -->
+<!-- PLATFORM TAB BAR -->
+<div id="platform-tabs">
+  <div class="plat-tab-list">
+    <button class="plat-tab active" data-tab="tiktok">
+      <img src="https://www.figma.com/api/mcp/asset/f85f5529-e7c3-4d63-8a4f-298d2766561c" alt="" />
+      TikTok
+    </button>
+    <button class="plat-tab" data-tab="instagram">
+      <img src="https://www.figma.com/api/mcp/asset/b91671e7-e22e-4285-b914-368b2944cc9b" alt="" />
+      Instagram Reels
+    </button>
+    <button class="plat-tab" data-tab="youtube-shorts">
+      <img src="https://www.figma.com/api/mcp/asset/5c0b48b6-f7d7-4441-84c4-f8b071ac506a" alt="" />
+      YouTube Shorts
+    </button>
+    <button class="plat-tab" data-tab="youtube">
+      <img src="https://www.figma.com/api/mcp/asset/ef0da6fb-9aba-4632-876b-916cbfa8ae20" alt="" />
+      YouTube
+    </button>
+  </div>
+</div>
+
+<!-- PLATFORM PANELS -->
+<div class="plat-panel active" data-panel="tiktok">
 <section id="tiktok">
   <!-- Blurred TikTok logo at top center of section -->
   <div class="tiktok-logo-bg">
@@ -977,7 +971,9 @@
   </div>
 </section>
 
-<!-- ⑤ INSTAGRAM REELS -->
+</div><!-- /plat-panel tiktok -->
+
+<div class="plat-panel" data-panel="instagram">
 <section id="instagram">
   <div class="tiktok-logo-bg">
     <img src="https://www.figma.com/api/mcp/asset/707ec8b8-99fc-47d7-b823-f057eff6c787" alt="" />
@@ -1035,7 +1031,9 @@
   </div>
 </section>
 
-<!-- ⑥ YOUTUBE SHORTS -->
+</div><!-- /plat-panel instagram -->
+
+<div class="plat-panel" data-panel="youtube-shorts">
 <section id="youtube-shorts">
   <div class="tiktok-logo-bg">
     <img src="https://www.figma.com/api/mcp/asset/b8c57362-7ed1-470c-8abc-e3d0ee051af6" alt="" />
@@ -1087,7 +1085,9 @@
   </div>
 </section>
 
-<!-- ⑦ YOUTUBE LONG-FORM -->
+</div><!-- /plat-panel youtube-shorts -->
+
+<div class="plat-panel" data-panel="youtube">
 <section id="youtube">
   <div class="tiktok-logo-bg">
     <img src="https://www.figma.com/api/mcp/asset/aa76cede-247b-4098-847c-0fd7e1a602ba" alt="" />
@@ -1145,6 +1145,8 @@
     <button class="tiktok-cta-btn">Start Extracting YouTube Data</button>
   </div>
 </section>
+
+</div><!-- /plat-panel youtube -->
 
 <!-- ⑧ TOOLS -->
 <section id="tools">
@@ -1566,6 +1568,81 @@
   </div>
 </section>
 
+<!-- PROBLEM + WHAT CHANGES -->
+<section id="problem-what-changes">
+  <div class="pwc-inner">
+
+    <!-- Row 1: Image left, content right — The Problem -->
+    <div class="pwc-row">
+      <div class="pwc-card-wrap">
+        <img class="pwc-card-img" src="https://www.figma.com/api/mcp/asset/554a267f-5d48-4ce8-b8f2-6f4db981c1fe" alt="" />
+      </div>
+      <div class="pwc-content">
+        <div class="pwc-pill-wrap">
+          <div class="pwc-pill">The Problem</div>
+        </div>
+        <h2 class="pwc-h2">You're still doing this the hard way.</h2>
+        <p class="pwc-desc">Copy link. Paste in TokScript. Copy transcript. Paste in Claude. Need stats? Go back. Copy. Paste. Repeat—for every single video.</p>
+        <ul class="pwc-list">
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-x"><img src="https://www.figma.com/api/mcp/asset/90a513e4-e16a-4fde-964e-5fef8739f014" alt="" /></span>
+            50 videos means 50 rounds of copy-paste chaos
+          </li>
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-x"><img src="https://www.figma.com/api/mcp/asset/90a513e4-e16a-4fde-964e-5fef8739f014" alt="" /></span>
+            Every tab switch breaks your focus
+          </li>
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-x"><img src="https://www.figma.com/api/mcp/asset/90a513e4-e16a-4fde-964e-5fef8739f014" alt="" /></span>
+            Manual work that should take zero effort
+          </li>
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-x"><img src="https://www.figma.com/api/mcp/asset/90a513e4-e16a-4fde-964e-5fef8739f014" alt="" /></span>
+            Multi-platform analysis is nearly impossible.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Row 2: Content left, image right — What Changes -->
+    <div class="pwc-row">
+      <div class="pwc-content">
+        <div class="pwc-pill-wrap">
+          <div class="pwc-pill">What Changes When You Connect With TokScript</div>
+        </div>
+        <h2 class="pwc-h2">One conversation. Every platform. Every tool</h2>
+        <p class="pwc-desc">Connect TokScript to Claude and your AI pulls transcripts, stats, downloads, creator profiles, and your saved library—automatically. Just ask in plain English.</p>
+        <ul class="pwc-list">
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-check"><img src="https://www.figma.com/api/mcp/asset/64226fc9-5792-4702-9394-f89e7bb31563" alt="" /></span>
+            Drop a TikTok link: "Break this down".
+          </li>
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-check"><img src="https://www.figma.com/api/mcp/asset/64226fc9-5792-4702-9394-f89e7bb31563" alt="" /></span>
+            Paste a YouTube video: "Full transcript with timestamps".
+          </li>
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-check"><img src="https://www.figma.com/api/mcp/asset/64226fc9-5792-4702-9394-f89e7bb31563" alt="" /></span>
+            Send an Instagram Reel: "Compare this to my last 10 posts".
+          </li>
+          <li class="pwc-list-item">
+            <span class="pwc-bullet pwc-bullet-check"><img src="https://www.figma.com/api/mcp/asset/64226fc9-5792-4702-9394-f89e7bb31563" alt="" /></span>
+            You ask. Claude pulls. One message, not fifteen steps.
+          </li>
+        </ul>
+        <button class="pwc-cta-btn">
+          Get Started now
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="pwc-card-wrap">
+        <img class="pwc-card-img" src="https://www.figma.com/api/mcp/asset/2a01fbb4-3e73-4f67-8f80-93ae40967c05" alt="" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ⑪ FAQ -->
 <section id="faq">
   <div class="faq-inner">
@@ -1684,6 +1761,24 @@
     navigator.clipboard.writeText('https://api.tokscript.com/mcp').catch(() => {});
     btn.textContent = '✓ Copied!';
     setTimeout(() => { btn.innerHTML = '<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy URL'; }, 2000);
+  }
+  // Platform tab switching
+  document.querySelectorAll('.plat-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      document.querySelectorAll('.plat-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.plat-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector(`.plat-panel[data-panel="${target}"]`).classList.add('active');
+      // Scroll to just below the sticky tab bar
+      document.getElementById('platform-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  function copyHeroUrl(btn) {
+    navigator.clipboard.writeText('https://api.tokscript.com/mcp').catch(() => {});
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => { btn.innerHTML = '<svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy'; }, 2000);
   }
 </script>
 </body>

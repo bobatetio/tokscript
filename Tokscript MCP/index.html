@@ -133,22 +133,14 @@
     }
     /* Platform icons */
     .hero-platforms {
-      display: flex; align-items: center; justify-content: center;
-      position: relative; width: 124px; height: 48px; margin-bottom: 16px;
+      position: relative; width: 142px; height: 60px; margin-bottom: 16px; flex-shrink: 0;
     }
-    .platform-icon {
-      position: absolute; width: 41.8px; height: 41.8px;
-      border-radius: 11.15px; border: 1.4px solid #323232;
-      background: #1e1e1f; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
+    .hero-platforms svg {
+      position: absolute; overflow: visible;
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
     }
-    .platform-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
-    .platform-icon-tiktok {
-      left: 0; transform: rotate(-8.35deg);
-      background: #151b1b; border-color: #a0f8ff;
-    }
-    .platform-icon-insta { left: 40px; }
-    .platform-icon-youtube { left: 80px; transform: rotate(8.35deg); }
+    .hero-platforms svg:not(.plat-active):hover { transform: translateY(-2px) scale(1.04); filter: brightness(1.08); }
     /* App card — exact Figma measurements: outer 690×212px, inner 672×193.75px */
     .hero-app-card-wrap {
       position: relative; width: 690px; max-width: calc(100% - 32px);
@@ -179,8 +171,8 @@
       content: ''; position: absolute; bottom: 0; left: 0; right: 0;
       height: 2px; background: #95f6ff; border-radius: 6px 6px 0 0;
     }
-    .app-tab-icon { width: 16px; height: 16px; flex-shrink: 0; }
-    .app-tab-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .app-tab-icon { width: 16px; height: 16px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .app-tab-icon svg { width: 16px; height: 16px; display: block; }
     /* Text area: left:24px, top:53px (41px tabs + 12px gap), line-height 22.75px */
     .app-text-area {
       padding: 12px 24px 0;
@@ -1530,17 +1522,95 @@
     <h1>TikTok Transcript Generator</h1>
     <p class="hero-sub">Turn speech into text for any TikTok, Reels, and Shorts video</p>
 
-    <!-- Platform icons (TikTok / Instagram / YouTube) — fanned with rotation -->
+    <!-- Platform icons (TikTok / Instagram / YouTube) — exact Figma SVG export -->
     <div class="hero-platforms">
-      <div class="platform-icon platform-icon-tiktok">
-        <img src="https://www.figma.com/api/mcp/asset/5f494ae9-58e6-4f15-8385-0f6821bc6100" alt="TikTok" />
-      </div>
-      <div class="platform-icon platform-icon-insta">
-        <img src="https://www.figma.com/api/mcp/asset/45636d15-257c-4c86-b42c-3caddf8f144e" alt="Instagram" />
-      </div>
-      <div class="platform-icon platform-icon-youtube">
-        <img src="https://www.figma.com/api/mcp/asset/e1f97b82-94e5-4b4f-aca3-a8623513e7ab" alt="YouTube" />
-      </div>
+      <!-- TikTok: left:0, top:0, rotate -8.35deg — active, on top -->
+      <svg class="plat-active" style="left:0;top:0;z-index:2;" width="66" height="60" viewBox="0 0 66 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_di_49_29389)">
+          <rect y="6.06836" width="41.8041" height="41.8041" rx="11.1478" transform="rotate(-8.34665 0 6.06836)" fill="#151B1B"/>
+          <rect x="0.790494" y="6.65657" width="40.4106" height="40.4106" rx="10.451" transform="rotate(-8.34665 0.790494 6.65657)" stroke="#A0F8FF" stroke-width="1.39347"/>
+          <path d="M29.3385 19.9836L29.7566 22.384C29.3301 22.416 28.7686 22.4157 28.1273 22.2998C27.2899 22.1483 26.6353 21.8558 26.1983 21.6171L27.0433 26.4685L27.0309 26.4551C27.0539 26.5502 27.0745 26.6476 27.0917 26.7464C27.5114 29.1557 25.8932 31.4582 23.4838 31.8779C21.0744 32.2976 18.773 30.6777 18.3534 28.2685C17.9338 25.8592 19.5518 23.5558 21.9612 23.1361C22.1971 23.095 22.4319 23.0734 22.6644 23.0705L23.0764 25.4361C22.8457 25.3964 22.6051 25.3952 22.362 25.4376C21.2214 25.6362 20.4544 26.726 20.6533 27.8679C20.8522 29.0097 21.9425 29.776 23.0831 29.5773C24.2237 29.3787 24.9906 28.288 24.7919 27.147C24.7844 27.1043 24.7761 27.0617 24.766 27.0194L23.1239 17.5918L25.5217 17.1741C25.566 17.3756 25.6097 17.5791 25.6539 17.7806C25.7396 18.1777 25.949 18.5368 26.2521 18.8079C26.6077 19.1268 27.1125 19.4812 27.7759 19.719C28.3972 19.9411 28.9517 19.9859 29.3388 19.9854L29.3385 19.9836Z" fill="#FF004F"/>
+          <path d="M28.173 18.1806L28.5911 20.5809C28.1646 20.613 27.6031 20.6126 26.9618 20.4967C26.1244 20.3452 25.4698 20.0527 25.0329 19.814L25.8779 24.6655L25.8654 24.652C25.8884 24.7471 25.9091 24.8445 25.9263 24.9433C26.3459 27.3526 24.7278 29.6551 22.3184 30.0748C19.9089 30.4945 17.6076 28.8746 17.1879 26.4654C16.7683 24.0561 18.3863 21.7527 20.7957 21.333C21.0317 21.2919 21.2664 21.2703 21.4989 21.2674L21.911 23.633C21.6802 23.5934 21.4397 23.5921 21.1966 23.6345C20.056 23.8331 19.2889 24.923 19.4878 26.0648C19.6867 27.2066 20.777 27.9729 21.9176 27.7742C23.0582 27.5756 23.8251 26.4849 23.6264 25.3439C23.6189 25.3012 23.6106 25.2586 23.6005 25.2163L21.9581 15.7869L24.3559 15.3692C24.4002 15.5708 24.4439 15.7742 24.4882 15.9757C24.5738 16.3728 24.7832 16.7319 25.0864 17.003C25.4419 17.322 25.9467 17.6763 26.6101 17.9141C27.2312 18.1354 27.786 18.181 28.173 18.1806Z" fill="#00F7EF"/>
+          <path d="M28.882 19.1364L29.3 21.5367C28.8735 21.5688 28.312 21.5684 27.6707 21.4525C26.8334 21.3011 26.1788 21.0085 25.7418 20.7699L26.5868 25.6213L26.5744 25.6079C26.5974 25.703 26.618 25.8003 26.6352 25.8992C27.0548 28.3084 25.4367 30.611 23.0273 31.0307C20.6179 31.4503 18.3165 29.8305 17.8969 27.4212C17.4772 25.012 19.0952 22.7085 21.5046 22.2889C21.7406 22.2478 21.9753 22.2261 22.2079 22.2233L22.6199 24.5889C22.3892 24.5492 22.1486 24.548 21.9055 24.5903C20.7649 24.789 19.9979 25.8788 20.1967 27.0206C20.3956 28.1625 21.486 28.9288 22.6266 28.7301C23.7672 28.5314 24.534 27.4407 24.3353 26.2998C24.3279 26.257 24.3195 26.2144 24.3094 26.1722L22.6673 16.7445L25.0652 16.3269C25.1094 16.5284 25.1531 16.7319 25.1974 16.9334C25.2831 17.3305 25.4924 17.6896 25.7956 17.9607C26.1511 18.2796 26.656 18.634 27.3194 18.8717C27.9405 19.093 28.4952 19.1386 28.8823 19.1382L28.882 19.1364Z" fill="white"/>
+        </g>
+        <defs>
+          <filter id="filter0_di_49_29389" x="0" y="0" width="66.9383" height="61.3644" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="13.9347" dy="8.36082"/>
+            <feGaussianBlur stdDeviation="2.78694"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.49 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_49_29389"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_49_29389" result="shape"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"/>
+            <feBlend mode="normal" in2="shape" result="effect2_innerShadow_49_29389"/>
+          </filter>
+        </defs>
+      </svg>
+      <!-- Instagram: left:40px, top:3px, no rotation -->
+      <svg style="left:40px;top:3px;z-index:1;" width="62" height="56" viewBox="0 0 62 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_di_49_29382)">
+          <rect width="41.8041" height="41.8041" rx="11.1478" fill="#1E1E1F"/>
+          <rect x="0.696735" y="0.696735" width="40.4106" height="40.4106" rx="10.451" stroke="#323232" stroke-width="1.39347"/>
+          <g opacity="0.8">
+            <path d="M24.7122 12.8522H16.7298C14.5245 12.8522 12.7305 14.6468 12.7305 16.8527V24.1576C12.7305 26.3635 14.5245 28.1581 16.7298 28.1581H24.7122C26.9174 28.1581 28.7115 26.3635 28.7115 24.1576V16.8527C28.7115 14.6468 26.9174 12.8522 24.7122 12.8522ZM14.1413 16.8527C14.1413 15.4252 15.3027 14.2635 16.7298 14.2635H24.7122C26.1393 14.2635 27.3007 15.4252 27.3007 16.8527V24.1576C27.3007 25.5851 26.1393 26.7469 24.7122 26.7469H16.7298C15.3027 26.7469 14.1413 25.5851 14.1413 24.1576V16.8527Z" fill="white"/>
+            <path d="M20.7186 24.2211C22.7693 24.2211 24.4386 22.5522 24.4386 20.4999C24.4386 18.4477 22.7702 16.7788 20.7186 16.7788C18.667 16.7788 16.9985 18.4477 16.9985 20.4999C16.9985 22.5522 18.667 24.2211 20.7186 24.2211ZM20.7186 18.1909C21.992 18.1909 23.0278 19.227 23.0278 20.5008C23.0278 21.7747 21.992 22.8107 20.7186 22.8107C19.4451 22.8107 18.4094 21.7747 18.4094 20.5008C18.4094 19.227 19.4451 18.1909 20.7186 18.1909Z" fill="white"/>
+            <path d="M24.7849 17.3849C25.3371 17.3849 25.7872 16.9355 25.7872 16.3823C25.7872 15.829 25.338 15.3796 24.7849 15.3796C24.2318 15.3796 23.7826 15.829 23.7826 16.3823C23.7826 16.9355 24.2318 17.3849 24.7849 17.3849Z" fill="white"/>
+          </g>
+        </g>
+        <defs>
+          <filter id="filter0_di_49_29382" x="0" y="0" width="61.3126" height="55.7388" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="13.9347" dy="8.36082"/>
+            <feGaussianBlur stdDeviation="2.78694"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_49_29382"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_49_29382" result="shape"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.44 0"/>
+            <feBlend mode="normal" in2="shape" result="effect2_innerShadow_49_29382"/>
+          </filter>
+        </defs>
+      </svg>
+      <!-- YouTube: left:76px, top:0, rotate +8.35deg -->
+      <svg style="left:76px;top:0;z-index:1;" width="66" height="60" viewBox="0 0 66 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g filter="url(#filter0_di_49_29376)">
+          <rect x="6.0708" width="41.8041" height="41.8041" rx="11.1478" transform="rotate(8.35 6.0708 0)" fill="#1E1E1F"/>
+          <rect x="6.65897" y="0.790529" width="40.4106" height="40.4106" rx="10.451" transform="rotate(8.35 6.65897 0.790529)" stroke="#323232" stroke-width="1.39347"/>
+          <g opacity="0.8">
+            <path d="M28.0927 30.6104C27.7077 30.5928 27.3189 30.5398 26.9475 30.4813C24.0497 30.0294 21.1519 29.5774 18.2549 29.1264C17.343 28.9851 16.3544 28.8016 15.7396 28.1126C15.0471 27.3346 15.0579 26.1735 15.1529 25.1361C15.2818 23.7143 15.4937 22.3007 15.7853 20.9032C15.9454 20.1357 16.1389 19.3542 16.5806 18.7054C16.8979 18.2396 17.3672 17.8494 17.9149 17.691C18.5517 17.507 19.1657 17.6525 19.8053 17.7507C21.3364 17.9862 22.8674 18.2227 24.3985 18.4582C25.9903 18.7032 27.5829 18.9491 29.1748 19.1941C29.9268 19.3107 30.7318 19.451 31.2779 19.9812C31.9832 20.6651 32.0329 21.7661 31.9823 22.7472C31.8897 24.5543 31.6137 26.3523 31.1593 28.1033C30.9715 28.8253 30.728 29.5817 30.1585 30.0633C29.5942 30.5412 28.8512 30.6438 28.0937 30.6096L28.0927 30.6104Z" fill="white"/>
+            <path d="M26.161 24.5449L22.2285 21.381L21.4551 26.3697L26.161 24.5449Z" fill="#080C34"/>
+          </g>
+        </g>
+        <defs>
+          <filter id="filter0_di_49_29376" x="0" y="0" width="66.9403" height="61.3664" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dx="13.9347" dy="8.36082"/>
+            <feGaussianBlur stdDeviation="2.78694"/>
+            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.49 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_49_29376"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_49_29376" result="shape"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.44 0"/>
+            <feBlend mode="normal" in2="shape" result="effect2_innerShadow_49_29376"/>
+          </filter>
+        </defs>
+      </svg>
     </div>
 
     <!-- App UI card — exact Figma replica -->
@@ -1549,19 +1619,22 @@
         <!-- Tabs: 4 × 153.5px -->
         <div class="app-tabs">
           <div class="app-tab active">
-            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/a0c6ccbb-147f-4b7c-a447-5e1900b957a4" alt="" /></div>
+            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/c788ce9e-d990-4bda-8565-ed6cc1c68735" alt="" /></div>
             Transcripts
           </div>
           <div class="app-tab">
-            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/a16588e9-e2ba-4c70-b925-46822961f1bb" alt="" /></div>
+            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/2e69f778-bcc6-469c-8c75-8ae2c5b4d850" alt="" /></div>
             Videos
           </div>
           <div class="app-tab">
-            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/4ea476e6-8673-4ed8-804a-8a4662cbbc37" alt="" /></div>
+            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/ef641b97-0150-4e42-9be9-0b47f1c13e0b" alt="" /></div>
             Collections
           </div>
           <div class="app-tab">
-            <div class="app-tab-icon"><img src="https://www.figma.com/api/mcp/asset/bbee42ed-2eb9-428d-b351-db2238ecd37a" alt="" /></div>
+            <div class="app-tab-icon">
+              <img src="https://www.figma.com/api/mcp/asset/0082dd66-2933-4ae3-8046-d9bd7a99d054" alt="" />
+              <img class="icon-badge" src="https://www.figma.com/api/mcp/asset/25603946-35d8-4d60-a230-a34b59c35f25" alt="" />
+            </div>
             Profiles
           </div>
         </div>
