@@ -1455,6 +1455,17 @@
       transition: opacity .2s;
     }
     .video-modal-close:hover { opacity: 1; }
+    .hero-flare {
+      position: absolute; inset: 0 0 -100% 0;
+      pointer-events: none; z-index: 1;
+      background-image: url("data:image/svg+xml,<svg viewBox='0 0 1280 720' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='1'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(5.1346e-15 -36 64 1.935e-13 640 360)'><stop stop-color='rgba(211,255,248,1)' offset='0'/><stop stop-color='rgba(159,246,231,1)' offset='0.055288'/><stop stop-color='rgba(106,236,214,1)' offset='0.11058'/><stop stop-color='rgba(79,231,205,1)' offset='0.13822'/><stop stop-color='rgba(53,227,197,1)' offset='0.16587'/><stop stop-color='rgba(26,222,188,1)' offset='0.19351'/><stop stop-color='rgba(13,219,184,1)' offset='0.20733'/><stop stop-color='rgba(0,217,180,1)' offset='0.22115'/><stop stop-color='rgba(0,255,247,1)' offset='0.48958'/><stop stop-color='rgba(1,195,197,1)' offset='0.61719'/><stop stop-color='rgba(1,136,147,1)' offset='0.74479'/><stop stop-color='rgba(1,106,122,1)' offset='0.80859'/><stop stop-color='rgba(1,76,97,1)' offset='0.8724'/><stop stop-color='rgba(2,47,72,1)' offset='0.9362'/><stop stop-color='rgba(2,17,47,1)' offset='1'/></radialGradient></defs></svg>");
+      -webkit-mask-image: url("assets/8ac064e1-e283-45fb-84fa-02e1d952181b.svg"), url("assets/a3ccda0a-3b34-4212-aaae-7f76361a0218.png");
+      mask-image: url("assets/8ac064e1-e283-45fb-84fa-02e1d952181b.svg"), url("assets/a3ccda0a-3b34-4212-aaae-7f76361a0218.png");
+      -webkit-mask-position: 0px 0px, 0px 0px;
+      mask-position: 0px 0px, 0px 0px;
+      -webkit-mask-size: 100% 100%, 100% 100%;
+      mask-size: 100% 100%, 100% 100%;
+    }
   </style>
 </head>
 <body>
@@ -1462,7 +1473,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <img src="assets/b197aaec-b3bb-49b3-adc9-ed601d580933.png" alt="TokScript" style="height:28.5px;width:138px;object-fit:contain;" />
+    <img src="assets/ffc95521-3983-48cc-8bb0-da48f6a3304a.png" alt="TokScript" style="height:28.5px;width:138px;object-fit:contain;" />
   </div>
   <div class="nav-links">
     <a href="index.html" class="active">Home</a>
@@ -1510,6 +1521,9 @@
   <div class="hero-bg-full">
     <img src="https://www.figma.com/api/mcp/asset/23ad80fc-9e67-4efc-9f2a-a6a88f09fe3d" alt="" />
   </div>
+
+  <!-- Flare glow overlay -->
+  <div class="hero-flare"></div>
 
   <!-- Centred content -->
   <div class="hero-body">
@@ -1666,7 +1680,6 @@
 <section id="video">
 
   <!-- Background sparkle texture -->
-  <img class="hiw-bg-texture" src="https://www.figma.com/api/mcp/asset/2b163638-2152-4c3b-ae07-9f6c3c50979e" alt="" />
 
   <div class="hiw-inner">
 
