@@ -92,14 +92,14 @@
       pointer-events: none; z-index: 0;
     }
     .hero-bg img { width: 100%; height: auto; display: block; }
+    .hero-video-wrap { position: relative; align-self: center; }
     .hero-flare {
-      position: absolute; top: 523px; left: 50%;
-      transform: translate(-50%, -100%);
+      position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
       width: 650px; height: 360px;
-      pointer-events: none; z-index: 1;
+      pointer-events: none; z-index: 2;
     }
     .hero-flare img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover; display: block;
     }
     .hero-body {
@@ -736,9 +736,6 @@
   <div class="hero-bg">
     <img src="https://www.figma.com/api/mcp/asset/f2f687af-7dcd-42c2-bfcf-1d5e0d247afa" alt="" />
   </div>
-  <div class="hero-flare">
-    <img src="https://www.figma.com/api/mcp/asset/53cbcd1e-1063-4266-895d-36b2e79480ca" alt="" />
-  </div>
   <div class="hero-float-icon float-a" style="left:calc(50% - 530.23px);top:161px;width:106px;height:106px;">
     <img src="https://www.figma.com/api/mcp/asset/abd08660-2851-4e83-a0b5-28149e3a8815" alt="TikTok" />
   </div>
@@ -767,14 +764,14 @@
       </button>
     </div>
   </div>
-  <div class="hero-video">
-    <img src="https://www.figma.com/api/mcp/asset/d60cdad1-a0fd-45ae-9d55-6172cfc96776" alt="TokScript inside ChatGPT" />
-    <button class="hero-play-btn" aria-label="Play demo">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-  </button>
-    <button class="hero-play-btn" aria-label="Play demo"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></button>
+  <div class="hero-video-wrap">
+    <div class="hero-flare"><img src="https://www.figma.com/api/mcp/asset/53cbcd1e-1063-4266-895d-36b2e79480ca" alt="" /></div>
+    <div class="hero-video">
+      <img src="https://www.figma.com/api/mcp/asset/d60cdad1-a0fd-45ae-9d55-6172cfc96776" alt="TokScript inside ChatGPT" />
+      <button class="hero-play-btn" aria-label="Play demo"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></button>
+    </div>
+    <div class="hero-video-gradient"></div>
   </div>
-  <div class="hero-video-gradient"></div>
   </div>
 </section>
 

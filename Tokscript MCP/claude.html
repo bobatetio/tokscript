@@ -92,9 +92,10 @@
       pointer-events: none; z-index: 0;
     }
     .hero-bg img { width: 100%; height: auto; display: block; }
+    .hero-video-wrap { position: relative; align-self: center; }
     .hero-flare {
-      position: absolute; top: 523px; left: 50%; transform: translate(-50%, -100%);
-      width: 1440px; pointer-events: none; z-index: 1;
+      position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+      width: 1440px; pointer-events: none; z-index: 2;
     }
     .hero-flare-inner {
       position: absolute; bottom: 0; left: 25.97%; right: 25.97%;
@@ -844,12 +845,6 @@
   <div class="hero-bg">
     <img src="https://www.figma.com/api/mcp/asset/f2f687af-7dcd-42c2-bfcf-1d5e0d247afa" alt="" />
   </div>
-  <!-- Flare — bottom edge flush with video top -->
-  <div class="hero-flare">
-    <div class="hero-flare-inner">
-      <img src="https://www.figma.com/api/mcp/asset/104e36da-0384-4e1b-abf6-2901930313b6" alt="" />
-    </div>
-  </div>
   <!-- Floating platform icons -->
   <div class="hero-float-icon float-a" style="left:calc(50% - 530.23px);top:161px;width:106px;height:106px;">
     <img src="https://www.figma.com/api/mcp/asset/abd08660-2851-4e83-a0b5-28149e3a8815" alt="TikTok" />
@@ -881,15 +876,19 @@
     </div>
   </div>
   <!-- Video mockup -->
-  <div class="hero-video">
-    <img src="https://www.figma.com/api/mcp/asset/1d2a1afd-77ae-464a-9e74-b0ff3c1216f9" alt="TokScript inside Claude" />
-    <button class="hero-play-btn" aria-label="Play demo"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></button>
+  <div class="hero-video-wrap">
+    <div class="hero-flare">
+      <div class="hero-flare-inner">
+        <img src="https://www.figma.com/api/mcp/asset/104e36da-0384-4e1b-abf6-2901930313b6" alt="" />
+      </div>
+    </div>
+    <div class="hero-video">
+      <img src="https://www.figma.com/api/mcp/asset/1d2a1afd-77ae-464a-9e74-b0ff3c1216f9" alt="TokScript inside Claude" />
+      <button class="hero-play-btn" aria-label="Play demo"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></button>
+    </div>
+    <div class="hero-video-gradient"></div>
   </div>
-  <!-- Play button sits outside the video so it's not clipped by overflow:hidden and renders at the correct viewport position -->
-  <button class="hero-play-btn" aria-label="Play demo">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-  </button>
-  <div class="hero-video-gradient"></div>
+  </div>
 </section>
 
 <!-- PLATFORM TAB BAR -->
